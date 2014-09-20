@@ -9,7 +9,11 @@ Group<br>
 
 <b>Reference</b><br>
   http://www.cse.unsw.edu.au/~cs9321/14s2/assignments/assignment2.html
-  
+
+<b>Development plan and Documentation</b><br> 
+  Agile: https://www.pivotaltracker.com/n/projects/1171138<br>
+  UML:design.pdf
+
 <b>Coding Setting</b><br>
   J2EE<br>
   JSP/Servlet<br>
