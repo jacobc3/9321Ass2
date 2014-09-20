@@ -12,7 +12,8 @@ Group<br>
 
 <b>Development plan and Documentation</b><br> 
   Agile: https://www.pivotaltracker.com/n/projects/1171138<br>
-  UML:design.pdf
+  UML:design.pdf<br>
+  Hibernate Tutorial: http://www.tutorialspoint.com/hibernate/hibernate_tutorial.pdf <br>
 
 <b>Coding Setting</b><br>
   J2EE<br>
