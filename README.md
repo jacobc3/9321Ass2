@@ -29,3 +29,9 @@ Group<br>
   Due Week 10 (12 Oct 2014?)<br>
   Worth 25 marks<br>
   
+  
+ IMPORTANT BASIC SETUP:<br>
+ database name 9321Ass2<br>
+ username root<br>
+ password 123<br>
+ REMEMBER TO UPDATE hibernate.cfg.xml to corresponding setup
