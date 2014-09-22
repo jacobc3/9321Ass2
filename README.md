@@ -12,7 +12,7 @@ Group<br>
 
 <b>Development plan and Documentation</b><br> 
   Agile: https://www.pivotaltracker.com/n/projects/1171138<br>
-  UML:design.pdf<br>
+  UML:design.pdf https://repository.genmymodel.com/jacobc3/MovieWebsite<br>
   Hibernate Tutorial: http://www.tutorialspoint.com/hibernate/hibernate_tutorial.pdf <br>
 
 <b>Coding Setting</b><br>
