@@ -1,20 +1,31 @@
 package model.bean;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
 
+@Entity
+@Table(name="movie")
 public class Movie {
 	private int id;
 	private String title;
 	private Date release_date;
 	private String actors;
 	private String synopsis;
+	private Set<Genre> genres = new HashSet<Genre>();
 	
 	public Movie() {
 		// TODO Auto-generated constructor stub
@@ -47,6 +58,14 @@ public class Movie {
 	public String getSynopsis() {
 		return synopsis;
 	}
+	
+	@ManyToMany(targetEntity=Genre.class,cascade=CascadeType.ALL)
+	@JoinTable(name="movie_genre",
+				joinColumns={@JoinColumn(name="movie_id")},
+				inverseJoinColumns={@JoinColumn(name="genre_id")})
+	public Set<Genre> getGenres() {
+		return genres;
+	}
 
 	public void setId(int id) {
 		this.id = id;
@@ -66,6 +85,10 @@ public class Movie {
 
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
+	}
+	
+	public void setGenres(Set<Genre> genres) {
+		this.genres = genres;
 	}
 
 	

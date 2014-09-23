@@ -5,11 +5,12 @@ import java.util.Set;
 
 import javax.persistence.*;
 @Entity
-@Table(name="amenities")
+@Table(name="amenity")
 public class Amenity implements java.io.Serializable {
 	
 	private int id;
 	private String name;
+	private Set<Cinema> cinemas;
 	
 	public Amenity() {
 	}
@@ -23,15 +24,21 @@ public class Amenity implements java.io.Serializable {
 	public int getId() {
 		return id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 	
 	@Column(name = "name")
 	public String getName() {
 		return name;
 	}
+	
+	@ManyToMany(mappedBy="amenities",cascade=CascadeType.ALL)
+	public Set<Cinema> getCinemas() {
+		return cinemas;
+	}
+	
+	
+	public void setId(int id) {
+		this.id = id;
+	}	
 
 	public void setName(String name) {
 		this.name = name;
@@ -53,6 +60,12 @@ public class Amenity implements java.io.Serializable {
 		int tmp = 0;
 		tmp = (id + name).hashCode();
 		return tmp;
+	}
+
+
+
+	public void setCinemas(Set<Cinema> cinemas) {
+		this.cinemas = cinemas;
 	}
 	
 

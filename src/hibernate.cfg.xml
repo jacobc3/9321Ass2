@@ -27,5 +27,8 @@
 		<!-- List of XML mapping files -->
 		<mapping class="model.bean.Amenity" />
 		<mapping class="model.bean.Cinema" />
+		<mapping class="model.bean.Owner" />
+		<!--<mapping class="model.bean.Genre" />
+		<mapping class="model.bean.Movie" />-->
 	</session-factory>
 </hibernate-configuration>
