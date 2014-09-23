@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Cinema;
-import model.DataHandler;
+import model.*;
+import model.bean.*;
 
 /**
  * Servlet implementation class RequestServlet
@@ -42,7 +42,8 @@ public class RequestServlet extends HttpServlet {
 			System.out.println("in index");
 			List<Cinema> cinemas = DataHandler.getCinemas();
 			request.setAttribute("cinemas", cinemas);
-			
+			List<Movie> movies = DataHandler.getMovies();
+			request.setAttribute("movies", movies);
 			
 			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);

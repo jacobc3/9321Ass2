@@ -1,22 +1,25 @@
-package model;
+package model.bean;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-
+import javax.persistence.*;
+@Entity
+@Table(name="amenities")
 public class Amenity implements java.io.Serializable {
+	
 	private int id;
 	private String name;
+	
 	public Amenity() {
-
 	}
 
 	public Amenity(String name) {
 		this.name = name;
 	}
-
+	
+	@Id @GeneratedValue
+	@Column(name = "id",unique = true, nullable = false)
 	public int getId() {
 		return id;
 	}
@@ -24,7 +27,8 @@ public class Amenity implements java.io.Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	@Column(name = "name")
 	public String getName() {
 		return name;
 	}

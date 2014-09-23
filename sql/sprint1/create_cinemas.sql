@@ -1,20 +1,9 @@
 /*
-drop table owners;
-create table owners (
-   id INT NOT NULL auto_increment,
-   name VARCHAR(20) default NULL,
-   PRIMARY KEY (id)
-);
-*/
-drop table movies;
-create table movies (
-	id INT NOT NULL auto_increment,
-	title VARCHAR(40) default NULL,
-	release_date DATE default NULL,
-	actors VARCHAR(100) default NULL,
-	synopsis VARCHAR(400) default NULL,
-	PRIMARY KEY (id)	
-);
+ * INCLUDE:
+ * cinemas
+ * amenities
+ * cinemas_amenities
+ */
 
 drop table cinemas;
 create table cinemas (
@@ -32,7 +21,7 @@ INSERT INTO cinemas (name,location,capacity) VALUES ("ZOFIMS","LIVERPOOL ST", 13
 drop table amenities;
 create table amenities (
 	id INT NOT NULL auto_increment,
-	name VARCHAR(20) default NULL,
+	name VARCHAR(100) default NULL,
 	PRIMARY KEY (id)
 );
 INSERT INTO amenities (name) VALUES ("Parking lot");
@@ -51,5 +40,5 @@ INSERT INTO cinemas_amenities (cinema_id,amenity_id) VALUES (1,1);
 INSERT INTO cinemas_amenities (cinema_id,amenity_id) VALUES (1,2);
 INSERT INTO cinemas_amenities (cinema_id,amenity_id) VALUES (2,1);
 
---FOREIGN KEY (cinema_id) REFERENCES cinemas(id),
---FOREIGN KEY (amenity_id) REFERENCES amenities(id)
+-- FOREIGN KEY (cinema_id) REFERENCES cinemas(id)
+-- FOREIGN KEY (amenity_id) REFERENCES amenities(id)
