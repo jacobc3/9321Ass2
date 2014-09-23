@@ -22,20 +22,23 @@ public class CinemaTester {
 	public static void beforeClass() {
 	}
 
-//	@Test
+	@Test
 	public void test() {
 		//LOAD TEST, FAILED
 		Session session = factory.openSession();
 		CinemaHandlerInterface ch = new CinemaHandler();
-		List<Cinema> list = ch.getAllCinemas();
-		for(Cinema c: list){
-			System.out.println("id is "+c.getId()+" name is "+c.getName()+" Amenity "); //CANT GET AMENITY, WHY?
-			Amenity a0 = c.getAmenities().iterator().next();
-			System.out.println(">>>");
-			Amenity a1 = (Amenity) session.get(Amenity.class, a0);
-			System.out.println(">>>"+a1);
+//		List<Cinema> list = ch.getAllCinemas();
+//		for(Cinema c: list){
+//			System.out.println("id is "+c.getId()+" name is "+c.getName()+" Amenity "); //CANT GET AMENITY, WHY?
+//			Amenity a0 = c.getAmenities().iterator().next();
+//			System.out.println("???");
+//			Amenity a1 = (Amenity) session.get(Amenity.class, a0);
+//			System.out.println(">>>"+a1);
+//		}
+		Cinema c = ch.getCinema(2);
+		for(Amenity a : c.getAmenities()){
+			System.out.println("???"+a.getName());
 		}
-		
 		
 	}
 	

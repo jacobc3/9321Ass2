@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -30,7 +31,7 @@ public class Owner {
 	private String password;
 	private Set<Cinema> cinemas = new HashSet<Cinema>();
 	
-	@OneToMany(targetEntity=Cinema.class,cascade=CascadeType.ALL)
+	@OneToMany(targetEntity=Cinema.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinTable(name="owner_cinema",
 				joinColumns={@JoinColumn(name="owner_id")},
 				inverseJoinColumns={@JoinColumn(name="cinema_id")})

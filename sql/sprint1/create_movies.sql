@@ -11,6 +11,7 @@ create table movie (
 	release_date DATE default NULL,
 	actors VARCHAR(100) default NULL,
 	synopsis VARCHAR(400) default NULL,
+	posterURL VARCHAR(100) default NULL,
 	PRIMARY KEY (id)	
 );
 
@@ -18,8 +19,8 @@ INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG","2011-05-20", "
 INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG2","2011-07-20", "Wow,Pitter");
 INSERT INTO movie (title,release_date,actors) VALUES ("THE RIGHT","2013-12-20", "Luis,Magic");
 
-drop table genres
-create table genres (
+drop table genre;
+create table genre (
 	id INT NOT NULL auto_increment,
 	name VARCHAR(100) NOT NULL,
 	PRIMARY KEY (id)

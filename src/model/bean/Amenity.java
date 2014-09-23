@@ -30,7 +30,7 @@ public class Amenity implements java.io.Serializable {
 		return name;
 	}
 	
-	@ManyToMany(mappedBy="amenities",cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="amenities",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	public Set<Cinema> getCinemas() {
 		return cinemas;
 	}

@@ -45,7 +45,7 @@ public class Cinema {
 		return location;
 	}
 	
-	@ManyToMany(targetEntity=Amenity.class,cascade=CascadeType.ALL)
+	@ManyToMany(targetEntity=Amenity.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinTable(name="cinema_amenitiy",
 				joinColumns={@JoinColumn(name="cinema_id")},
 				inverseJoinColumns={@JoinColumn(name="amenity_id")})

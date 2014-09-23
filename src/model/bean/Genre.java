@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -41,7 +42,7 @@ public class Genre {
 		return name;
 	}
 
-	@ManyToMany(mappedBy = "genres",cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy = "genres",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	public Set<Movie> getMovies() {
 		return movies;
 	}

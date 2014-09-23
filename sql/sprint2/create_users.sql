@@ -1,44 +1,52 @@
 /*
  * INCLUDE:
  * users
- * amenities
- * cinemas_amenities
+ * review
+ * 
  */
 
-drop table users;
-create table users (
+drop table user;
+create table user (
 	id INT NOT NULL auto_increment,
-	name VARCHAR(40) default NULL,
-	location VARCHAR(100) default NULL,
-	capacity INT default NULL,
+	username VARCHAR(40) NOT NULL,
+	email VARCHAR(50) NOT NULL,
+	
+	email_ok ENUM('yes','no') default NULL,	
+	password VARCHAR(40) default NULL,
+	firstname VARCHAR(40) default NULL,
+	lastname VARCHAR(40) default NULL,
+	registry_date DATE default NULL,
 	PRIMARY KEY (id)
 );
-INSERT INTO users (name,location,capacity) VALUES ("ASMOF","PITT ST", 35);
-INSERT INTO users (name,location,capacity) VALUES ("LMAO","GEORGE ST", 70);
-INSERT INTO users (name,location,capacity) VALUES ("ZOFIMS","LIVERPOOL ST", 135);
 
---Amenities : can not be changed by website.
-drop table amenities;
-create table amenities (
+INSERT INTO user (username,email) VALUES ("user1","user1@gmail.com");
+INSERT INTO user (username,email) VALUES ("user2","user2@gmail.com");
+INSERT INTO user (username,email,password) VALUES ("user3","user2@gmail.com", "afwef23");
+INSERT INTO user (username,email,firstname,lastname) VALUES ("user4","user2@gmail.com", "firstname","lastname");
+INSERT INTO user (username,email,registry_date) VALUES ("user5","user2@gmail.com", "2013-03-05");
+INSERT INTO user (username,email,firstname,password) VALUES ("user6","user2@gmail.com", "whatfirstname","waefa2124sf");
+INSERT INTO user (username,email,password) VALUES ("user7","user2@gmail.com", "awgea3562");
+INSERT INTO user (username,email,email_ok) VALUES ("user8","user2@gmail.com", "yes");
+INSERT INTO user (username,email,email_ok) VALUES ("user9","user2@gmail.com", "no");
+
+drop table review;
+create table review (
 	id INT NOT NULL auto_increment,
-	name VARCHAR(100) default NULL,
+	title VARCHAR(40) NOT NULL,
+	
+	user_id int,
+	movie_id int,	
+	post_date DATE default NULL,
+	content TEXT default NULL,
 	PRIMARY KEY (id)
 );
-INSERT INTO amenities (name) VALUES ("Parking lot");
-INSERT INTO amenities (name) VALUES ("Smoking area");
-INSERT INTO amenities (name) VALUES ("Pet Allowed");
-INSERT INTO amenities (name) VALUES ("First Aid");
 
-drop table cinemas_amenities;
-create table cinemas_amenities(
-	cinema_id INT NOT NULL,
-	amenity_id INT NOT NULL,
-	PRIMARY KEY (cinema_id,amenity_id)
-);
+INSERT INTO review (title) VALUES ("New Review");
+INSERT INTO review (title,user_id) VALUES ("QSWEFAWEF",1);
+INSERT INTO review (title,movie_id) VALUES ("New Review",2);
+INSERT INTO review (title,movie_id) VALUES ("New Review122",2);
+INSERT INTO review (title,movie_id) VALUES ("New Review1243",2);
+INSERT INTO review (title,user_id,movie_id) VALUES ("New Review",2,2);
+INSERT INTO review (title,user_id,movie_id) VALUES ("New Review",1,2);
 
-INSERT INTO cinemas_amenities (cinema_id,amenity_id) VALUES (1,1);
-INSERT INTO cinemas_amenities (cinema_id,amenity_id) VALUES (1,2);
-INSERT INTO cinemas_amenities (cinema_id,amenity_id) VALUES (2,1);
 
--- FOREIGN KEY (cinema_id) REFERENCES cinemas(id)
--- FOREIGN KEY (amenity_id) REFERENCES amenities(id)
