@@ -2,11 +2,20 @@ package model.bean;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.sun.istack.internal.NotNull;
 
 @Entity
+@Table(name="session")
 public class Session {
 	private int id;
 	private Movie movie;
@@ -14,16 +23,21 @@ public class Session {
 	private Date showDate;
 	
 	@Id
+	@GeneratedValue
+	@NotNull
+	@Column(name="id")
 	public int getId() {
 		return id;
 	}
 
-	@Column(name="movie_id")
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="movie_id")
 	public Movie getMovie() {
 		return movie;
 	}
 
-	@Column(name="cinema_id")
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="cinema_id")
 	public Cinema getCinema() {
 		return cinema;
 	}
@@ -39,12 +53,12 @@ public class Session {
 	}
 
 
-	public void setMovie_id(Movie movie) {
+	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
 
 
-	public void setCinema_id(Cinema cinema) {
+	public void setCinema(Cinema cinema) {
 		this.cinema = cinema;
 	}
 
@@ -55,7 +69,11 @@ public class Session {
 
 
 	public Session() {
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Session(Movie movie, Cinema cinema){
+		this.movie = movie;
+		this.cinema = cinema;
 	}
 
 }

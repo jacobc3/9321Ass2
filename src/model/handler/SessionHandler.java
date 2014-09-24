@@ -29,8 +29,13 @@ public class SessionHandler implements SessionHandlerInterface {
 	}
 
 	@Override
-	public Session updateSession(Session session) {
-		return this.getSession(session.getId());
+	public void updateSession(Session mySession) {
+		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		org.hibernate.Session session = factory.openSession();
+		session.beginTransaction();
+		session.update(mySession);;		
+		session.getTransaction().commit();
+		session.close();
 	}
 
 	@Override

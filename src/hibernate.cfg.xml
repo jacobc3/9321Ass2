@@ -32,10 +32,10 @@
 		<mapping class="model.bean.Movie" />
 		<mapping class="model.bean.User" />		
 		<mapping class="model.bean.Review" />
-		
-		<!--
 		<mapping class="model.bean.Session" />
 		<mapping class="model.bean.Booking" />
+		
+		<!--
 		 
 		-->
 	</session-factory>

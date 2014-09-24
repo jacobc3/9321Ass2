@@ -16,7 +16,7 @@
     <tr>
       <td width="51%">Your username is</td>
       <td width="49%">username</td></tr>
-      <tr>
+      <tr><input type="hidden" name="id" value="1">
         <th colspan="2" scope="row"><input type="submit" name="submit" id="submit" value="Confirm">          <br>          </th>
         </tr>
     </tbody>

@@ -9,36 +9,37 @@
 <body>
 <div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
 <div class="body" id="body">
-<h1>Add Session</h1>
+<h1>Add Cinema</h1>
 <form>
   <table width="80%" border="0">
     <tbody>
-    <tr>
-        <th scope="row">Movie</th>
-        <td><label for="textfield2">id &amp; title</label></td>
-      </tr>
-      <tr>
-        <th scope="row">Cinema</th>
-        <td><label for="textfield2">id &amp; title</label></td>
-      </tr>
       
       <tr>
-        <th scope="row">Date</th>
-        <td><input type="date" name="date" id="date">          
-          <label for="textfield2"></label></td>
+        <th scope="row">Name</th>
+        <td><label for="textfield2"></label>
+          <input type="text" name="textfield2" id="textfield2"></td>
       </tr>
       <tr>
-        <th scope="row">Time</th>
-        <td><input type="time" name="time" id="time">          
-          <label for="textfield"></label></td>
+        <th scope="row">Location</th>
+        <td><label for="textfield"></label>
+          <input type="text" name="textfield" id="textfield"></td>
       </tr>
       <tr>
-        <th scope="row">&nbsp;</th>
-        <td><label for="textfield3"></label></td>
+        <th scope="row">Seating Capacity</th>
+        <td><label for="textfield3"></label>
+          <input type="text" name="textfield3" id="textfield3"></td>
       </tr>
       <tr>
-        <th scope="row">&nbsp;</th>
-        <td><p><br>
+        <th scope="row">Amenities</th>
+        <td><p>
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_0">
+            Checkbox</label>
+          <br>
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_1">
+            Checkbox</label>
+          <br>
         </p></td>
       </tr>
     </tbody>

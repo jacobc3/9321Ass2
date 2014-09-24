@@ -116,14 +116,14 @@ public class OwnerHandler implements OwnerHandlerInterface{
 
 
 	@Override
-	public Owner getOwnerByCinema(Owner owner) {
-		return new CinemaHandler().getOwnerByCinema(owner);
+	public Owner getOwnerByCinema(Cinema cinema) {
+		return new CinemaHandler().getOwnerByCinema(cinema);
 	}
 
 
 	@Override
-	public Owner getOwnerByCinema(int owner_id) {
-		return new CinemaHandler().getOwnerByCinema(owner_id);
+	public Owner getOwnerByCinema(int cinema_id) {
+		return new CinemaHandler().getOwnerByCinema(cinema_id);
 	}
 
 
@@ -141,15 +141,33 @@ public class OwnerHandler implements OwnerHandlerInterface{
 
 	@Override
 	public List<Booking> getBookingsByOwner(Owner owner) {
-		// TODO Auto-generated method stub
 		return this.getBookingsByOwner(owner.getId());
 	}
 
 
 	@Override
 	public List<Booking> getBookingsByOwner(int owner_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "SELECT b.id from booking b join session s on (b.session_id = s.id) "
+				+ "join owner_cinema oc on(s.cinema_id=oc.cinema_id) WHERE oc.owner_id =" + owner_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Booking> results = new ArrayList<Booking>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			// System.out.println(row.get("name") + " " + row.get("id"));
+			int id = Integer.parseInt(row.get("id").toString());
+			Booking b = new BookingHandler().getBooking(id);
+			results.add(b);
+		}
+		session.getTransaction().commit();
+		session.close();
+
+		return results;
 	}
 
 }

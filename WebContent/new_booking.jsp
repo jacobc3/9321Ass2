@@ -9,32 +9,35 @@
 <body>
 <div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
 <div class="body" id="body">
-<h1>Add User</h1>
+<h1>Add Booking</h1>
 <form>
   <table width="80%" border="0">
     <tbody>
     <tr>
-        <th scope="row">Username</th>
-        <td>
-          <input type="text" name="textfield" id="textfield"></td>
+        <th scope="row">Movie</th>
+        <td><label for="textfield2">id &amp; title</label></td>
       </tr>
       <tr>
-        <th scope="row">Email</th>
-        <td>
-          <input type="text" name="textfield2" id="textfield2"></td>
+        <th scope="row">Cinema</th>
+        <td><label for="textfield2">id &amp; title</label></td>
       </tr>
       
       <tr>
-        <th scope="row">Password</th>
-        <td>
-          <input type="text" name="textfield3" id="textfield3">          <label for="textfield2"></label></td>
+        <th scope="row">Date&amp;Time</th>
+        <td><label for="textfield2">Date&amp;time</label></td>
+      </tr>
+      <tr>
+        <th scope="row">Number</th>
+        <td><input type="text" name="textfield" id="textfield"></td>
+      </tr>
+      <tr>
+        <th scope="row">Cinema Owner</th>
+        <td><label for="textfield3">owner</label></td>
       </tr>
       <tr>
         <th scope="row"><input type="submit" value="Submit"></th>
-        <td><p>
-          <input type="reset" name="reset" id="reset" value="Reset">
-          <br>
-          </p></td>
+        <td><p><br>
+        </p></td>
       </tr>
     </tbody>
   </table>

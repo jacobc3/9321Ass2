@@ -14,7 +14,9 @@
   <table width="80%" border="0">
     <tbody><tr>
         <th scope="row">id</th>
-        <td><label for="textfield2"></label></td>
+        <td><label for="textfield2">afqwf
+          <input name="hiddenField" type="hidden" id="hiddenField" value="hiddenId">
+        </label></td>
       </tr>
       
       <tr>

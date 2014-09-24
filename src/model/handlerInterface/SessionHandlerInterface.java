@@ -9,7 +9,7 @@ import model.bean.Session;
 
 public interface SessionHandlerInterface {
 	public Session getSession(int session_id);
-	public Session updateSession(Session session);
+	public void updateSession(Session mySession);
 	public int addSession(Session session);
 	
 	

@@ -14,6 +14,7 @@ import controller.HibernateUtil;
 import model.bean.Cinema;
 import model.bean.Genre;
 import model.bean.Movie;
+import model.bean.Owner;
 import model.bean.Review;
 import model.bean.User;
 import model.handlerInterface.MovieHandlerInterface;
@@ -23,17 +24,17 @@ import model.handlerInterface.MovieHandlerInterface;
  * @author SephyZhou
  *
  */
-public class MovieHandler implements MovieHandlerInterface{
+public class MovieHandler implements MovieHandlerInterface {
 
 	public MovieHandler() {
 	}
 
 	@Override
 	public int addMovie(Movie movie) {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		Integer id = (Integer) session.save(movie);		
+		Integer id = (Integer) session.save(movie);
 		session.getTransaction().commit();
 		session.close();
 		return id;
@@ -41,10 +42,10 @@ public class MovieHandler implements MovieHandlerInterface{
 
 	@Override
 	public Movie removeMovie(int id) {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		Movie m = (Movie)session.get(Movie.class, id);	
+		Movie m = (Movie) session.get(Movie.class, id);
 		session.delete(m);
 		session.getTransaction().commit();
 		session.close();
@@ -53,9 +54,9 @@ public class MovieHandler implements MovieHandlerInterface{
 
 	@Override
 	public List<Movie> getAllMovies() {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
-		session.beginTransaction();		
+		session.beginTransaction();
 		List<Movie> movies = session.createQuery("FROM Movie").list();
 		session.getTransaction().commit();
 		session.close();
@@ -64,10 +65,10 @@ public class MovieHandler implements MovieHandlerInterface{
 
 	@Override
 	public Movie getMovie(int id) {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		Movie m = (Movie)session.get(Movie.class, id);		
+		Movie m = (Movie) session.get(Movie.class, id);
 		session.getTransaction().commit();
 		session.close();
 		return m;
@@ -75,32 +76,32 @@ public class MovieHandler implements MovieHandlerInterface{
 
 	@Override
 	public void updateMovie(Movie movie) {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		session.update(movie);		
+		session.update(movie);
 		session.getTransaction().commit();
 		session.close();
-		
+
 	}
 
 	@Override
 	public void removeMovie(Movie movie) {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		session.delete(movie);		
+		session.delete(movie);
 		session.getTransaction().commit();
-		session.close();	
+		session.close();
 	}
-	
 
 	@Override
 	public List<Movie> getShowingMovies() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		//SELECT FROM movie Where release_date is not null && release_date < today
+		// SELECT FROM movie Where release_date is not null && release_date <
+		// today
 		String sql = "select id FROM movie where release_date <= cast(now() as date)";
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -123,7 +124,8 @@ public class MovieHandler implements MovieHandlerInterface{
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		//SELECT FROM movie Where release_date is not null && release_date < today
+		// SELECT FROM movie Where release_date is not null && release_date <
+		// today
 		String sql = "select id FROM movie where release_date > cast(now() as date)";
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -146,9 +148,9 @@ public class MovieHandler implements MovieHandlerInterface{
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		//SELECT id from movie where title like title
-		String sql = "select id FROM movie where title like '%"+title+"%'";
-		//System.out.println(sql);
+		// SELECT id from movie where title like title
+		String sql = "select id FROM movie where title like '%" + title + "%'";
+		// System.out.println(sql);
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List data = query.list();
@@ -165,8 +167,6 @@ public class MovieHandler implements MovieHandlerInterface{
 		return results;
 	}
 
-
-	
 	@Override
 	public List<Genre> getAllGenres() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -178,13 +178,13 @@ public class MovieHandler implements MovieHandlerInterface{
 		return genres;
 	}
 
-
 	@Override
 	public List<Movie> getMoviesByGenre(String genre) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		String sql = "select M.id from movie_genre MG join Movie M join Genre G where MG.movie_id = M.id and MG.genre_id=G.id and G.name like '%"+genre+"%'";
+		String sql = "select M.id from movie_genre MG join Movie M join Genre G where MG.movie_id = M.id and MG.genre_id=G.id and G.name like '%"
+				+ genre + "%'";
 		System.out.println(sql);
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -235,7 +235,7 @@ public class MovieHandler implements MovieHandlerInterface{
 		List<Genre> results = new ArrayList<Genre>();
 		Movie m = this.getMovie(movie_id);
 		Set<Genre> genres = m.getGenres();
-		for(Genre g: genres){
+		for (Genre g : genres) {
 			results.add(g);
 		}
 		return results;
@@ -248,8 +248,24 @@ public class MovieHandler implements MovieHandlerInterface{
 
 	@Override
 	public List<model.bean.Session> getSessionsByMovie(int movie_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "select id from session where movie_id=" + movie_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<model.bean.Session> results = new ArrayList<model.bean.Session>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			int id = Integer.parseInt(row.get("id").toString());
+			model.bean.Session s = new SessionHandler().getSession(id);
+			results.add(s);
+		}
+		session.getTransaction().commit();
+		session.close();
+		return results;
 	}
 
 	@Override
@@ -264,8 +280,21 @@ public class MovieHandler implements MovieHandlerInterface{
 
 	@Override
 	public Movie getMovieBySession(int session_id) {
-		// TODO Auto-generated method stub
-		return null;
+		// select A.name from cinema_amenity CA join Amenity A where CA.amenity
+		// = A.id
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "SELECT movie_id from session WHere id=" + session_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+		Map row = (Map) data.get(0);
+		int id = Integer.parseInt(row.get("movie_id").toString());
+		Movie m = this.getMovie(id);
+		session.getTransaction().commit();
+		session.close();
+		return m;
 	}
 
 	@Override
@@ -278,8 +307,9 @@ public class MovieHandler implements MovieHandlerInterface{
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		//SELECT FROM movie Where release_date is not null && release_date < today
-		String sql = "select id FROM review where movie_id="+movie_id;
+		// SELECT FROM movie Where release_date is not null && release_date <
+		// today
+		String sql = "select id FROM review where movie_id=" + movie_id;
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List data = query.list();
@@ -306,8 +336,9 @@ public class MovieHandler implements MovieHandlerInterface{
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		//SELECT FROM movie Where release_date is not null && release_date < today
-		String sql = "select movie_id FROM review where id="+review_id;
+		// SELECT FROM movie Where release_date is not null && release_date <
+		// today
+		String sql = "select movie_id FROM review where id=" + review_id;
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List data = query.list();
@@ -340,5 +371,4 @@ public class MovieHandler implements MovieHandlerInterface{
 		return new CinemaHandler().getCinemasByMovie(movie_id);
 	}
 
-	
 }

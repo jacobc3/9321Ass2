@@ -152,9 +152,9 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		List<Amenity> results = new ArrayList<Amenity>();
 		for (Object object : data) {
 			Map row = (Map) object;
-//			System.out.println(row.get("name") + " " + row.get("id"));
+			// System.out.println(row.get("name") + " " + row.get("id"));
 			int id = Integer.parseInt(row.get("id").toString());
-//			System.out.println("A3.6 " + id);
+			// System.out.println("A3.6 " + id);
 			Amenity a = this.getAmenity(id);
 			results.add(a);
 		}
@@ -184,7 +184,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		List<Cinema> results = new ArrayList<Cinema>();
 		for (Object object : data) {
 			Map row = (Map) object;
-//			System.out.println(row.get("name") + " " + row.get("id"));
+			// System.out.println(row.get("name") + " " + row.get("id"));
 			int id = Integer.parseInt(row.get("id").toString());
 			Cinema c = this.getCinema(id);
 			results.add(c);
@@ -196,14 +196,29 @@ public class CinemaHandler implements CinemaHandlerInterface {
 	}
 
 	@Override
-	public Owner getOwnerByCinema(Owner owner) {
-		return this.getOwnerByCinema(owner.getId());
+	public Owner getOwnerByCinema(Cinema cinema) {
+		return this.getOwnerByCinema(cinema.getId());
 	}
 
 	@Override
-	public Owner getOwnerByCinema(int owner_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Owner getOwnerByCinema(int cinema_id) {
+		// select A.name from cinema_amenity CA join Amenity A where CA.amenity
+		// = A.id
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "SELECT owner_id from owner_cinema WHere cinema_id="
+				+ cinema_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+		Map row = (Map) data.get(0);
+		int id = Integer.parseInt(row.get("id").toString());
+		Owner o = new OwnerHandler().getOwnerById(id);
+		session.getTransaction().commit();
+		session.close();
+		return o;
+
 	}
 
 	@Override
@@ -213,8 +228,27 @@ public class CinemaHandler implements CinemaHandlerInterface {
 
 	@Override
 	public List<Cinema> getCinemasByOwner(int owner_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "SELECT cinema_id from owner_cinema WHERE owner_id="
+				+ owner_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Cinema> results = new ArrayList<Cinema>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			// System.out.println(row.get("name") + " " + row.get("id"));
+			int id = Integer.parseInt(row.get("id").toString());
+			Cinema c = this.getCinema(id);
+			results.add(c);
+		}
+		session.getTransaction().commit();
+		session.close();
+
+		return results;
 	}
 
 	@Override
@@ -224,8 +258,26 @@ public class CinemaHandler implements CinemaHandlerInterface {
 
 	@Override
 	public List<model.bean.Session> getSessionsByCinema(int cinema_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "SELECT id from session WHERE cinema_id=" + cinema_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<model.bean.Session> results = new ArrayList<model.bean.Session>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			// System.out.println(row.get("name") + " " + row.get("id"));
+			int id = Integer.parseInt(row.get("id").toString());
+			model.bean.Session c = new SessionHandler().getSession(id);
+			results.add(c);
+		}
+		session.getTransaction().commit();
+		session.close();
+
+		return results;
 	}
 
 	@Override
@@ -235,8 +287,21 @@ public class CinemaHandler implements CinemaHandlerInterface {
 
 	@Override
 	public Cinema getCinemaBySession(int session_id) {
-		// TODO Auto-generated method stub
-		return null;
+		// select A.name from cinema_amenity CA join Amenity A where CA.amenity
+		// = A.id
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "SELECT cinema_id from session WHere id=" + session_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+		Map row = (Map) data.get(0);
+		int id = Integer.parseInt(row.get("id").toString());
+		Cinema c = this.getCinema(id);
+		session.getTransaction().commit();
+		session.close();
+		return c;
 	}
 
 	@Override
@@ -246,8 +311,26 @@ public class CinemaHandler implements CinemaHandlerInterface {
 
 	@Override
 	public List<Movie> getMoviesByCinema(int cinema_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "SELECT movie_id from session WHERE cinema_id=" + cinema_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Movie> results = new ArrayList<Movie>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			// System.out.println(row.get("name") + " " + row.get("id"));
+			int id = Integer.parseInt(row.get("movie_id").toString());
+			Movie m = new MovieHandler().getMovie(id);
+			results.add(m);
+		}
+		session.getTransaction().commit();
+		session.close();
+
+		return results;
 	}
 
 	@Override
@@ -257,8 +340,26 @@ public class CinemaHandler implements CinemaHandlerInterface {
 
 	@Override
 	public List<Cinema> getCinemasByMovie(int movie_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "SELECT cinema_id from session WHERE movie_id=" + movie_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Cinema> results = new ArrayList<Cinema>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			// System.out.println(row.get("name") + " " + row.get("id"));
+			int id = Integer.parseInt(row.get("cinema_id").toString());
+			Cinema m = this.getCinema(id);
+			results.add(m);
+		}
+		session.getTransaction().commit();
+		session.close();
+
+		return results;
 	}
 
 }

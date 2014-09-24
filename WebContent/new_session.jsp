@@ -9,37 +9,38 @@
 <body>
 <div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
 <div class="body" id="body">
-<h1>Add Cinema</h1>
-<form>
+<h1>Add Session</h1>
+<form action="add_session" method="get">
   <table width="80%" border="0">
     <tbody>
+    <tr>
+        <th scope="row">Movie</th>
+        <td><label for="textfield2">id &amp; title</label></td>
+      </tr>
+      <tr>
+        <th scope="row">Cinema</th>
+        <td><label for="textfield2">id &amp; title</label></td>
+      </tr>
       
       <tr>
-        <th scope="row">Name</th>
-        <td><label for="textfield2"></label>
-          <input type="text" name="textfield2" id="textfield2"></td>
+        <th scope="row">Date</th>
+        <td><input type="date" name="date" id="date">          
+          <label for="textfield2"></label></td>
       </tr>
       <tr>
-        <th scope="row">Location</th>
-        <td><label for="textfield"></label>
-          <input type="text" name="textfield" id="textfield"></td>
+        <th scope="row">Time</th>
+        <td><input type="time" name="time" id="time">          
+          <label for="textfield"></label></td>
       </tr>
       <tr>
-        <th scope="row">Seating Capacity</th>
-        <td><label for="textfield3"></label>
-          <input type="text" name="textfield3" id="textfield3"></td>
+        <th scope="row"><input type="submit"  value="Submit"></th>
+        <td><label for="textfield3">
+          <input type="reset" name="reset" id="reset" value="Reset">
+        </label></td>
       </tr>
       <tr>
-        <th scope="row">Amenities</th>
-        <td><p>
-          <label>
-            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_0">
-            Checkbox</label>
-          <br>
-          <label>
-            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_1">
-            Checkbox</label>
-          <br>
+        <th scope="row">&nbsp;</th>
+        <td><p><br>
         </p></td>
       </tr>
     </tbody>

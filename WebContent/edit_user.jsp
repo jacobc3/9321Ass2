@@ -15,7 +15,8 @@
     <tbody>
     <tr>
         <th scope="row">Username</th>
-        <td>&nbsp;</td>
+        <td><label id="username" value="uu">Username</label>&nbsp;
+          <input type="hidden" name="id" id="hiddenField" value="hiddenID"></td>
       </tr>
       <tr>
         <th scope="row">Email</th>
@@ -40,7 +41,7 @@
       </tr>
       
       <tr>
-        <th scope="row"><input type="submit" name="submit" id="submit" value="Submit"></th>
+        <th scope="row"><input type="submit"  value="Submit"></th>
         <td><p>
           <input type="reset" name="reset" id="reset" value="Reset">
           <br>

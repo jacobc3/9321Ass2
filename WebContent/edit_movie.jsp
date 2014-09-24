@@ -8,13 +8,14 @@
 </head>
 <body>
 <div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
-<div class="body" id="body"><h1>Movie</h1>
+<div class="body" id="body">
+<h1>Edit Movie</h1>
 <form>
   <table width="80%" border="0">
     <tbody>
       <tr>
         <th width="22%" scope="row">id</th>
-        <td width="78%">&nbsp;</td>
+        <td width="78%"><input type="hidden" name="hiddenField" id="hiddenField"><label>id</label></td>
       </tr>
       <tr>
         <th scope="row">title</th>

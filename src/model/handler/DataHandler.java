@@ -18,7 +18,6 @@ import controller.HibernateUtil;
 
 public class DataHandler {
 	public DataHandler() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })

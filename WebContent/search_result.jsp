@@ -10,7 +10,7 @@
 </head>
 <body>
 	<p>&nbsp;</p>
-	<form name="form1" method="post" action="">
+	<form name="form1" method="get" action="search">
 	<table width="80%" border="0">
 	  <tbody>
 	    <tr>
@@ -21,24 +21,20 @@
 	      <td width="46%"><p>
 	        <label>
 	          Search by 
-	          <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0">
+	          <input name="search_by" type="radio" id="title" value="title" checked="checked">
 	          Title</label>
 	        <label>
-	          <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1">
+	          <input name="search_by" type="radio" id="genre" value="genre">
 	          Genre</label>
 	        <br>
           </p></td>
         </tr>
 	    <tr>
-	      <td colspan="2"><input type="submit" name="submit" id="submit" value="Submit"></td>
+	      <td colspan="2"><input type="submit"  value="Submit"></td>
         </tr>
       </tbody>
 </table></form>
 	<p>&nbsp;</p>
-	<%
-		List<Movie> movies = (List<Movie>) request.getAttribute("movies");
-		Iterator<Movie> movie_iterator = movies.iterator();
-	%>
 <table width="80%" border="0">
 		<tbody>
         <tr>
@@ -52,28 +48,13 @@
                 <th width="33%" scope="col">Rating</th>
                  <th width="33%" scope="col">Actors</th>
 			</tr>
-			<%
-				while (movie_iterator.hasNext()) {
-					Movie movie = (Movie) movie_iterator.next();
-					String movieTitle = movie.getTitle();
-					int movieID = movie.getId();
-					
-					Set<Genre> genres = movie.getGenres();
-					String genresString = "";
-					for(Genre a : genres){
-						genresString += a.getName();
-					}
-			%>
-			<tr><td><a href="movie_detail?id=<%=movieID%>"><%=movieTitle%></a></td>
-				<td><%=genresString%></td>
+			<tr><td><a href=""></a></td>
+				<td></td>
                 <td></td>
                 <td></td>
                  <td></td>
 			</tr>
 
-			<%
-				}
-			%>
 		</tbody>
 	</table>
 <p><a href="index">Back to index</a></p>

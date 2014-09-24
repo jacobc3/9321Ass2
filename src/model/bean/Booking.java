@@ -2,11 +2,18 @@ package model.bean;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.type.EnumType;
 
 import com.sun.istack.internal.NotNull;
 
@@ -26,11 +33,13 @@ public class Booking {
 	public int getId() {
 		return id;
 	}
-	@Column(name="session_id")
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="session_id")
 	public Session getSession() {
 		return session;
 	}
-	@Column(name="user_id")
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="user_id")
 	public User getUser() {
 		return user;
 	}
@@ -51,6 +60,7 @@ public class Booking {
 	}
 
 	@Column(name="status")
+	@Enumerated(javax.persistence.EnumType.STRING)
 	public OrderStatus getStatus() {
 		return status;
 	}
@@ -84,7 +94,6 @@ public class Booking {
 	}
 
 	public Booking() {
-		// TODO Auto-generated constructor stub
 	}
 
 }

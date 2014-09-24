@@ -2,6 +2,7 @@ package model.handler;
 
 import java.util.List;
 
+import model.bean.Booking;
 import model.bean.Review;
 import model.bean.User;
 import model.handlerInterface.MovieHandlerInterface;
@@ -26,8 +27,16 @@ public class OwnerHandlerTester {
 	public static void beforeClass() {
 	}
 	
-
+	
 	@Test
+	public void getBookingsByOwnerTest(){
+		List<Booking> bs = oh.getBookingsByOwner(1);
+		for(Booking b: bs){
+			System.out.println(b.getId()+"\tcinema:"+b.getSession().getCinema().getId());
+		}
+	}
+
+//	@Test
 	public void isOwnerExistTest() {
 		String o = "owner1";
 		System.out.println(o+"\t "+oh.isExist(o));

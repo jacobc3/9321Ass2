@@ -16,30 +16,31 @@
 	    <p>&nbsp;</p>
 	  </div>
 <div class="search">
-	    
+	    <form method="get" action="search">
 	  <table width="80%" border="0">
 	    <tbody>
 	      <tr>
 	        <td>Search</td>
-	        <td><input type="text" name="textfield" id="textfield"></td>
+	        <td><input type="text" name="search"></td>
           </tr>
 	      <tr>
 	        <td>By</td>
 	        <td><p>
 	          <label>
-	            <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0">
+	            <input name="search_by" type="radio" value="radio" checked="checked">
 	            Title</label>
 	          <label>
-	            <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1">
+	            <input type="radio" name="search_by" value="radio">
               Genre</label>
 	          <br>
             </p></td>
           </tr>
 	      <tr>
-	        <td colspan="2"><input type="submit" name="submit" id="submit" value="Submit"></td>
+	        <td colspan="2"><input type="submit"  value="Submit"></td>
           </tr>
         </tbody>
     </table>
+    </form>
 </div>
       <div class="Showing_movies">
         <p>&nbsp;</p>
