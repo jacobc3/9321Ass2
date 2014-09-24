@@ -43,24 +43,29 @@ INSERT INTO amenity (name) VALUES ("receptions");
 
 
 
-drop table cinema_amenitiy;
-create table cinema_amenitiy(
+drop table cinema_amenity;
+create table cinema_amenity(
 	cinema_id INT NOT NULL,
 	amenity_id INT NOT NULL,
 	PRIMARY KEY (cinema_id,amenity_id)
 );
 
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (1,1);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (1,2);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (2,1);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (2,2);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (2,3);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (2,4);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (2,5);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (2,7);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (3,1);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (3,5);
-INSERT INTO cinema_amenitiy (cinema_id,amenity_id) VALUES (3,7);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,1);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,2);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,3);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,4);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,5);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,6);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,1);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,2);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,3);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,4);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,5);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,7);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (3,1);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (3,5);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (3,7);
+
 
 -- FOREIGN KEY (cinema_id) REFERENCES cinemas(id)
 -- FOREIGN KEY (amenity_id) REFERENCES amenities(id)

@@ -18,5 +18,9 @@
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 
+<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/movie_detail</url-pattern>
+	</servlet-mapping>
 
 </web-app>

@@ -9,7 +9,7 @@ BUGS:
 	public boolean isExist(String username) ;
 	public boolean isExist(String username, String password);
 
-
+	Nothing can be deleted. Will remove all database( since Casade setting to ALL)
 
 
 

@@ -31,11 +31,17 @@
 					Movie movie = (Movie) movie_iterator.next();
 					String movieTitle = movie.getTitle();
 					int movieID = movie.getId();
+					
+					Set<Genre> genres = movie.getGenres();
+					String genresString = "";
+					for(Genre a : genres){
+						genresString += a.getName();
+					}
 			%>
 			<tr>
 				<td><%=movieID%></td>
-				<td><%=movieTitle%></td>
-				<td>Genres</td>
+				<td><a href="movie_detail?id=<%=movieID%>"><%=movieTitle%></a></td>
+				<td><%=genresString%></td>
 			</tr>
 
 			<%
@@ -71,17 +77,18 @@
 					Cinema cinema = (Cinema) cinema_iterator.next();
 					String cinemaName = cinema.getName();
 					int cinemaID = cinema.getId();
-					/*
+					
+					
 					Set<Amenity> amenities = cinema.getAmenities();
 					String amenitiesString = "";
 					for(Amenity a : amenities){
 						amenitiesString += a.getName();
-					}*/
+					}
 			%>
 			<tr>
 				<td><%=cinemaID%></td>
 				<td><%=cinemaName%></td>
-				<td>Amenities</td>
+				<td><%=amenitiesString%></td>
 			</tr>
 
 			<%

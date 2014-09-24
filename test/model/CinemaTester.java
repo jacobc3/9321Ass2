@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javassist.bytecode.Descriptor.Iterator;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.AfterClass;
@@ -13,6 +15,7 @@ import org.junit.Test;
 import controller.HibernateUtil;
 import model.bean.Amenity;
 import model.bean.Cinema;
+import model.handlerinterface.AmenityHandlerInterface;
 import model.handlerinterface.CinemaHandlerInterface;
 
 public class CinemaTester {
@@ -23,6 +26,23 @@ public class CinemaTester {
 	}
 
 	@Test
+	public void allAmenitytester(){
+		CinemaHandlerInterface ch = new CinemaHandler();
+		AmenityHandlerInterface ah = new AmenityHandler();
+		Cinema c1 = ch.getCinema(1);
+		System.out.println(c1.getName());
+		Set<Amenity> a = c1.getAmenities();
+		System.out.println("List finished");
+		for(Amenity am : a){
+			System.out.println(am.getName());
+			ch.getCinemas(am);
+		}
+		
+		
+	}
+	
+	
+//	@Test
 	public void test() {
 		//LOAD TEST, FAILED
 		Session session = factory.openSession();
@@ -50,7 +70,7 @@ public class CinemaTester {
 		c.setCapacity(10000);
 		ch.updateCinema(c);
 	}
-	@Test
+//	@Test
 	public void AmenityTest(){
 		//SAVE TEST, PASSED
 		CinemaHandlerInterface ch = new CinemaHandler();

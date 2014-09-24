@@ -15,8 +15,8 @@ create table session (
 	PRIMARY KEY (id)
 );
 
-drop table ticket_order;
-create table ticket_order (
+drop table booking;
+create table booking (
 	id integer auto_increment NOT NULL,
 	
 	session_id int default NULL,

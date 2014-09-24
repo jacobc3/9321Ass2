@@ -47,6 +47,13 @@ public class RequestServlet extends HttpServlet {
 			
 			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);
+		} else if (url.matches("(.*)/movie_detail(.*)")) {
+			System.out.println("in movie detail");
+			int movie_id = Integer.parseInt(request.getParameter("id"));
+			System.out.println("movie_id is "+ movie_id);
+			
+			RequestDispatcher view = request.getRequestDispatcher("movie_detail.jsp");
+			view.forward(request, response);
 		}
 	}
 

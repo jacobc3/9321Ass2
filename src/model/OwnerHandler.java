@@ -18,7 +18,7 @@ public class OwnerHandler implements OwnerHandlerInterface{
 	
 
 	@Override
-	public int newOwner(Owner owner) {
+	public int addOwner(Owner owner) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();

@@ -42,7 +42,7 @@ public class Genre {
 		return name;
 	}
 
-	@ManyToMany(mappedBy = "genres",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy = "genres",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	public Set<Movie> getMovies() {
 		return movies;
 	}

@@ -28,7 +28,16 @@
 		<mapping class="model.bean.Amenity" />
 		<mapping class="model.bean.Cinema" />
 		<mapping class="model.bean.Owner" />
-		<!--<mapping class="model.bean.Genre" />
-		<mapping class="model.bean.Movie" />-->
+		<mapping class="model.bean.Genre" />
+		<mapping class="model.bean.Movie" />
+		
+		
+		<!--
+		<mapping class="model.bean.OrderStatus" />
+		<mapping class="model.bean.Review" />
+		<mapping class="model.bean.Session" />
+		<mapping class="model.bean.TicketOrder" />
+		<mapping class="model.bean.User" /> 
+		-->
 	</session-factory>
 </hibernate-configuration>

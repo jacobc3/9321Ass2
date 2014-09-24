@@ -5,6 +5,8 @@ import java.util.Set;
 
 import model.bean.Cinema;
 import model.bean.Movie;
+import model.handlerinterface.CinemaHandlerInterface;
+import model.handlerinterface.MovieHandlerInterface;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -21,32 +23,13 @@ public class DataHandler {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static List<Cinema> getCinemas() {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = null;
-		List<Cinema> cinemas = null;
-		tx = session.beginTransaction();
-		cinemas = session.createQuery("FROM Cinema").list();
-		tx.commit();
-		System.out.println("Request all cinemas:" + cinemas);
-		session.close();
-		//TODO: do we need this line?
-		//HibernateUtil.getSessionFactory().close();
-		return cinemas;
-
+		CinemaHandlerInterface ch = new CinemaHandler();
+		return ch.getAllCinemas();
 	}
 
 	public static List<Movie> getMovies(){
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = null;
-		List<Movie> movies = null;
-		tx = session.beginTransaction();
-		movies = session.createQuery("FROM Movie").list(); //this 'Movie' is java class
-		tx.commit();
-		System.out.println("Request all movies:" + movies);
-		session.close();
-		//TODO: do we need this line?
-		//HibernateUtil.getSessionFactory().close();
-		return movies;
+		MovieHandlerInterface mh = new MovieHandler();
+		return mh.getAllMovies();
 	}
 	
 	

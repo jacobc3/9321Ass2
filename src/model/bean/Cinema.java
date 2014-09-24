@@ -46,7 +46,7 @@ public class Cinema {
 	}
 	
 	@ManyToMany(targetEntity=Amenity.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinTable(name="cinema_amenitiy",
+	@JoinTable(name="cinema_amenity",
 				joinColumns={@JoinColumn(name="cinema_id")},
 				inverseJoinColumns={@JoinColumn(name="amenity_id")})
 	public Set<Amenity> getAmenities() {

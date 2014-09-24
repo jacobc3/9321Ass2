@@ -38,6 +38,7 @@ public class AmenityTest {
 		for(Amenity c: list){
 			System.out.println("id is "+c.getId()+" name is "+c.getName());
 		}
+		
 	}
 
 	@AfterClass

@@ -12,8 +12,8 @@ import com.sun.istack.internal.NotNull;
 
 
 @Entity
-@Table(name="ticket_order")
-public class TicketOrder {
+@Table(name="booking")
+public class Booking {
 	private int id;
 	private Session session;
 	private User user;
@@ -83,7 +83,7 @@ public class TicketOrder {
 		this.status = status;
 	}
 
-	public TicketOrder() {
+	public Booking() {
 		// TODO Auto-generated constructor stub
 	}
 
