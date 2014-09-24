@@ -26,6 +26,7 @@ public class User {
 	private String password;
 	private String firstname;
 	private String lastname;
+	private String nickname;
 	private Date registryDate;
 	
 //	private Set<Review> review = new HashSet<Review>();
@@ -68,6 +69,11 @@ public class User {
 	@Column(name="registry_date")
 	public Date getregistryDate() {
 		return registryDate;
+	}
+	
+	@Column(name="nickname")
+	public String getNickname() {
+		return nickname;
 	}
 
 //	public Set<Review> getReview() {
@@ -121,6 +127,11 @@ public class User {
 	public User(String username,String email){
 		this.username = username;
 		this.email = email;
+	}
+
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	

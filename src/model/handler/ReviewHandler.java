@@ -79,4 +79,15 @@ public class ReviewHandler implements ReviewHandlerInterface {
 		return new UserHandler().getUserByReview(review_id);
 	}
 
+	@Override
+	public Review getReviewsById(int id) {
+		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		Review u = (Review)session.get(Review.class, id);		
+		session.getTransaction().commit();
+		session.close();
+		return u;
+	}
+
 }

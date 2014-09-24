@@ -15,6 +15,7 @@ import model.bean.Cinema;
 import model.bean.Genre;
 import model.bean.Movie;
 import model.bean.Review;
+import model.bean.User;
 import model.handlerInterface.MovieHandlerInterface;
 
 /**
@@ -274,8 +275,25 @@ public class MovieHandler implements MovieHandlerInterface{
 
 	@Override
 	public List<Review> getReviewsByMovie(int movie_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		//SELECT FROM movie Where release_date is not null && release_date < today
+		String sql = "select id FROM review where movie_id="+movie_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Review> results = new ArrayList<Review>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			int id = Integer.parseInt(row.get("id").toString());
+			Review m = new ReviewHandler().getReviewsById(id);
+			results.add(m);
+		}
+		session.getTransaction().commit();
+		session.close();
+		return results;
 	}
 
 	@Override
@@ -285,8 +303,21 @@ public class MovieHandler implements MovieHandlerInterface{
 
 	@Override
 	public Movie getMovieByReview(int review_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		//SELECT FROM movie Where release_date is not null && release_date < today
+		String sql = "select movie_id FROM review where id="+review_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+		Movie u = null;
+		Map row = (Map) data.get(0);
+		int id = Integer.parseInt(row.get("movie_id").toString());
+		u = this.getMovie(id);
+		session.getTransaction().commit();
+		session.close();
+		return u;
 	}
 
 	@Override

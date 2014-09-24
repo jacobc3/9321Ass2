@@ -37,12 +37,26 @@ public class ReviewHandlerTester {
 		rh.addReview(review);
 	}
 	
-	@Test
+	
+//	@Test
+	public void getMovieReviewTest(){
+		List<Review> rs = rh.getReviewsByMovie(2);
+		System.out.println("Reviews");
+		for(Review r : rs){
+			System.out.println(r.getTitle()+"\t");
+		}
+		Movie u = rh.getMovieByReview(12);
+		System.out.println(u.getId()+"\t"+u.getTitle());
+	}
+	
+//	@Test
 	public void getUserReviewtest() {
 		List<Review> rs = rh.getReviewsByUser(1);
 		for(Review r : rs){
 			System.out.println(r.getTitle()+"\t");
 		}
+		User u = rh.getUserByReview(3);
+		System.out.println(u.getId()+"\t"+u.getUsername());
 	}
 	
 	

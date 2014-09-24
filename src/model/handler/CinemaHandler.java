@@ -152,9 +152,9 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		List<Amenity> results = new ArrayList<Amenity>();
 		for (Object object : data) {
 			Map row = (Map) object;
-			System.out.println(row.get("name") + " " + row.get("id"));
+//			System.out.println(row.get("name") + " " + row.get("id"));
 			int id = Integer.parseInt(row.get("id").toString());
-			System.out.println("A3.6 " + id);
+//			System.out.println("A3.6 " + id);
 			Amenity a = this.getAmenity(id);
 			results.add(a);
 		}
@@ -184,7 +184,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		List<Cinema> results = new ArrayList<Cinema>();
 		for (Object object : data) {
 			Map row = (Map) object;
-			System.out.println(row.get("name") + " " + row.get("id"));
+//			System.out.println(row.get("name") + " " + row.get("id"));
 			int id = Integer.parseInt(row.get("id").toString());
 			Cinema c = this.getCinema(id);
 			results.add(c);

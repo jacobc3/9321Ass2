@@ -11,11 +11,12 @@ create table user (
 	username VARCHAR(40) NOT NULL UNIQUE,
 	email VARCHAR(50) NOT NULL,
 	
-	email_ok CHAR(1) default NULL,	
+	email_ok CHAR(1) default 'N',	
 	password VARCHAR(40) default NULL,
 	firstname VARCHAR(40) default NULL,
 	lastname VARCHAR(40) default NULL,
 	registry_date DATE default NULL,
+	nickname VARCHAR(40) default NULL,
 	PRIMARY KEY (id)
 );
 
@@ -37,8 +38,8 @@ create table review (
 	id INT NOT NULL auto_increment,
 	title VARCHAR(40) NOT NULL,
 	
-	user_id int,
-	movie_id int,	
+	user_id int default NULL,
+	movie_id int  default NULL,	
 	post_date DATE default NULL,
 	content TEXT default NULL,
 	PRIMARY KEY (id)
@@ -46,6 +47,8 @@ create table review (
 
 INSERT INTO review (title) VALUES ("New Review");
 INSERT INTO review (title,user_id) VALUES ("QSWEFAWEF",1);
+INSERT INTO review (title,user_id) VALUES ("gaergawge4areg w4etfgaw4",1);
+INSERT INTO review (title,user_id) VALUES ("QSWEFawga w awgAWEF",1);
 INSERT INTO review (title,movie_id) VALUES ("New Review",2);
 INSERT INTO review (title,movie_id) VALUES ("New Review122",2);
 INSERT INTO review (title,movie_id) VALUES ("New Review1243",2);

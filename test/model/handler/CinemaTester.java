@@ -20,22 +20,39 @@ import model.handlerInterface.CinemaHandlerInterface;
 
 public class CinemaTester {
 	public static SessionFactory factory = HibernateUtil.getSessionFactory();
-
+	public CinemaHandlerInterface ch = new CinemaHandler();
 	@BeforeClass
 	public static void beforeClass() {
 	}
 
 	@Test
-	public void allAmenitytester(){
-		CinemaHandlerInterface ch = new CinemaHandler();
+	public void addAmenityToCinemaTest(){
 		Cinema c1 = ch.getCinema(1);
-		System.out.println(c1.getName());
-		Set<Amenity> a = c1.getAmenities();
-		System.out.println("List finished");
-		for(Amenity am : a){
-			System.out.println(am.getName());
-			ch.getCinemasByAmenity(am);
+		Set<Amenity> as = c1.getAmenities();
+		as.add(ch.getAmenity(9));
+		c1.setAmenities(as);
+		ch.updateCinema(c1);
+	}
+	
+	
+//	@Test
+	public void allAmenitytester(){
+		Cinema c1 = ch.getCinema(1);
+		System.out.println("cinema title "+c1.getName());
+		List<Amenity> a = ch.getAmenitiesByCinema(c1);
+//		System.out.println("has amenities:");
+//		for(Amenity am : a){
+//			System.out.print("amenity name:\t"+am.getName()+"\ninclude Cinema:"+ch.getCinemasByAmenity(am)+"\n\n");			
+//		}
+		Amenity a1 =a.get(0);
+		System.out.println("Amenity "+a1.getName()+"\t"+a1.getId());
+		List<Cinema> clist = ch.getCinemasByAmenity(a1);
+		for(Cinema c: clist){
+			System.out.println("cinema:\t"+c.getName()+"\t"+c.getId());
+			
 		}
+		
+		
 		
 		
 	}

@@ -15,6 +15,10 @@ create table session (
 	PRIMARY KEY (id)
 );
 
+INSERT INTO review (title) VALUES ("New Review");
+
+
+
 drop table booking;
 create table booking (
 	id integer auto_increment NOT NULL,
@@ -27,4 +31,7 @@ create table booking (
 	status ENUM('Processing','Approved','Denied') default NULL,
 	PRIMARY KEY (id)
 );
+
+
+
 

@@ -20,7 +20,7 @@ public class Review {
 	private int id;
 	private String title;
 	private User user;
-//	private Movie movie;
+	private Movie movie;
 	private Date postDate;
 	private String content;
 	
@@ -42,11 +42,12 @@ public class Review {
 	public User getUser() {
 		return user;
 	}
-//
-//	@Column(name="movie_id")
-//	public Movie getMovie() {
-//		return movie;
-//	}
+
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="movie_id")
+	public Movie getMovie() {
+		return movie;
+	}
 
 	@Column(name="post_date")
 	public Date getPostDate() {
@@ -73,10 +74,10 @@ public class Review {
 		this.user = user;
 	}
 
-//
-//	public void setMovie(Movie movie) {
-//		this.movie = movie;
-//	}
+
+	public void setMovie(Movie movie) {
+		this.movie = movie;
+	}
 
 
 	public void setPostDate(Date postDate) {
@@ -92,7 +93,6 @@ public class Review {
 	
 	
 	public Review() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Review(String title) {

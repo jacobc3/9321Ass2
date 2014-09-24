@@ -9,6 +9,7 @@
 <body>
 <div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
 <div class="body" id="body"><h1>Movie</h1>
+<form>
   <table width="80%" border="0">
     <tbody>
       <tr>
@@ -17,27 +18,41 @@
       </tr>
       <tr>
         <th scope="row">title</th>
-        <td>&nbsp;</td>
+        <td><label for="textfield2"></label>
+          <input type="text" name="textfield2" id="textfield2"></td>
       </tr>
       <tr>
         <th scope="row">actors</th>
-        <td>&nbsp;</td>
+        <td><label for="textfield"></label>
+          <input type="text" name="textfield" id="textfield"></td>
       </tr>
       <tr>
         <th scope="row">poster</th>
-        <td>&nbsp;</td>
+        <td><label for="textfield3"></label>
+          <input type="text" name="textfield3" id="textfield3"></td>
       </tr>
       <tr>
         <th scope="row">release date</th>
-        <td>&nbsp;</td>
+        <td><label for="date"></label>
+          <input type="date" name="date" id="date"></td>
       </tr>
       <tr>
         <th scope="row">synopsis</th>
-        <td>&nbsp;</td>
+        <td><label for="textfield4"></label>
+          <input type="text" name="textfield4" id="textfield4"></td>
       </tr>
       <tr>
         <th scope="row">genres</th>
-        <td>&nbsp;</td>
+        <td><p>
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_0">
+            Checkbox</label>
+          <br>
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_1">
+            Checkbox</label>
+          <br>
+        </p></td>
       </tr>
       <tr>
         <th scope="row">Now showing on</th>
@@ -49,22 +64,6 @@
             </tr>
             <tr>
               <td>&nbsp;</td>
-              <td>&lt;link to book&gt;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
               <td>&nbsp;</td>
             </tr>
           </tbody>
@@ -72,24 +71,7 @@
       </tr>
     </tbody>
   </table>
-  <table width="80%" border="0">
-    <tbody>
-      <tr>
-        <th scope="col">Reviews title</th>
-        <th scope="col">by User</th>
-        <th scope="col">On date</th>
-        <th scope="col">Rating</th>
-      </tr>
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
-    </tbody>
-  </table>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
+  </form>
 </div>
 <div class="foot" id="foot">Content for  class "foot" id "foot" Goes Here</div>
 </body>
