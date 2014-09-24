@@ -5,13 +5,9 @@
 
 
 BUGS:
-	2 method in OwnerHandler has not been done.
-	public boolean isExist(String username) ;
-	public boolean isExist(String username, String password);
 
 	Nothing can be deleted. Will remove all database( since Casade setting to ALL)
 
-*Review is not related to movie_id now*
 
 
 
@@ -22,26 +18,9 @@ IMPORTANT：
 
 FIXED:
 	
-	amenity和movie需要分别保存！<<fixed, by using casadeType.ALL
-	从cinema.getAmenities中即使获得了Amenity的reference也无法取得值？ << fixed, by using FetchType.EAGER
-	
 
 
 ORM Setting:
-All casade is eager
-Amenity
-Cinema
-Owner
-Genre
-Movie
-User		
-Review
-Session
-Booking
-
-
-
-
 
 
 

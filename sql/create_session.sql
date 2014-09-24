@@ -39,7 +39,7 @@ create table booking (
 	card_number int(16) default NULL,
 	order_time DATETIME default NULL,
 	count int default 1,
-	status ENUM('Processing','Approved','Denied') default NULL,
+	status ENUM('Processing','Approved','Denied') default 'Processing',
 	PRIMARY KEY (id)
 );
 
