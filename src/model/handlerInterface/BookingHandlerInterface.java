@@ -1,4 +1,4 @@
-package model.handlerinterface;
+package model.handlerInterface;
 
 import java.util.List;
 

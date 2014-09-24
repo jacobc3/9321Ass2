@@ -1,4 +1,4 @@
-package model;
+package model.handler;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,8 @@ import java.util.Set;
 
 import model.bean.Amenity;
 import model.bean.Cinema;
-import model.handlerinterface.AmenityHandlerInterface;
+import model.handler.CinemaHandler;
+import model.handlerInterface.CinemaHandlerInterface;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,7 +33,7 @@ public class AmenityTest {
 	
 	@Test
 	public void test() {
-		AmenityHandlerInterface ah = new AmenityHandler();
+		CinemaHandlerInterface ah = new CinemaHandler();
 		//ah.getAllAmenities();
 		List<Amenity> list = ah.getAllAmenities();
 		for(Amenity c: list){

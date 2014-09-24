@@ -21,7 +21,7 @@
 		<property name="hibernate.connection.password">
 			123
 		</property>
-		<property name ="show_sql">true</property>
+		<property name ="show_sql">false</property>
 		<property name ="format_sql">true</property>
 		<property name ="hbm2ddl.auto">update</property>
 		<!-- List of XML mapping files -->
@@ -30,14 +30,13 @@
 		<mapping class="model.bean.Owner" />
 		<mapping class="model.bean.Genre" />
 		<mapping class="model.bean.Movie" />
-		
+		<mapping class="model.bean.User" />		
+		<mapping class="model.bean.Review" />
 		
 		<!--
-		<mapping class="model.bean.OrderStatus" />
-		<mapping class="model.bean.Review" />
 		<mapping class="model.bean.Session" />
-		<mapping class="model.bean.TicketOrder" />
-		<mapping class="model.bean.User" /> 
+		<mapping class="model.bean.Booking" />
+		 
 		-->
 	</session-factory>
 </hibernate-configuration>

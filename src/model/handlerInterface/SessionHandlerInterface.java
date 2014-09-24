@@ -1,4 +1,4 @@
-package model.handlerinterface;
+package model.handlerInterface;
 
 import model.bean.Session;
 

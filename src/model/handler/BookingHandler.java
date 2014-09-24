@@ -1,9 +1,9 @@
-package model;
+package model.handler;
 
 import java.util.List;
 
 import model.bean.Booking;
-import model.handlerinterface.BookingHandlerInterface;
+import model.handlerInterface.BookingHandlerInterface;
 
 public class BookingHandler implements BookingHandlerInterface {
 

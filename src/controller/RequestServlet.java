@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.*;
 import model.bean.*;
+import model.handler.*;
 
 /**
  * Servlet implementation class RequestServlet

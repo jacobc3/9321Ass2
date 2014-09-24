@@ -1,8 +1,9 @@
-package model;
+package model.handler;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
@@ -13,7 +14,7 @@ import controller.HibernateUtil;
 import model.bean.Cinema;
 import model.bean.Genre;
 import model.bean.Movie;
-import model.handlerinterface.MovieHandlerInterface;
+import model.handlerInterface.MovieHandlerInterface;
 
 public class MovieHandler implements MovieHandlerInterface{
 
@@ -95,28 +96,27 @@ public class MovieHandler implements MovieHandlerInterface{
 				+ genre.getId();
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-		System.out.println("A1");
+//		System.out.println("A1");
 		List data = query.list();
-		System.out.println("A2");
 
 		List<Movie> results = new ArrayList<Movie>();
 		for (Object object : data) {
-			System.out.println("A3" + object);
+//			System.out.println("A3" + object);
 			Map row = (Map) object;
-			System.out.println(row.get("title") + " " + row.get("id"));
-			System.out.println("A3.5");
+//			System.out.println(row.get("title") + " " + row.get("id"));
+//			System.out.println("A3.5");
 			int id = Integer.parseInt(row.get("id").toString());
-			System.out.println("A3.6 " + id);
+//			System.out.println("A3.6 " + id);
 			Movie m = this.getMovie(id);
 			results.add(m);
-			System.out.println("A3.7");
+//			System.out.println("A3.7");
 		}
-		System.out.println("A4");
+//		System.out.println("A4");
 		session.getTransaction().commit();
 		session.close();
 
-		System.out.println("A5" + results);
-		return null;
+//		System.out.println("A5" + results);
+		return results;
 	}
 
 	@Override
@@ -168,4 +168,30 @@ public class MovieHandler implements MovieHandlerInterface{
 		return null;
 	}
 
+	
+	@Override
+	public List<Genre> getAllGenres() {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		List<Genre> genres = session.createQuery("FROM Genre").list();
+		session.getTransaction().commit();
+		session.close();
+		return genres;
+	}
+
+	@Override
+	public List<Genre> getGenresByMovieId(int movie_id) {
+		List<Genre> results = new ArrayList<Genre>();
+		Movie m = this.getMovie(movie_id);
+		Set<Genre> genres = m.getGenres();
+		for(Genre g: genres){
+//			System.out.print("g is"+g.getName()+"\t");
+			results.add(g);
+		}
+//		System.out.println();
+		return results;
+	}
+
+	
 }

@@ -1,4 +1,4 @@
-package model.handlerinterface;
+package model.handlerInterface;
 
 import java.util.List;
 
@@ -19,6 +19,7 @@ public interface MovieHandlerInterface {
 	public List<Movie> searchByGenre(String genre);	
 	public List<Movie> searchByGenre(Genre genre);	
 	
+	public List<Genre> getGenresByMovieId(int movie_id);
 	
 	public Movie getMovie(int id);
 	
@@ -28,5 +29,6 @@ public interface MovieHandlerInterface {
 	//not listed in UML
 	public Movie removeMovie(int id);
 	public void removeMovie(Movie movie);
+	public List<Genre> getAllGenres();
 	
 }

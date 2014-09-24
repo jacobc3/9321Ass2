@@ -1,4 +1,4 @@
-package model;
+package model.handler;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,8 +15,8 @@ import org.junit.Test;
 import controller.HibernateUtil;
 import model.bean.Amenity;
 import model.bean.Cinema;
-import model.handlerinterface.AmenityHandlerInterface;
-import model.handlerinterface.CinemaHandlerInterface;
+import model.handler.CinemaHandler;
+import model.handlerInterface.CinemaHandlerInterface;
 
 public class CinemaTester {
 	public static SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -28,7 +28,6 @@ public class CinemaTester {
 	@Test
 	public void allAmenitytester(){
 		CinemaHandlerInterface ch = new CinemaHandler();
-		AmenityHandlerInterface ah = new AmenityHandler();
 		Cinema c1 = ch.getCinema(1);
 		System.out.println(c1.getName());
 		Set<Amenity> a = c1.getAmenities();

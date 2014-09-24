@@ -11,7 +11,7 @@ create table user (
 	username VARCHAR(40) NOT NULL,
 	email VARCHAR(50) NOT NULL,
 	
-	email_ok ENUM('yes','no') default NULL,	
+	email_ok CHAR(1) default NULL,	
 	password VARCHAR(40) default NULL,
 	firstname VARCHAR(40) default NULL,
 	lastname VARCHAR(40) default NULL,
@@ -26,8 +26,8 @@ INSERT INTO user (username,email,firstname,lastname) VALUES ("user4","user2@gmai
 INSERT INTO user (username,email,registry_date) VALUES ("user5","user2@gmail.com", "2013-03-05");
 INSERT INTO user (username,email,firstname,password) VALUES ("user6","user2@gmail.com", "whatfirstname","waefa2124sf");
 INSERT INTO user (username,email,password) VALUES ("user7","user2@gmail.com", "awgea3562");
-INSERT INTO user (username,email,email_ok) VALUES ("user8","user2@gmail.com", "yes");
-INSERT INTO user (username,email,email_ok) VALUES ("user9","user2@gmail.com", "no");
+INSERT INTO user (username,email,email_ok) VALUES ("user8","user2@gmail.com", "Y");
+INSERT INTO user (username,email,email_ok) VALUES ("user9","user2@gmail.com", "N");
 
 drop table review;
 create table review (

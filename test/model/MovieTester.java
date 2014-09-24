@@ -1,11 +1,10 @@
 package model;
 
-import java.util.List;
 import java.util.*;
 
-import model.bean.Genre;
 import model.bean.*;
-import model.handlerinterface.MovieHandlerInterface;
+import model.handler.MovieHandler;
+import model.handlerInterface.MovieHandlerInterface;
 
 import org.hibernate.SessionFactory;
 import org.junit.AfterClass;
@@ -24,15 +23,16 @@ public class MovieTester {
 	@Test
 	public void SingleMovieTest(){
 		Movie m = mh.getMovie(1);
-		System.out.println(m.getTitle()+"\t");
+		System.out.println("movie title "+m.getTitle()+"\t");
 		Set<Genre> gs = m.getGenres();
-		for(Genre g: gs){
-			System.out.println(g.getName()+"\t");
-			mh.getMovies(g);
-		}
-		
-		
-		
+		System.out.println(gs);
+		Genre g = gs.iterator().next();
+		System.out.println("genre is "+g.getName());
+		List<Movie> movies = mh.searchByGenre(g);
+		Iterator<Movie> it = movies.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next().getTitle());
+		}		
 	}
 	
 	

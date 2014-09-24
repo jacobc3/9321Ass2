@@ -1,4 +1,4 @@
-package model;
+package model.handler;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import controller.HibernateUtil;
 import model.bean.Cinema;
 import model.bean.Movie;
 import model.bean.Owner;
-import model.handlerinterface.OwnerHandlerInterface;
+import model.handlerInterface.OwnerHandlerInterface;
 
 public class OwnerHandler implements OwnerHandlerInterface{
 
@@ -29,7 +29,7 @@ public class OwnerHandler implements OwnerHandlerInterface{
 	}
 
 	@Override
-	public Owner getOwner(int id) {
+	public Owner getOwnerById(int id) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -71,7 +71,7 @@ public class OwnerHandler implements OwnerHandlerInterface{
 	}
 
 	@Override
-	public boolean isExist(String username, String password) {
+	public boolean isMatch(String username, String password) {
 		// TODO Auto-generated method stub
 		return false;
 	}

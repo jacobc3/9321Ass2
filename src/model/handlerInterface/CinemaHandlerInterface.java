@@ -1,4 +1,4 @@
-package model.handlerinterface;
+package model.handlerInterface;
 
 import java.util.List;
 
@@ -17,4 +17,8 @@ public interface CinemaHandlerInterface {
 	public boolean isExist(int id);
 	public List<Cinema> getAllCinemas();
 	public List<Cinema> getCinemas(Amenity amenity);
+	
+	//amenity
+	public List<Amenity> getAllAmenities();
+	public List<Amenity> getAmenities(Cinema cinema);
 }
