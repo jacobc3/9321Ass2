@@ -28,7 +28,7 @@ public class MovieTester {
 		System.out.println(gs);
 		Genre g = gs.iterator().next();
 		System.out.println("genre is "+g.getName());
-		List<Movie> movies = mh.searchByGenre(g);
+		List<Movie> movies = mh.getMoviesByGenre(g);
 		Iterator<Movie> it = movies.iterator();
 		while(it.hasNext()){
 			System.out.println(it.next().getTitle());

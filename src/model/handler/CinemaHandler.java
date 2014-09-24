@@ -14,8 +14,15 @@ import org.hibernate.SessionFactory;
 import controller.HibernateUtil;
 import model.bean.Amenity;
 import model.bean.Cinema;
+import model.bean.Movie;
+import model.bean.Owner;
 import model.handlerInterface.CinemaHandlerInterface;
 
+/**
+ * 
+ * @author SephyZhou
+ *
+ */
 public class CinemaHandler implements CinemaHandlerInterface {
 
 	public CinemaHandler() {
@@ -103,47 +110,10 @@ public class CinemaHandler implements CinemaHandlerInterface {
 	}
 
 	@Override
-	public List<Cinema> getCinemas(Amenity amenity) {
-		// select A.name from cinema_amenity CA join Amenity A where CA.amenity
-		// = A.id
+	public List<Amenity> getAllAmenities() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		String sql = "select C.id,C.name from cinema_amenity CA join Cinema C where CA.cinema_id = C.id and CA.amenity_id = "
-				+ amenity.getId();
-		SQLQuery query = session.createSQLQuery(sql);
-		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-		System.out.println("A1");
-		List data = query.list();
-		System.out.println("A2");
-		
-		List<Cinema> results = new ArrayList<Cinema>();
-		for (Object object : data) {
-			System.out.println("A3" + object);
-			Map row = (Map) object;
-			System.out.println(row.get("name") + " " + row.get("id"));
-			System.out.println("A3.5");
-			int id = Integer.parseInt(row.get("id").toString());
-			System.out.println("A3.6 "+id);
-			Cinema c = this.getCinema(id);
-			results.add(c);
-			System.out.println("A3.7");
-		}
-		System.out.println("A4");
-		session.getTransaction().commit();
-		session.close();
-		
-		System.out.println("A5" + results);
-		
-		return results;
-	}
-	
-	
-	@Override
-	public List<Amenity> getAllAmenities() {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();		
 		List<Amenity> amenities = session.createQuery("FROM Amenity").list();
 		session.getTransaction().commit();
 		session.close();
@@ -151,14 +121,30 @@ public class CinemaHandler implements CinemaHandlerInterface {
 	}
 
 	@Override
-	public List<Amenity> getAmenities(Cinema cinema) {
-		//We can use Select ** from ** to retrive amenities's information
-		
+	public Amenity getAmenity(int id) {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		Amenity a = (Amenity) session.get(Amenity.class, id);
+		session.getTransaction().commit();
+		session.close();
+		return a;
+	}
+
+	@Override
+	public List<Amenity> getAmenitiesByCinema(Cinema cinema) {
+		return this.getAmenitiesByCinema(cinema.getId());
+	}
+
+	@Override
+	public List<Amenity> getAmenitiesByCinema(int cinema_id) {
+		// We can use Select ** from ** to retrive amenities's information
+
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		String sql = "select A.id,A.name from cinema_amenity CA join amenity A where CA.amenity_id = A.id and CA.cinema_id = "
-				+ cinema.getId();
+				+ cinema_id;
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List data = query.list();
@@ -177,14 +163,102 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return results;
 	}
 
-	private Amenity getAmenity(int id) {
+	@Override
+	public List<Cinema> getCinemasByAmenity(Amenity amenity) {
+		return this.getCinemasByAmenity(amenity.getId());
+	}
+
+	@Override
+	public List<Cinema> getCinemasByAmenity(int amenity_id) {
+		// select A.name from cinema_amenity CA join Amenity A where CA.amenity
+		// = A.id
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		Amenity a = (Amenity) session.get(Amenity.class, id);
+		String sql = "select C.id,C.name from cinema_amenity CA join Cinema C where CA.cinema_id = C.id and CA.amenity_id = "
+				+ amenity_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Cinema> results = new ArrayList<Cinema>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			System.out.println(row.get("name") + " " + row.get("id"));
+			int id = Integer.parseInt(row.get("id").toString());
+			Cinema c = this.getCinema(id);
+			results.add(c);
+		}
 		session.getTransaction().commit();
 		session.close();
-		return a;
+
+		return results;
+	}
+
+	@Override
+	public Owner getOwnerByCinema(Owner owner) {
+		return this.getOwnerByCinema(owner.getId());
+	}
+
+	@Override
+	public Owner getOwnerByCinema(int owner_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cinema> getCinemasByOwner(Owner owner) {
+		return this.getCinemasByOwner(owner.getId());
+	}
+
+	@Override
+	public List<Cinema> getCinemasByOwner(int owner_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<model.bean.Session> getSessionsByCinema(Cinema cinema) {
+		return this.getSessionsByCinema(cinema.getId());
+	}
+
+	@Override
+	public List<model.bean.Session> getSessionsByCinema(int cinema_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Cinema getCinemaBySession(model.bean.Session session) {
+		return this.getCinemaBySession(session.getId());
+	}
+
+	@Override
+	public Cinema getCinemaBySession(int session_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Movie> getMoviesByCinema(Cinema cinema) {
+		return this.getMoviesByCinema(cinema.getId());
+	}
+
+	@Override
+	public List<Movie> getMoviesByCinema(int cinema_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cinema> getCinemasByMovie(Movie movie) {
+		return this.getCinemasByMovie(movie.getId());
+	}
+
+	@Override
+	public List<Cinema> getCinemasByMovie(int movie_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

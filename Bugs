@@ -11,13 +11,14 @@ BUGS:
 
 	Nothing can be deleted. Will remove all database( since Casade setting to ALL)
 
+*Review is not related to movie_id now*
 
 
 
 
 IMPORTANT£º
 	Amenity, Genre, Can never be edit!
-
+	Encourge every getXByY use handler!!
 
 FIXED:
 	
@@ -26,7 +27,17 @@ FIXED:
 	
 
 
-
+ORM Setting:
+All casade is eager
+Amenity
+Cinema
+Owner
+Genre
+Movie
+User		
+Review
+Session
+Booking
 
 
 

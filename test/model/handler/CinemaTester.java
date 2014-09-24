@@ -34,7 +34,7 @@ public class CinemaTester {
 		System.out.println("List finished");
 		for(Amenity am : a){
 			System.out.println(am.getName());
-			ch.getCinemas(am);
+			ch.getCinemasByAmenity(am);
 		}
 		
 		

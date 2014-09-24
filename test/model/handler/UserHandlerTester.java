@@ -29,6 +29,29 @@ public class UserHandlerTester {
 		int id = mh.addUser(u);
 		System.out.println("id is "+id);
 	}
+	
+	
+	@Test
+	public void isExist(){		
+		String o = "user9";
+		System.out.println(o+"\t "+mh.isExist(o));
+		
+		o = "user";
+		System.out.println(o+"\t "+mh.isExist(o));
+		
+		String o2 = "user10";
+		String password = "pass";
+		System.out.println(o2+"\t "+password+"\t"+mh.isMatch(o2, password));
+		
+		o2 = "user9";
+		System.out.println(o2+"\t "+password+"\t"+mh.isMatch(o2, password));
+		
+		int i = 9;
+		System.out.println(i+"\t "+mh.isExist(i));
+		
+	}
+	
+	
 //	@Test
 	public void updateUserTest(){
 		User u = mh.getUserById(10);
@@ -38,7 +61,7 @@ public class UserHandlerTester {
 		System.out.println("id is "+u2.getId()+" emaail? "+u2.isEmailOk());
 	}
 	
-	@Test
+//	@Test
 	public void alltest() {
 		List<User> ms = mh.getAllUsers();
 		for(User m : ms){

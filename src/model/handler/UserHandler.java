@@ -1,7 +1,11 @@
 package model.handler;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -15,7 +19,6 @@ import model.handlerInterface.UserHandlerInterface;
 public class UserHandler implements UserHandlerInterface {
 
 	public UserHandler() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -32,7 +35,16 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public boolean isMatch(String username, String password) {
-		// TODO Auto-generated method stub
+		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();		
+		String sql = "select id from user where username LIKE '"+username+"'"+"and password LIKE '"+password+"'";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+		if(data.size()>0){
+			return true;
+		}
 		return false;
 	}
 
@@ -55,11 +67,6 @@ public class UserHandler implements UserHandlerInterface {
 		return u;
 	}
 
-	@Override
-	public List<Review> getReviewByUserId(int user_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void updateUser(User user) {
@@ -69,12 +76,6 @@ public class UserHandler implements UserHandlerInterface {
 		session.update(user);		
 		session.getTransaction().commit();
 		session.close();
-	}
-
-	@Override
-	public List<Booking> getBookingByUserId(int user_id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 
@@ -91,14 +92,75 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public boolean isExist(int id) {
-		// TODO Auto-generated method stub
+		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		User c = (User)session.get(User.class, id);	
+		session.getTransaction().commit();
+		session.close();
+		if(c!=null){
+			return true;
+		} 
 		return false;
 	}
 
 	@Override
 	public boolean isExist(String username) {
-		// TODO Auto-generated method stub
+		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();		
+		String sql = "select id from user where username LIKE '"+username+"'";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+		if(data.size()>0){
+			return true;
+		}
 		return false;
+	}
+
+	@Override
+	public List<Review> getReviewsByUser(User user) {
+		return this.getReviewsByUser(user.getId());
+	}
+
+	@Override
+	public List<Review> getReviewsByUser(int user_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserByReview(Review review) {
+		return this.getUserByReview(review.getId());
+	}
+
+	@Override
+	public User getUserByReview(int review_id) {
+		//TODO 
+		return null;
+	}
+
+	@Override
+	public List<Booking> getBookingsByUser(User user) {
+		return this.getBookingsByUser(user.getId());
+	}
+
+	@Override
+	public List<Booking> getBookingsByUser(int user_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getUserByBooking(Booking booking) {
+		return this.getUserByBooking(booking.getId());
+	}
+
+	@Override
+	public User getUserByBooking(int booking_id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

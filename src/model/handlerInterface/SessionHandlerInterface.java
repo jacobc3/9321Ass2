@@ -1,10 +1,36 @@
 package model.handlerInterface;
 
+import java.util.List;
+
+import model.bean.Booking;
+import model.bean.Cinema;
+import model.bean.Movie;
 import model.bean.Session;
 
 public interface SessionHandlerInterface {
-	public Session getSessionByMovieId(int movie_id);
 	public Session getSession(int session_id);
 	public Session updateSession(Session session);
 	public int addSession(Session session);
+	
+	
+	
+	//movie-session related
+	public List<Session> getSessionsByMovie(int movie_id);
+	public List<Session> getSessionsByMovie(Movie movie);
+	public Movie getMovieBySession(Session session);
+	public Movie getMovieBySession(int session_id);
+
+
+	//session-booking related
+	public Session getSessionByBooking(Booking booking);
+	public Session getSessionByBooking(int booking_id);
+	public List<Booking> getBookingsBySession(Session session);
+	public List<Booking> getBookingsBySession(int session_id);
+
+	//session-cinema related
+	public List<Session> getSessionsByCinema(Cinema cinema);
+	public List<Session> getSessionsByCinema(int cinema_id);
+	public Cinema getCinemaBySession(Session session);
+	public Cinema getCinemaBySession(int session_id);
+		
 }

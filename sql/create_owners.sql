@@ -8,13 +8,19 @@
 drop table owner;
 create table owner (
 	id INT NOT NULL auto_increment,
-	username VARCHAR(40) NOT NULL,
+	username VARCHAR(40) NOT NULL unique,
 	password VARCHAR(40) default NULL,
 	PRIMARY KEY (id)
 );
 INSERT INTO owner (username,password) VALUES ("aaa","aaa");
 INSERT INTO owner (username) VALUES ("bbb");
 INSERT INTO owner (username) VALUES ("ccc");
+INSERT INTO owner (username) VALUES ("owner1");
+INSERT INTO owner (username) VALUES ("owner2");
+INSERT INTO owner (username,password) VALUES ("owner3","pass");
+INSERT INTO owner (username,password) VALUES ("owner4","pass");
+
+
 
 drop table owner_cinema;
 create table owner_cinema(

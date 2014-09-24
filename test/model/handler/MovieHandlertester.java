@@ -23,6 +23,38 @@ public class MovieHandlertester {
 	public static void beforeClass() {
 	}
 
+	@Test
+	public void getShowingMovieTest(){
+		System.out.println("showing");
+		List<Movie> ms = mh.getShowingMovies();
+		for(Movie m : ms){
+			System.out.println(m.getId()+"\t"+m.getTitle()+"\t"+m.getRelease_date());
+		}
+		System.out.println("\nincoming");
+		ms = mh.getComingMovies();
+		for(Movie m : ms){
+			System.out.println(m.getId()+"\t"+m.getTitle()+"\t"+m.getRelease_date());
+		}
+		
+		String title = "big";
+		System.out.println("\ntitle like "+title);
+		ms = mh.searchByTitle(title);
+		for(Movie m : ms){
+			System.out.println(m.getId()+"\t"+m.getTitle()+"\t"+m.getRelease_date());
+		}
+		
+		String genre = "Action";
+		System.out.println("\ngenre like "+genre);
+		ms = mh.getMoviesByGenre(genre);
+		for(Movie m : ms){
+			System.out.println(m.getId()+"\t"+m.getTitle()+"\t"+m.getRelease_date());
+		}
+		
+		
+	}
+	
+	
+	
 //	@Test
 	public void AllMovieTtest() {
 		List<Movie> ms = mh.getAllMovies();
@@ -37,7 +69,7 @@ public class MovieHandlertester {
 		System.out.println(m.getTitle()+"\t");
 	}
 	
-	@Test
+//	@Test
 	public void getMovieGenreTest(){
 		Movie m = mh.getMovie(1);
 		System.out.println(m.getTitle()+"\t");
@@ -47,7 +79,7 @@ public class MovieHandlertester {
 			System.out.println(g.getName()+"\t");
 		}
 		System.out.println("\nList Format");
-		List<Genre> list = mh.getGenresByMovieId(m.getId());
+		List<Genre> list = mh.getGenresByMovie(m.getId());
 		for(Genre g: list){
 			System.out.println(g.getName()+"\t");
 		}

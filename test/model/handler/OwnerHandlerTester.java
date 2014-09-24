@@ -1,13 +1,11 @@
 package model.handler;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
-import model.bean.Movie;
 import model.bean.Review;
 import model.bean.User;
 import model.handlerInterface.MovieHandlerInterface;
+import model.handlerInterface.OwnerHandlerInterface;
 import model.handlerInterface.ReviewHandlerInterface;
 import model.handlerInterface.UserHandlerInterface;
 
@@ -18,31 +16,31 @@ import org.junit.Test;
 
 import controller.HibernateUtil;
 
-public class ReviewHandlerTester {
+public class OwnerHandlerTester {
 	public static SessionFactory factory = HibernateUtil.getSessionFactory();
 	public ReviewHandlerInterface rh =  new ReviewHandler();
-	public UserHandlerInterface uh =  new UserHandler();
+	public OwnerHandlerInterface oh =  new OwnerHandler();
 	public MovieHandlerInterface mh =  new MovieHandler();
 	
 	@BeforeClass
 	public static void beforeClass() {
 	}
 	
-	
-//	@Test
-	public void newtest(){
-		Review review = new Review("MY title");
-		User user = uh.getUserById(2);
-		review.setUser(user);
-		rh.addReview(review);
-	}
-	
+
 	@Test
-	public void getUserReviewtest() {
-		List<Review> rs = rh.getReviewsByUser(1);
-		for(Review r : rs){
-			System.out.println(r.getTitle()+"\t");
-		}
+	public void isOwnerExistTest() {
+		String o = "owner1";
+		System.out.println(o+"\t "+oh.isExist(o));
+		
+		o = "owner";
+		System.out.println(o+"\t "+oh.isExist(o));
+		
+		String o2 = "owner3";
+		String password = "pass";
+		System.out.println(o2+"\t "+password+"\t"+oh.isMatch(o2, password));
+		
+		o2 = "owner2";
+		System.out.println(o2+"\t "+password+"\t"+oh.isMatch(o2, password));
 	}
 	
 	
@@ -50,5 +48,6 @@ public class ReviewHandlerTester {
 	public static void afterClass() {
 		factory.close();
 	}
+
 
 }

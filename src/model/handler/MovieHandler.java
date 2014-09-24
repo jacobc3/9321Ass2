@@ -14,8 +14,14 @@ import controller.HibernateUtil;
 import model.bean.Cinema;
 import model.bean.Genre;
 import model.bean.Movie;
+import model.bean.Review;
 import model.handlerInterface.MovieHandlerInterface;
 
+/**
+ * 
+ * @author SephyZhou
+ *
+ */
 public class MovieHandler implements MovieHandlerInterface{
 
 	public MovieHandler() {
@@ -87,86 +93,77 @@ public class MovieHandler implements MovieHandlerInterface{
 		session.close();	
 	}
 	
+
 	@Override
-	public List<Movie> searchByGenre(Genre genre) {
+	public List<Movie> getShowingMovies() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		String sql = "select M.id,M.title from movie_genre MG join Movie M where MG.movie_id = M.id and MG.genre_id = "
-				+ genre.getId();
+		//SELECT FROM movie Where release_date is not null && release_date < today
+		String sql = "select id FROM movie where release_date <= cast(now() as date)";
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-//		System.out.println("A1");
 		List data = query.list();
 
 		List<Movie> results = new ArrayList<Movie>();
 		for (Object object : data) {
-//			System.out.println("A3" + object);
 			Map row = (Map) object;
-//			System.out.println(row.get("title") + " " + row.get("id"));
-//			System.out.println("A3.5");
 			int id = Integer.parseInt(row.get("id").toString());
-//			System.out.println("A3.6 " + id);
 			Movie m = this.getMovie(id);
 			results.add(m);
-//			System.out.println("A3.7");
 		}
-//		System.out.println("A4");
 		session.getTransaction().commit();
 		session.close();
-
-//		System.out.println("A5" + results);
 		return results;
 	}
 
 	@Override
-	public void setReleaseDate(int movie_id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int addSession(model.bean.Session session) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public List<Movie> getShowingMovies() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Movie> getComingMovies() {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		//SELECT FROM movie Where release_date is not null && release_date < today
+		String sql = "select id FROM movie where release_date > cast(now() as date)";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Movie> results = new ArrayList<Movie>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			int id = Integer.parseInt(row.get("id").toString());
+			Movie m = this.getMovie(id);
+			results.add(m);
+		}
+		session.getTransaction().commit();
+		session.close();
+		return results;
 	}
 
 	@Override
 	public List<Movie> searchByTitle(String title) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		//SELECT id from movie where title like title
+		String sql = "select id FROM movie where title like '%"+title+"%'";
+		//System.out.println(sql);
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Movie> results = new ArrayList<Movie>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			int id = Integer.parseInt(row.get("id").toString());
+			Movie m = this.getMovie(id);
+			results.add(m);
+		}
+		session.getTransaction().commit();
+		session.close();
+		return results;
 	}
 
-	@Override
-	public List<Movie> searchByGenre(String genre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public model.bean.Session getSessionByMovieId(int movie_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public model.bean.Session getSession(int session_id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	
 	@Override
@@ -180,17 +177,136 @@ public class MovieHandler implements MovieHandlerInterface{
 		return genres;
 	}
 
+
 	@Override
-	public List<Genre> getGenresByMovieId(int movie_id) {
+	public List<Movie> getMoviesByGenre(String genre) {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "select M.id from movie_genre MG join Movie M join Genre G where MG.movie_id = M.id and MG.genre_id=G.id and G.name like '%"+genre+"%'";
+		System.out.println(sql);
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Movie> results = new ArrayList<Movie>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			int id = Integer.parseInt(row.get("id").toString());
+			Movie m = this.getMovie(id);
+			results.add(m);
+		}
+		session.getTransaction().commit();
+		session.close();
+		return results;
+	}
+
+	@Override
+	public List<Movie> getMoviesByGenre(Genre genre) {
+		return this.getMoviesByGenre(genre.getId());
+	}
+
+	@Override
+	public List<Movie> getMoviesByGenre(int genre_id) {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "select M.id,M.title from movie_genre MG join Movie M where MG.movie_id = M.id and MG.genre_id = "
+				+ genre_id;
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List data = query.list();
+
+		List<Movie> results = new ArrayList<Movie>();
+		for (Object object : data) {
+			Map row = (Map) object;
+			int id = Integer.parseInt(row.get("id").toString());
+			Movie m = this.getMovie(id);
+			results.add(m);
+		}
+		session.getTransaction().commit();
+		session.close();
+		return results;
+	}
+
+	@Override
+	public List<Genre> getGenresByMovie(int movie_id) {
 		List<Genre> results = new ArrayList<Genre>();
 		Movie m = this.getMovie(movie_id);
 		Set<Genre> genres = m.getGenres();
 		for(Genre g: genres){
-//			System.out.print("g is"+g.getName()+"\t");
 			results.add(g);
 		}
-//		System.out.println();
 		return results;
+	}
+
+	@Override
+	public List<Genre> getGenresByMovie(Movie movie) {
+		return this.getGenresByMovie(movie.getId());
+	}
+
+	@Override
+	public List<model.bean.Session> getSessionsByMovie(int movie_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<model.bean.Session> getSessionsByMovie(Movie movie) {
+		return this.getSessionsByMovie(movie.getId());
+	}
+
+	@Override
+	public Movie getMovieBySession(model.bean.Session session) {
+		return this.getMovieBySession(session.getId());
+	}
+
+	@Override
+	public Movie getMovieBySession(int session_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Review> getReviewsByMovie(Movie movie) {
+		return this.getReviewsByMovie(movie.getId());
+	}
+
+	@Override
+	public List<Review> getReviewsByMovie(int movie_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Movie getMovieByReview(Review review) {
+		return this.getMovieByReview(review.getId());
+	}
+
+	@Override
+	public Movie getMovieByReview(int review_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Movie> getMoviesByCinema(Cinema cinema) {
+		return new CinemaHandler().getMoviesByCinema(cinema);
+	}
+
+	@Override
+	public List<Movie> getMoviesByCinema(int cinema_id) {
+		return new CinemaHandler().getMoviesByCinema(cinema_id);
+	}
+
+	@Override
+	public List<Cinema> getCinemasByMovie(Movie movie) {
+		return new CinemaHandler().getCinemasByMovie(movie);
+	}
+
+	@Override
+	public List<Cinema> getCinemasByMovie(int movie_id) {
+		return new CinemaHandler().getCinemasByMovie(movie_id);
 	}
 
 	
