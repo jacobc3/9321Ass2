@@ -35,3 +35,4 @@ Group<br>
  username root<br>
  password 123<br>
  REMEMBER TO UPDATE hibernate.cfg.xml to corresponding setup
+ cool!
