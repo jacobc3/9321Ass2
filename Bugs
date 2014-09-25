@@ -7,12 +7,12 @@
 BUGS:
 
 	Nothing can be deleted. Will remove all database( since Casade setting to ALL)
+	FIX ACID
 
 
 
 
-
-IMPORTANT£º
+IMPORTANTÂ£Âº
 	Amenity, Genre, Can never be edit!
 	Encourge every getXByY use handler!!
 
