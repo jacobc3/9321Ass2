@@ -19,7 +19,7 @@ Group<br>
   J2EE<br>
   JSP/Servlet<br>
   Hibernate<br>
-  mySQL/PostgreSQL<br>
+  mySQL<br>
   
 <b>Design</b><br>
   MVC Pattern<br>
@@ -34,5 +34,4 @@ Group<br>
  database name 9321Ass2<br>
  username root<br>
  password 123<br>
- REMEMBER TO UPDATE hibernate.cfg.xml to corresponding setup
- cool!
+!
