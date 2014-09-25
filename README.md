@@ -19,7 +19,7 @@ Group<br>
   J2EE<br>
   JSP/Servlet<br>
   Hibernate<br>
-  mySQL/PostgreSQL<br>
+  mySQL<br>
   
 <b>Design</b><br>
   MVC Pattern<br>
