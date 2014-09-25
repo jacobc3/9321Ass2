@@ -61,7 +61,6 @@ public class Owner {
 		this.password = password;
 	}
 	public Owner() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public Owner(String username) {

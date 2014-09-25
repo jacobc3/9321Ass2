@@ -29,7 +29,6 @@ public class Movie {
 	private Set<Genre> genres = new HashSet<Genre>();
 	
 	public Movie() {
-		// TODO Auto-generated constructor stub
 	}
 	public Movie(String title) {
 		this.title = title;

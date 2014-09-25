@@ -27,7 +27,6 @@ public class RequestServlet extends HttpServlet {
 	 */
 	public RequestServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -36,6 +35,7 @@ public class RequestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		//TODO modify between doGet & doPost
 		System.out.println("Hello! HERE IS GET");
 		String url = request.getRequestURL().toString();
 		PrintWriter out = response.getWriter();
@@ -106,6 +106,8 @@ public class RequestServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		//TODO modify between doGet & doPost
 		System.out.println("Hello! HERE IS POST");
 		String url = request.getRequestURL().toString();
 		PrintWriter out = response.getWriter();
