@@ -22,8 +22,8 @@ INSERT INTO movie (title,release_date,actors) VALUES ("THE RIGHT","2013-12-20", 
 INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG","2011-05-20", "Luis,Pitter");
 INSERT INTO movie (title,synopsis,actors) VALUES ("NEW MOVIE 2","FAS fqw asdfqwl qfqo", "Wow,Pitter");
 INSERT INTO movie (title,posterURL,actors) VALUES ("THE RIGHTSSS","2qdwqw.qdwqw.wrgw", "Luis,Magic");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("MOVE ADW","2011-05-20", "http://feqef.cafeq.vocm");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("RIGN SGF3","2011-07-20", "http://www.poster.com");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("MOVE ADW","2011-05-20", "https://pbs.twimg.com/media/BzbPScXCUAAVBxE.jpg");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("RIGN SGF3","2011-07-20", "https://pbs.twimg.com/media/BzboRhACYAErZSz.jpg");
 INSERT INTO movie (title,release_date,synopsis) VALUES ("RING AFQW AFDE","2013-12-20", "FQ AS Sdadfaw Fwewa asfas");
 
 drop table genre;

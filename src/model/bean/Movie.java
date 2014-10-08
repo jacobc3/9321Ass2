@@ -27,6 +27,7 @@ public class Movie {
 	private String actors;
 	private String synopsis;
 	private Set<Genre> genres = new HashSet<Genre>();
+	private String posterURL;
 	
 	public Movie() {
 	}
@@ -58,7 +59,10 @@ public class Movie {
 	public String getSynopsis() {
 		return synopsis;
 	}
-	
+	@Column(name="posterURL")
+	public String getPosterURL() {
+		return posterURL;
+	}
 	@ManyToMany(targetEntity=Genre.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinTable(name="movie_genre",
 				joinColumns={@JoinColumn(name="movie_id")},
@@ -91,6 +95,8 @@ public class Movie {
 		this.genres = genres;
 	}
 
-	
+	public void setPosterURL(String posterURL) {
+		this.posterURL = posterURL;
+	}
 
 }
