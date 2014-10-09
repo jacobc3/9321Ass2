@@ -12,15 +12,27 @@
 		<servlet-name>RequestServlet</servlet-name>
 		<servlet-class>controller.RequestServlet</servlet-class>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 
-<servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/movie_detail</url-pattern>
 	</servlet-mapping>
+
+	<filter>
+		<filter-name>TheFilter</filter-name>
+		<filter-class>controller.TheFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>TheFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+
+
 
 </web-app>

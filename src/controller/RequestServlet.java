@@ -222,11 +222,8 @@ public class RequestServlet extends HttpServlet {
 
 	private void index(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//TODO
 		System.out.println("in index");
-		List<Cinema> cinemas = DataHandler.getCinemas();
-		request.setAttribute("cinemas", cinemas);
-		List<Movie> movies = DataHandler.getMovies();
-		request.setAttribute("movies", movies);
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	}
