@@ -9,7 +9,7 @@ import model.bean.User;
 public interface ReviewHandlerInterface {
 	public int addReview(Review review);
 	public void updateReview(Review review);
-	public Review  getReviewsById(int id);
+	public Review getReviewsById(int id);
 	
 	//movie-review related
 	public List<Review> getReviewsByMovie(Movie movie);

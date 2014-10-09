@@ -62,7 +62,7 @@ public class BookingHandler implements BookingHandlerInterface {
 	@Override
 	public void declineBooking(int id) {
 		Booking b = this.getBooking(id);
-		b.setStatus(OrderStatus.Denied);
+		b.setStatus(OrderStatus.Declined);
 		this.updateBooking(b);
 	}
 

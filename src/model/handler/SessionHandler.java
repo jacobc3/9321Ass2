@@ -140,7 +140,7 @@ public class SessionHandler implements SessionHandlerInterface {
 		int total = 0;
 		for (java.util.Iterator<Booking> iterator = bs.iterator(); iterator.hasNext();) {
 			Booking b = (Booking) iterator.next();
-			if(b.getStatus()!=OrderStatus.Denied){
+			if(b.getStatus()!=OrderStatus.Declined){
 				total += b.getCount();
 			}
 		}

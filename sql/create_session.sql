@@ -53,7 +53,7 @@ create table booking (
 	card_number varchar(16) default NULL,
 	order_time DATETIME default NULL,
 	count int default 1,
-	status ENUM('Processing','Approved','Denied') default 'Processing',
+	status ENUM('Processing','Approved','Declined') default 'Processing',
 	PRIMARY KEY (id)
 );
 
@@ -74,7 +74,7 @@ INSERT INTO booking (session_id,user_id,order_time,count) VALUES (2,5,random_dat
 INSERT INTO booking (session_id,user_id,order_time,count) VALUES (2,4,random_datetime(),2);
 INSERT INTO booking (session_id,user_id,order_time,count,status) VALUES (2,1,random_datetime(),2,"Approved");
 INSERT INTO booking (session_id,user_id,order_time,status) VALUES (1,1,random_datetime(),"Approved");
-INSERT INTO booking (session_id,user_id,order_time,status) VALUES (7,1,random_datetime(),"Decline");
+INSERT INTO booking (session_id,user_id,order_time,status) VALUES (7,1,random_datetime(),"Declined");
 INSERT INTO booking (session_id,user_id,order_time,status) VALUES (2,1,random_datetime(),"Approved");
 INSERT INTO booking (session_id,user_id,order_time,status) VALUES (2,1,random_datetime(),"Approved");
 INSERT INTO booking (session_id,user_id,order_time,status) VALUES (3,1,random_datetime(),"Approved");
