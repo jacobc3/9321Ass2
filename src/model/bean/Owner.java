@@ -31,7 +31,7 @@ public class Owner {
 	private String password;
 	private Set<Cinema> cinemas = new HashSet<Cinema>();
 	
-	@OneToMany(targetEntity=Cinema.class,cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@OneToMany(targetEntity=Cinema.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 	@JoinTable(name="owner_cinema",
 				joinColumns={@JoinColumn(name="owner_id")},
 				inverseJoinColumns={@JoinColumn(name="cinema_id")})

@@ -155,20 +155,7 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public User getUserByReview(int review_id) {
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		//SELECT FROM movie Where release_date is not null && release_date < today
-		String sql = "select user_id FROM review where id="+review_id;
-		SQLQuery query = session.createSQLQuery(sql);
-		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-		List data = query.list();
-		User u = null;
-		Map row = (Map) data.get(0);
-		int id = Integer.parseInt(row.get("user_id").toString());
-		u = this.getUserById(id);
-		session.getTransaction().commit();
-		session.close();
+		User u = new ReviewHandler().getReviewsById(review_id).getUser();
 		return u;
 	}
 

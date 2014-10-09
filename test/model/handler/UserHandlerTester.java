@@ -41,7 +41,7 @@ public class UserHandlerTester {
 			System.out.println("id " + b.getId());
 		}
 	}
-	@Test
+//	@Test
 	public void getUserByBooking(){
 		User u = mh.getUserByBooking(37);
 		System.out.println("id " + u.getId());
@@ -50,6 +50,13 @@ public class UserHandlerTester {
 		
 	}
 	
+	@Test
+	public void getUserByReview(){
+		User u = mh.getUserByReview(3);
+		System.out.println("id " + u.getId());
+		u = mh.getUserByReview(5);
+		System.out.println("id " + u.getId());
+	}
 
 	// @Test
 	public void isExist() {
