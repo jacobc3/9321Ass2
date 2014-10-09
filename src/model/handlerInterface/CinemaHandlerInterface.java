@@ -12,6 +12,8 @@ public interface CinemaHandlerInterface {
 	public int addCinema(Cinema cinema);
 	public void updateCinema(Cinema cinema);
 	
+
+	
 	//not listed
 	
 	public Cinema getCinema(int id);

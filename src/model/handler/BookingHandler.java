@@ -106,4 +106,9 @@ public class BookingHandler implements BookingHandlerInterface {
 		return new SessionHandler().getBookingsBySession(session_id);
 	}
 
+	@Override
+	public boolean okToBook(int session_id, int requestCount) {
+		return new SessionHandler().okToBook(session_id, requestCount);
+	}
+
 }

@@ -7,6 +7,7 @@ import java.util.Set;
 
 import model.bean.Genre;
 import model.bean.Movie;
+import model.bean.Review;
 import model.handlerInterface.MovieHandlerInterface;
 
 import org.hibernate.SessionFactory;
@@ -23,7 +24,26 @@ public class MovieHandlertester {
 	public static void beforeClass() {
 	}
 
+	
 	@Test
+	public void getAveRatingByMovie(){
+		Review b = new ReviewHandler().getReviewsById(3);
+		int total = b.getRating();
+		System.out.println("review id "+b.getId()+" rating "+total);
+		b = new ReviewHandler().getReviewsById(7);
+		total = b.getRating();
+		System.out.println("review id "+b.getId()+" rating "+total);
+		b = new ReviewHandler().getReviewsById(8);
+		total = b.getRating();
+		System.out.println("review id "+b.getId()+" rating "+total);
+		
+		double ra = mh.getAveRatingByMovie(3);
+		System.out.println("movie id 3"+" rating "+ra);
+		
+	}
+	
+	
+//	@Test
 	public void getShowingMovieTest(){
 		System.out.println("showing");
 		List<Movie> ms = mh.getShowingMovies();

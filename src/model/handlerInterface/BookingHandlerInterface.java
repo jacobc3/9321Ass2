@@ -8,6 +8,7 @@ import model.bean.Session;
 import model.bean.User;
 
 public interface BookingHandlerInterface {
+	public boolean okToBook(int session_id, int requestCount);
 	public int addBooking(Booking booking);
 	public void approveBooking(int id);
 	public void declineBooking(int id);

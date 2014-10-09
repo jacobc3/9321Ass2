@@ -47,6 +47,8 @@ public interface MovieHandlerInterface {
 	public List<Review> getReviewsByMovie(int movie_id);
 	public Movie getMovieByReview(Review review);
 	public Movie getMovieByReview(int review_id);
+	public double getAveRatingByMovie(int movie_id);
+	public boolean isMovieReviewable(int movie_id);
 	
 	//movie-cinema related
 	public List<Movie> getMoviesByCinema(Cinema cinema);

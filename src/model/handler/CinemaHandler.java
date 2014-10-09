@@ -13,6 +13,7 @@ import org.hibernate.SessionFactory;
 
 import controller.HibernateUtil;
 import model.bean.Amenity;
+import model.bean.Booking;
 import model.bean.Cinema;
 import model.bean.Movie;
 import model.bean.Owner;
@@ -143,7 +144,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		String sql = "select A.id,A.name from cinema_amenity CA join amenity A where CA.amenity_id = A.id and CA.cinema_id = "
+		String sql = "select A.id from cinema_amenity CA join amenity A where CA.amenity_id = A.id and CA.cinema_id = "
 				+ cinema_id;
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -175,7 +176,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		String sql = "select C.id,C.name from cinema_amenity CA join Cinema C where CA.cinema_id = C.id and CA.amenity_id = "
+		String sql = "select C.id from cinema_amenity CA join Cinema C where CA.cinema_id = C.id and CA.amenity_id = "
 				+ amenity_id;
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -232,6 +233,9 @@ public class CinemaHandler implements CinemaHandlerInterface {
 
 	@Override
 	public Cinema getCinemaBySession(int session_id) {
+		Cinema c = new SessionHandler().getSession(session_id).getCinema();
+		return c;
+		/*
 		// select A.name from cinema_amenity CA join Amenity A where CA.amenity
 		// = A.id
 		SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -246,7 +250,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		Cinema c = this.getCinema(id);
 		session.getTransaction().commit();
 		session.close();
-		return c;
+		return c;*/
 	}
 
 	@Override
@@ -306,5 +310,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 
 		return results;
 	}
+
+	
 
 }

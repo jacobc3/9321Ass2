@@ -28,6 +28,17 @@ public class ReviewHandlerTester {
 	public static void beforeClass() {
 	}
 	
+	@Test
+	public void isMovieReviewable(){
+		System.out.println("id 1 reviewable "+rh.isMovieReviewable(1));
+		System.out.println("id 3 reviewable "+rh.isMovieReviewable(3));
+		System.out.println("id 4 reviewable "+rh.isMovieReviewable(4));
+		System.out.println("id 5 reviewable "+rh.isMovieReviewable(5));
+		System.out.println("id 7 reviewable "+rh.isMovieReviewable(7));
+		System.out.println("id 13 reviewable "+rh.isMovieReviewable(13));
+	}
+	
+	
 	
 //	@Test
 	public void newtest(){

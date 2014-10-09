@@ -12,7 +12,10 @@ public interface SessionHandlerInterface {
 	public void updateSession(Session mySession);
 	public int addSession(Session session);
 	
-	
+	//booking related
+	public int getRemainingSeatsCount(int session_id);
+	public int getBookedSeatsCount(int session_id);
+	public boolean okToBook(int session_id, int requestCount);
 	
 	//movie-session related
 	public List<Session> getSessionsByMovie(int movie_id);

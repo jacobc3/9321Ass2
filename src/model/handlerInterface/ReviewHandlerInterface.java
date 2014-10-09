@@ -16,6 +16,7 @@ public interface ReviewHandlerInterface {
 	public List<Review> getReviewsByMovie(int movie_id);
 	public Movie getMovieByReview(Review review);
 	public Movie getMovieByReview(int review_id);
+	public boolean isMovieReviewable(int movie_id);
 
 	//user-review related
 	public List<Review> getReviewsByUser(User user);

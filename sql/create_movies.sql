@@ -21,9 +21,9 @@ INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG2",random_datetim
 INSERT INTO movie (title,release_date,actors) VALUES ("THE RIGHT",random_datetime(), "Luis,Magic");
 INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG",random_datetime(), "Luis,Pitter");
 INSERT INTO movie (title,synopsis,actors) VALUES ("NEW MOVIE 2","FAS fqw asdfqwl qfqo", "Wow,Pitter");
-INSERT INTO movie (title,posterURL,actors) VALUES ("THE RIGHTSSS","https://twitter.com/dumu_R/status/519857091737964544/photo/1", "Luis,Magic");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("MOVE ADW",random_datetime(), "https://pbs.twimg.com/media/BzbPScXCUAAVBxE.jpg");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("RIGN SGF3",random_datetime(), "https://pbs.twimg.com/media/BzboRhACYAErZSz.jpg");
+INSERT INTO movie (title,posterURL,actors) VALUES ("THE RIGHTSSS","http://fng.hotcw.com/images/sil-female.png", "Luis,Magic");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("MOVE ADW",random_datetime(), "http://fng.hotcw.com/images/sil-female.png");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("RIGN SGF3",random_datetime(), "http://fng.hotcw.com/images/sil-male.png");
 INSERT INTO movie (title,release_date,synopsis) VALUES ("RING AFQW AFDE",random_datetime(), "FQ AS Sdadfaw Fwewa asfas");
 
 drop table genre;
@@ -64,22 +64,42 @@ INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,3);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,4);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,5);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,6);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (2,1);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (3,2);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (2,1);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (5,3);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (3,5);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (3,5);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,8);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (4,6);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (7,1);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (9,2);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (5,1);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,3);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (2,5);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (4,5);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (5,8);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,4);
+
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (2,1);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (2,4);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (2,5);
+
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (3,2);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (3,5);
+
+
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (4,4);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (4,5);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (4,6);
+
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (5,3);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (5,1);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (5,4);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (5,8);
+
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (6,1);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (6,2);
+
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (7,1);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (7,4);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (7,5);
+
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (8,2);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (8,4);
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (8,7);
+
+INSERT INTO movie_genre (movie_id,genre_id) VALUES (9,2);
+
+
+
+
+
+
+
+
