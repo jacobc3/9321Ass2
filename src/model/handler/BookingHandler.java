@@ -87,16 +87,6 @@ public class BookingHandler implements BookingHandlerInterface {
 	}
 
 	@Override
-	public List<Booking> getBookingsByOwner(Owner owner) {
-		return new OwnerHandler().getBookingsByOwner(owner);
-	}
-
-	@Override
-	public List<Booking> getBookingsByOwner(int owner_id) {
-		return new OwnerHandler().getBookingsByOwner(owner_id);
-	}
-
-	@Override
 	public Session getSessionByBooking(Booking booking) {
 		return new SessionHandler().getSessionByBooking(booking);
 	}

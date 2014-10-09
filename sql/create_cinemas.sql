@@ -65,7 +65,15 @@ INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,7);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (3,1);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (3,5);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (3,7);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,1);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,2);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,3);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,4);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,5);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,8);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,7);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (5,7);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (5,1);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (5,5);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (5,7);
 
-
--- FOREIGN KEY (cinema_id) REFERENCES cinemas(id)
--- FOREIGN KEY (amenity_id) REFERENCES amenities(id)

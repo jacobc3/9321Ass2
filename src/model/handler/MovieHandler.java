@@ -1,6 +1,7 @@
 package model.handler;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -369,6 +370,18 @@ public class MovieHandler implements MovieHandlerInterface {
 	@Override
 	public List<Cinema> getCinemasByMovie(int movie_id) {
 		return new CinemaHandler().getCinemasByMovie(movie_id);
+	}
+
+	@Override
+	public List<Movie> searchByGenre(int genre_id) {
+		return this.getMoviesByGenre(genre_id);
+	}
+
+	@Override
+	public void setReleaseDate(int movieId, Date date) {
+		Movie m = this.getMovie(movieId);
+		m.setRelease_date(date);
+		this.updateMovie(m);		
 	}
 
 }

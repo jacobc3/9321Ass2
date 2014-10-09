@@ -8,17 +8,15 @@ import model.bean.Review;
 import model.bean.User;
 
 public interface UserHandlerInterface {
-	public int addUser(User user);
-	public boolean isMatch(String username, String password);
+	public int addUser(User user);	
 	public void confirmRegistration(int user_id);
 	public User getUserById(int user_id);
 	public void updateUser(User user);
 	
-	// not listed in UML
 	public List<User> getAllUsers();
 	public boolean isExist(int id);
 	public boolean isExist(String username);
-	
+	public boolean isMatch(String username, String password);
 	
 	
 	//user-review related

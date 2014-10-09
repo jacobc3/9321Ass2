@@ -1,5 +1,6 @@
 package model.handlerInterface;
 
+import java.util.Date;
 import java.util.List;
 
 import model.bean.Cinema;
@@ -13,16 +14,14 @@ public interface MovieHandlerInterface {
 	public void updateMovie(Movie movie);
 	public int addMovie(Movie movie);
 	
-	public List<Movie> getShowingMovies();
-	public List<Movie> getComingMovies();
-	public List<Movie> searchByTitle(String title);
-	
-	
-	
-	
+
 	public Movie getMovie(int id);
 	
-	
+	//search function
+	public List<Movie> getShowingMovies();
+	public List<Movie> getComingMovies();
+	public List<Movie> searchByTitle(String title);	
+	public List<Movie> searchByGenre(int genre_id);
 	
 	//not listed in UML
 	public Movie removeMovie(int id);
@@ -55,5 +54,7 @@ public interface MovieHandlerInterface {
 	public List<Cinema> getCinemasByMovie (Movie movie);
 	public List<Cinema> getCinemasByMovie (int movie_id);
 
+	//owner related
+	public void setReleaseDate(int movieId, Date date);
 	
 }

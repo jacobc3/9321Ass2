@@ -29,11 +29,6 @@ public interface CinemaHandlerInterface {
 	public List<Cinema> getCinemasByAmenity(Amenity amenity);
 	public List<Cinema> getCinemasByAmenity(int amenity_id);
 	
-	////owner-cinema related
-	public Owner getOwnerByCinema(Cinema cinema);
-	public Owner getOwnerByCinema(int cinema_id);
-	public List<Cinema> getCinemasByOwner(Owner owner);
-	public List<Cinema> getCinemasByOwner(int owner_id);
 	
 	//session-cinema related
 	public List<Session> getSessionsByCinema(Cinema cinema);

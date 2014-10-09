@@ -21,9 +21,6 @@ public interface BookingHandlerInterface {
 	public User getUserByBooking(int booking_id);
 	
 	
-	// owner-booking related
-	public List<Booking> getBookingsByOwner(Owner owner);
-	public List<Booking> getBookingsByOwner(int owner_id);
 
 	//session-booking related
 	public Session getSessionByBooking(Booking booking);
