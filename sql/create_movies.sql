@@ -16,15 +16,15 @@ create table movie (
 	PRIMARY KEY (id)	
 );
 
-INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG","2011-05-20", "Luis,Pitter");
-INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG2","2011-07-20", "Wow,Pitter");
-INSERT INTO movie (title,release_date,actors) VALUES ("THE RIGHT","2013-12-20", "Luis,Magic");
-INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG","2011-05-20", "Luis,Pitter");
+INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG",random_datetime(), "Luis,Pitter");
+INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG2",random_datetime(), "Wow,Pitter");
+INSERT INTO movie (title,release_date,actors) VALUES ("THE RIGHT",random_datetime(), "Luis,Magic");
+INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG",random_datetime(), "Luis,Pitter");
 INSERT INTO movie (title,synopsis,actors) VALUES ("NEW MOVIE 2","FAS fqw asdfqwl qfqo", "Wow,Pitter");
 INSERT INTO movie (title,posterURL,actors) VALUES ("THE RIGHTSSS","https://twitter.com/dumu_R/status/519857091737964544/photo/1", "Luis,Magic");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("MOVE ADW","2011-05-20", "https://pbs.twimg.com/media/BzbPScXCUAAVBxE.jpg");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("RIGN SGF3","2011-07-20", "https://pbs.twimg.com/media/BzboRhACYAErZSz.jpg");
-INSERT INTO movie (title,release_date,synopsis) VALUES ("RING AFQW AFDE","2013-12-20", "FQ AS Sdadfaw Fwewa asfas");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("MOVE ADW",random_datetime(), "https://pbs.twimg.com/media/BzbPScXCUAAVBxE.jpg");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("RIGN SGF3",random_datetime(), "https://pbs.twimg.com/media/BzboRhACYAErZSz.jpg");
+INSERT INTO movie (title,release_date,synopsis) VALUES ("RING AFQW AFDE",random_datetime(), "FQ AS Sdadfaw Fwewa asfas");
 
 drop table genre;
 create table genre (
@@ -59,9 +59,7 @@ create table movie_genre(
 );
 
 
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,1);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,2);
-INSERT INTO movie_genre (movie_id,genre_id) VALUES (2,1);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,3);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,4);
 INSERT INTO movie_genre (movie_id,genre_id) VALUES (1,5);

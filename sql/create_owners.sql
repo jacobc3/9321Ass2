@@ -9,6 +9,7 @@
  * after clarification:
  * only 1 owner in whole website, it can edit anything. Like 'root' account.
  */
+
 drop table owner;
 create table owner (
 	id INT NOT NULL auto_increment,
@@ -16,4 +17,4 @@ create table owner (
 	password VARCHAR(40) default NULL,
 	PRIMARY KEY (id)
 );
-INSERT INTO owner (username,password) VALUES ("aaa","aaa");
+INSERT INTO owner (username,password) VALUES ("admin","password");
