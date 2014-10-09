@@ -25,6 +25,13 @@ public class UserHandlerTester {
 	@BeforeClass
 	public static void beforeClass() {
 	}
+	
+	@Test
+	public void senConfirmMailTester(){
+		User u = mh.getUserById(13);
+		System.out.println("id is " + u.getId()+"\nemail is "+u.getEmail());
+		mh.sendConfirmMail(u);
+	}
 
 	// @Test
 	public void newUserTest() {
@@ -50,7 +57,7 @@ public class UserHandlerTester {
 		
 	}
 	
-	@Test
+//	@Test
 	public void getUserByReview(){
 		User u = mh.getUserByReview(3);
 		System.out.println("id " + u.getId());

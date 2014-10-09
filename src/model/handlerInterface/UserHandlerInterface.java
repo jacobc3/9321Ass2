@@ -31,6 +31,7 @@ public interface UserHandlerInterface {
 	public List<Booking> getBookingsByUser(int user_id);
 	public User getUserByBooking(Booking booking);
 	public User getUserByBooking(int booking_id);
+	public void sendConfirmMail(User u);
 	
 	
 }

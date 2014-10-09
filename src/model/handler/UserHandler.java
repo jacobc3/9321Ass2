@@ -16,6 +16,7 @@ import model.bean.Owner;
 import model.bean.Review;
 import model.bean.User;
 import model.handlerInterface.UserHandlerInterface;
+import model.mail.MailSender;
 
 public class UserHandler implements UserHandlerInterface {
 
@@ -24,14 +25,30 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public int addUser(User user) {
-		//TODO  send email-confirmation
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		Integer id = (Integer) session.save(user);		
+		Integer id = (Integer) session.save(user);	
+		this.sendConfirmMail(user);
 		session.getTransaction().commit();
 		session.close();
 		return id;
+	}
+	
+	public void sendConfirmMail(User user){
+		//TODO  send email-confirmation
+		MailSender sender = null;
+		try{
+			sender = MailSender.getMailSender();
+			String fromAddress = "confirmation@sensitiver.com";
+			String toAddress = user.getEmail();
+			String subject = "Registration confirmation from Movie-Review";
+			String mailBody ="Hello there, please click on following link to confirm your registration";
+			sender.sendMessage(fromAddress, toAddress, subject, mailBody);
+		}catch (Exception e){
+			System.out.println("Oopsies, could not send message "+e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	@Override

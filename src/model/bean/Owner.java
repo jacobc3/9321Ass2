@@ -29,15 +29,7 @@ public class Owner {
 	private int id;
 	private String username;
 	private String password;
-	private Set<Cinema> cinemas = new HashSet<Cinema>();
 	
-	@OneToMany(targetEntity=Cinema.class,cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	@JoinTable(name="owner_cinema",
-				joinColumns={@JoinColumn(name="owner_id")},
-				inverseJoinColumns={@JoinColumn(name="cinema_id")})
-	public Set<Cinema> getCinemas() {
-		return cinemas;
-	}
 	@Id
 	@GeneratedValue@Column(name="id")
 	public int getId() {
@@ -67,8 +59,5 @@ public class Owner {
 		this.username = username;
 	}
 	
-	public void setCinemas(Set<Cinema> cinemas) {
-		this.cinemas = cinemas;
-	}
 
 }

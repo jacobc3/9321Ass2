@@ -45,6 +45,9 @@ INSERT INTO user (username,email,email_ok,nickname,registry_date) VALUES ("Asome
 INSERT INTO user (username,email,email_ok,password,registry_date) VALUES ("Inity1991","TimothyBHamilton@armyspy.com", "Y","ayi8ihooGhi",random_datetime());
 INSERT INTO user (username,password,email,nickname,registry_date) VALUES ("Wanding","wieSeep1ie","JeromeLMontelongo@jourrapide.com","Riveria",random_datetime());
 INSERT INTO user (username,password,email,firstname,lastname,registry_date) VALUES ("Dearty","Gigh0mariud","JosePReed@armyspy.com","Jose","P. Reed",random_datetime());
+INSERT INTO user (username,password,email,firstname,lastname,registry_date) VALUES ("root","root","jacobc3@gmail.com","rootFirst","RootLast",now());
+
+
 
 drop table review;
 create table review (
