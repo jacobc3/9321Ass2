@@ -1,13 +1,18 @@
 package model.handler;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 
 import controller.HibernateUtil;
 import model.bean.Booking;
 import model.bean.Cinema;
 import model.bean.Movie;
+import model.bean.Review;
 import model.bean.Session;
 import model.handlerInterface.SessionHandlerInterface;
 
@@ -76,8 +81,8 @@ public class SessionHandler implements SessionHandlerInterface {
 
 	@Override
 	public Session getSessionByBooking(int booking_id) {
-		// TODO Auto-generated method stub
-		return null;
+		Booking b = new BookingHandler().getBooking(booking_id);
+		return b.getSession();
 	}
 
 	@Override
@@ -87,8 +92,14 @@ public class SessionHandler implements SessionHandlerInterface {
 
 	@Override
 	public List<Booking> getBookingsBySession(int session_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		org.hibernate.Session session = factory.openSession();
+		session.beginTransaction();
+		//SELECT FROM movie Where release_date is not null && release_date < today
+		String sql = "select * FROM booking where session_id="+session_id;
+		SQLQuery query = session.createSQLQuery(sql).addEntity(Booking.class);
+		List<Booking> data = query.list();
+		return data;
 	}
 
 	@Override

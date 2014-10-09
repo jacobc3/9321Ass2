@@ -177,10 +177,17 @@ public class UserHandler implements UserHandlerInterface {
 		return this.getBookingsByUser(user.getId());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Booking> getBookingsByUser(int user_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		//SELECT FROM movie Where release_date is not null && release_date < today
+		String sql = "select * FROM booking where user_id="+user_id;
+		SQLQuery query = session.createSQLQuery(sql).addEntity(Booking.class);
+		List<Booking> data = query.list();
+		return data;
 	}
 
 	@Override
@@ -190,8 +197,8 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public User getUserByBooking(int booking_id) {
-		// TODO Auto-generated method stub
-		return null;
+		Booking b = new BookingHandler().getBooking(booking_id);
+		return b.getUser();
 	}
 
 }
