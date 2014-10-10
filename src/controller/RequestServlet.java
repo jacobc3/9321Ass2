@@ -62,6 +62,8 @@ public class RequestServlet extends HttpServlet {
 			this.ownerDetail(request, response);
 		}  else if (url.matches("(.*)/login(.*)")) {
 			this.login(request, response);
+		} else if (url.matches("(.*)/logout(.*)")) {
+			this.logout(request, response);
 		} else if (url.matches("(.*)/confirm_registration(.*)")) {
 			this.confirmRegistration(request, response);
 		} 
@@ -278,6 +280,13 @@ public class RequestServlet extends HttpServlet {
 			HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().removeAttribute("user");
+		request.getSession().removeAttribute("owner");
+		response.setContentType("text/html; charset=gb2312");
+		response.sendRedirect("index");
 	}
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
