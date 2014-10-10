@@ -36,7 +36,7 @@ $(function(){
       <tr>
         <th scope="row">Password</th>
         <td>
-          <input type="text" name="password" id="textfield2"></td>
+          <input type="password" name="password" id="textfield2"></td>
       </tr>
 	      <tr>
 	        <th scope="row">Login As</th>

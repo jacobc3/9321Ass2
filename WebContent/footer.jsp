@@ -2,7 +2,7 @@
 
 <div id="footer">
 <ul>
-  <li><a href="http://localhost/9321Ass2/">HOME</a>
+  <li><a href="http://localhost/9321Ass2/indx">HOME</a>
   <li>Search   </ul>
     
   <b>Made by</b>    	 Shuwen Zhou &amp;

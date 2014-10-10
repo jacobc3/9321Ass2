@@ -96,5 +96,9 @@
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/save_review</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
 	
 </web-app>

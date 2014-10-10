@@ -22,13 +22,13 @@
 	} else if (username != null) {
 %>
 <div id="welcome">
-	Welcome back: <a href="display_user?username=<%=username%>"><%=username%></a>
+	Welcome back: <a href="display_user?username=<%=username%>"><%=username%></a> <a href="logout">logout</a> 
 </div>
 <%
 	} else if (ownername != null) {
 %>
 <div id="welcome">
-	Welcome back: <a href="display_owner?ownername=<%=ownername%>"><%=ownername%></a>
+	Welcome back: <a href="display_owner?ownername=<%=ownername%>"><%=ownername%></a><a href="logout">logout</a>
 </div>
 
 <%

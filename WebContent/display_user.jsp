@@ -22,7 +22,7 @@
     	User user=(User) request.getAttribute("user");
 		List<Review> reviews=(List<Review>) request.getAttribute("reviews");
 		List<Booking> bookings=(List<Booking>) request.getAttribute("bookings");
-		String username=(user.getUsername()!=null)?user.getUsername():"";
+		String username1=(user.getUsername()!=null)?user.getUsername():"";
 		String email=(user.getEmail()!=null)?user.getEmail():"" ;
 		String password="****";
 		String firstname=(user.getFirstname()!=null)?user.getFirstname():"";
@@ -36,7 +36,7 @@
     
     <tr>
         <th width="30%" height="40" scope="row">Username</th>
-        <td width="70%"><%=username %></td>
+        <td width="70%"><%=username1 %></td>
       </tr>
       <tr>
         <th scope="row">Email</th>
