@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
+<%@ include file="header.jsp"%>
 <div class="body" id="body">
 <h1>Your Profile</h1>
   <table width="80%" border="0">
@@ -118,6 +118,4 @@
   <p>&nbsp;</p>
   <p>&nbsp;</p>
 </div>
-<div class="foot" id="foot">Content for  class "foot" id "foot" Goes Here</div>
-</body>
-</html>
+<%@ include file="footer.jsp" %>

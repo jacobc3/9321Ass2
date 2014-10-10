@@ -99,7 +99,9 @@ public class RequestServlet extends HttpServlet {
 		} 
 		 else if (url.matches("(.*)/new_session(.*)")) {
 			this.newSession(request, response);
-		}
+		} else if (url.matches("(.*)/add_movie")) {
+			this.addMovie(request, response);			 
+	}
 		
 	}
 
@@ -125,10 +127,49 @@ public class RequestServlet extends HttpServlet {
 			this.newUser(request, response);
 		}else if (url.matches("(.*)/login(.*)")) {
 			this.login(request, response);
+		} else if (url.matches("(.*)/save_movie(.*)")) {
+			this.saveMovie(request, response);
 		} 
 	}
 	
 	
+	private void saveMovie(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		MovieHandlerInterface mh = new MovieHandler();
+		String title = request.getParameter("title");
+		String posterURL = request.getParameter("posterURL");
+		String actors = request.getParameter("actors");
+		String synopsis = request.getParameter("synopsis");
+		String[] checkedIds = request.getParameterValues("genre");
+		Movie m = new Movie();
+		System.out.println("title\t"+title);
+		System.out.println("posterURL"+posterURL);
+		System.out.println("actors\t"+actors);
+		System.out.println("synopsis\t"+synopsis);
+		System.out.println("checkedIds\t"+checkedIds);
+		m.setTitle(title);
+		m.setActors(actors);
+		m.setPosterURL(posterURL);
+		m.setSynopsis(synopsis);
+		Set<Genre> genres = new HashSet<Genre>();
+		for(String id: checkedIds){
+			Genre g = mh.getGenreById(Integer.parseInt(id));
+			genres.add(g);
+			System.out.println("id\t"+id+"\tname"+g.getName());
+		}
+		m.setGenres(genres);
+		mh.addMovie(m);
+		PrintWriter out = response.getWriter();
+		out.println("save Movie successful. return to <a href=\"index\">Index</a>");
+	}
+
+	private void addMovie(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view=request.getRequestDispatcher("new_movie.jsp");
+		view.forward(request, response);
+		
+	}
+
 	private void newSession(HttpServletRequest request,
 			HttpServletResponse response) {
 		// TODO Auto-generated method stub

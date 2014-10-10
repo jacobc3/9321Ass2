@@ -1,58 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="model.bean.*"%>
+    <%@ page import="model.handler.*"%>
+    <%@ page import="model.handlerInterface.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<% Movie movie = (Movie) request.getAttribute("movie");
+if(movie == null){
+ movie = new Movie();
+movie.setId(1000);
+movie.setTitle("NOT EXIST MOVIE");
+}
+ %>
+<title>Add Review of <%=movie.getTitle() %></title>
 </head>
-<body>
-<div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
+<body><%@ include file="header.jsp" %>
 <div class="body" id="body">
-<h1>Add Review of Movie &lt;title&gt;</h1>
-<form>
+<h1>Add Review of Movie <%=movie.getTitle() %></h1>
+<form action="add_review" method=GET>
   <table width="80%" border="0">
     <tbody>
     <tr>
-        <th scope="row">Title</th>
-        <td><label for="textfield">Text Field:</label>
-          <input type="text" name="textfield" id="textfield"></td>
+        <th scope="row" width=20%><label>Review Title</label></th>
+        <td>
+          <input type="text" name="title">
+          <input type="hidden" name="movie_id" value="<%=movie.getId()%>">
+          <input type="hidden" name="user_id" value="2"></td>
       </tr>
       <tr>
-        <th scope="row">Content</th>
-        <td><label for="textarea">Text Area:</label>
-          <textarea name="textarea" id="textarea" cols="45" rows="5"></textarea></td>
+        <th scope="row"><label>Content</label></th>
+        <td>
+          <textarea name="content" cols="45" rows="5"></textarea></td>
       </tr>
       <tr>
         <th scope="row">Rating</th>
-        <td><p>
+        <td>
           <label>
-            <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0">
+            <input type="radio" name="rating" value="1">
             1</label>
           <label>
-            <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1">
+            <input type="radio" name="rating" value="2">
             2</label>
           <label>
-            <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_2">
+            <input type="radio" name="rating" value="3">
             3</label>
           <label>
-            <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_3">
+            <input type="radio" name="rating" value="4" >
             4</label>
           <label>
-            <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_4">
+            <input type="radio" name="rating" value="5">
             5</label>
-          <br>
-          </p>          <label for="textfield3"></label></td>
+          </td>
       </tr>
       <tr>
         <th scope="row">&nbsp;</th>
-        <td><p><br>
-        </p></td>
+        <td><input type="submit" value="Submit"> <input type="reset" value="Reset">
+        </td>
       </tr>
     </tbody>
   </table>
   </form>
 </div>
-<div class="foot" id="foot">Content for  class "foot" id "foot" Goes Here</div>
-</body>
-</html>
+<%@ include file="footer.jsp" %>

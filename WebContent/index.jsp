@@ -5,44 +5,51 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+<title>Index</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script> 
+$(function(){
+  $("#header").load("header.jsp"); 
+  $("#footer").load("footer.jsp"); 
+});
+</script>
 </head>
 <body>
-	<div class="head"></div>
-	<div class="body">
-	  <div class="login">
+<div id="header"></div>
+	<div id="body">
+	  <div id="login">
 	    <p><a href="login">Login</a></p>
-	    <p>&nbsp;</p>
 	  </div>
-<div class="search">
-	    <form method="get" action="search">
-	  <table width="80%" border="0">
-	    <tbody>
-	      <tr>
-	        <td>Search</td>
-	        <td><input type="text" name="search"></td>
-          </tr>
-	      <tr>
-	        <td>By</td>
-	        <td><p>
-	          <label>
-	            <input name="search_by" type="radio" value="radio" checked="checked">
-	            Title</label>
-	          <label>
-	            <input type="radio" name="search_by" value="radio">
-              Genre</label>
-	          <br>
-            </p></td>
-          </tr>
-	      <tr>
-	        <td colspan="2"><input type="submit"  value="Submit"></td>
-          </tr>
-        </tbody>
-    </table>
-    </form>
-</div>
-      <div class="Showing_movies">
+      <div id="search">
+          <form method="get" action="search">
+            <table width="80%" border="0">
+                <tbody>
+                  <tr>
+                    <td>Search</td>
+                    <td><input type="text" name="search"></td>
+                  </tr>
+                  <tr>
+                    <td>By</td>
+                    <td><p>
+                      <label>
+                        <input name="search_by" type="radio" value="radio" checked="checked">
+                        Title</label>
+                      <label>
+                        <input type="radio" name="search_by" value="radio">
+                      Genre</label>
+                      <br>
+                    </p></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2"><input type="submit"  value="Submit"></td>
+                  </tr>
+                </tbody>
+            </table>
+          </form>
+      </div>
+      <div class="movie_list">
         <p>&nbsp;</p>
         <table width="80%" border="0">
           <tbody>
@@ -82,7 +89,7 @@
         
         <p>&nbsp;</p>
       </div>
-      <div class="incoming_movies"><table width="80%" border="0">
+      <div class="movie_list"><table width="80%" border="0">
           <tbody>
             <tr>
               <th colspan="2" scope="col">Coming Soon</th>
@@ -98,7 +105,5 @@
           </tbody>
         </table></div>
     </div>
-	<div class="foot"></div>
-	<p>&nbsp;</p>
-</body>
-</html>
+    <div id="footer"></div>
+<!-- <%@ include file="footer.jsp" %> -->

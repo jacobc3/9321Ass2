@@ -6,8 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
-<div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
+<body><%@ include file="header.jsp" %>
 <div class="body" id="body">
 <h1>Add Session</h1>
 <form action="add_session" method="get">
@@ -47,6 +46,4 @@
   </table>
   </form>
 </div>
-<div class="foot" id="foot">Content for  class "foot" id "foot" Goes Here</div>
-</body>
-</html>
+<%@ include file="footer.jsp" %>

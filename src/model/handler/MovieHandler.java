@@ -413,4 +413,15 @@ public class MovieHandler implements MovieHandlerInterface {
 		return new ReviewHandler().isMovieReviewable(movie_id);
 	}
 
+	@Override
+	public Genre getGenreById(int genre_id) {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		Genre m = (Genre) session.get(Genre.class, genre_id);
+		session.getTransaction().commit();
+		session.close();
+		return m;
+	}
+
 }

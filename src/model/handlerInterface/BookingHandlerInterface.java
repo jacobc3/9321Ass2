@@ -3,6 +3,7 @@ package model.handlerInterface;
 import java.util.List;
 
 import model.bean.Booking;
+import model.bean.OrderStatus;
 import model.bean.Owner;
 import model.bean.Session;
 import model.bean.User;
@@ -21,7 +22,8 @@ public interface BookingHandlerInterface {
 	public User getUserByBooking(Booking booking);
 	public User getUserByBooking(int booking_id);
 	
-	
+	public List<Booking> getAllBookings();
+	public List<Booking> getBookingsByStatus(OrderStatus s);
 
 	//session-booking related
 	public Session getSessionByBooking(Booking booking);

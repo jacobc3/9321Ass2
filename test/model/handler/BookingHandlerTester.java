@@ -1,6 +1,11 @@
 package model.handler;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
+import model.bean.Booking;
+import model.bean.OrderStatus;
 import model.handlerInterface.BookingHandlerInterface;
 import model.handlerInterface.MovieHandlerInterface;
 
@@ -18,8 +23,22 @@ public class BookingHandlerTester {
 	public static void beforeClass() {
 	}
 	
-	
 	@Test
+	public void getALlBooking(){
+		List<Booking> bs = bh.getAllBookings();
+		for(Booking b : bs){
+			System.out.println(b.getId());
+		}
+		
+		bs = bh.getBookingsByStatus(OrderStatus.Processing);
+		for(Booking b : bs){
+			System.out.println(b.getId()+" "+b.getStatus());
+		}
+		
+		
+		
+	}
+//	@Test
 	public void approveBooking() {
 		bh.approveBooking(3);
 		bh.declineBooking(4);

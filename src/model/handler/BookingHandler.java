@@ -1,13 +1,19 @@
 package model.handler;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 
 import controller.HibernateUtil;
 import model.bean.Booking;
+import model.bean.Movie;
 import model.bean.OrderStatus;
 import model.bean.Owner;
+import model.bean.Review;
 import model.bean.Session;
 import model.bean.User;
 import model.handlerInterface.BookingHandlerInterface;
@@ -109,6 +115,30 @@ public class BookingHandler implements BookingHandlerInterface {
 	@Override
 	public boolean okToBook(int session_id, int requestCount) {
 		return new SessionHandler().okToBook(session_id, requestCount);
+	}
+
+	@Override
+	public List<Booking> getAllBookings() {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		org.hibernate.Session session = factory.openSession();
+		session.beginTransaction();
+		List<Booking> bs = session.createQuery("FROM Booking").list();
+		session.getTransaction().commit();
+		session.close();
+		return bs;
+	}
+
+	@Override
+	public List<Booking> getBookingsByStatus(OrderStatus s) {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		org.hibernate.Session session = factory.openSession();
+		session.beginTransaction();
+		//SELECT FROM movie Where release_date is not null && release_date < today
+		String sql = "select * FROM booking where status=\""+s+"\"";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.addEntity(Booking.class);
+		List<Booking> data = query.list();
+		return data;
 	}
 
 }

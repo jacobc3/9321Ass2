@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+
+#header {
+	/*
+	float: center;
+	font-size: 16px;
+	width:80%;
+	
+	padding: 20px 20px 20px 20px;
+	*/
+	background-color: #FFD4D4;
+	margin-left: auto;
+    margin-right: auto;
+	margin-top:20px;
+	margin-bottom:20px;
+	float: center;
+	width: 80%;
+	font-size: 36px;
+	text-align: center;
+}
+
+#footer {
+	font-size: 12px;
+	/*margin: 20px 20px 20px 20px;*/
+	background-color: #FFACDD;
+	text-align: center;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, sans-serif;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	float: center;
+	width: 80%;
+	min-width: 500px;
+}
+#body {
+	background-color: #F6EAFF;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	float: center;
+	width: 80%;
+	font-size: 14px;
+	min-width: 500px;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#login{
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	position: relative;
+	text-align: center;
+}
+
+.movie_list{
+	/* [disabled]background-color: #933234; */
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+#search {
+	width: 80%;
+	text-align: center;
+	margin: 20px 20px 20px 20px;
+	padding: 20px 20px 20px 20px;
+}
