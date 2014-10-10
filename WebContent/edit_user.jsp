@@ -1,22 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <title>Insert title here</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
 </head>
-<body><%@ include file="header.jsp"%>
-<div class="body" id="body">
-<h1>Edit User</h1>
-<form>
-  <table width="80%" border="0">
-    <tbody>
-    <tr>
-        <th scope="row">Username</th>
-        <td><label id="username" value="uu">Username</label>&nbsp;
-          <input type="hidden" name="id" id="hiddenField" value="hiddenID"></td>
+<body>
+	<div id="header"></div>
+<div id="body">
+	<h1>Edit User</h1>
+	<form>
+		<table width="80%" border="0">
+			<tbody>
+				<tr>
+					<th scope="row">Username</th>
+					<td><label id="username" value="uu">Username</label>&nbsp; <input
+						type="hidden" name="user_id" value="<%="13"%>"></td>
       </tr>
       <tr>
         <th scope="row">Email</th>
@@ -25,7 +33,8 @@
       
       <tr>
         <th scope="row">Password</th>
-        <td><input type="text" name="textfield3" id="textfield3">          <label for="textfield2"></label></td>
+        <td><input type="text" name="textfield3" id="textfield3">          <label
+						for="textfield2"></label></td>
       </tr>
       <tr>
         <th scope="row">First name</th>
@@ -41,7 +50,7 @@
       </tr>
       
       <tr>
-        <th scope="row"><input type="submit"  value="Submit"></th>
+        <th scope="row"><input type="submit" value="Submit"></th>
         <td><p>
           <input type="reset" name="reset" id="reset" value="Reset">
           <br>
@@ -51,4 +60,4 @@
   </table>
   </form>
 </div>
-<%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp"%>

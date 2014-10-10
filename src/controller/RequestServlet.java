@@ -103,8 +103,11 @@ public class RequestServlet extends HttpServlet {
 		 else if (url.matches("(.*)/new_session(.*)")) {
 			this.newSession(request, response);
 		} else if (url.matches("(.*)/new_movie")) {
-			this.newMovie(request, response);			 
-	}
+			this.newMovie(request, response);
+		}else if (url.matches("(.*)/save_booking(.*)")) {
+			this.saveBooking(request, response);
+		}
+	
 		
 	}
 
@@ -135,6 +138,9 @@ public class RequestServlet extends HttpServlet {
 		} else if (url.matches("(.*)/save_review(.*)")) {
 			this.saveReview(request, response);
 		} 
+		else if (url.matches("(.*)/save_booking(.*)")) {
+			this.saveBooking(request, response);
+		}
 	}
 	
 	
@@ -273,6 +279,25 @@ public class RequestServlet extends HttpServlet {
 		RequestDispatcher view = request
 				.getRequestDispatcher("new_booking.jsp");
 		view.forward(request, response);
+	}
+	
+	private void saveBooking(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		SessionHandlerInterface si = new SessionHandler();
+		BookingHandlerInterface bh = new BookingHandler();
+		
+		Booking b= new Booking();		
+		b.setCardNumber(request.getParameter("card_number"));
+		b.setCount(Integer.parseInt(request.getParameter("count")));
+		b.setOrderTime(new Date());
+		b.setSession(si.getSession(Integer.parseInt(request.getParameter("session_id"))));
+		b.setUser(new UserHandler().getUserByUsername(request.getParameter("username")));
+		b.setStatus(OrderStatus.Processing);
+		
+		bh.addBooking(b);
+		PrintWriter out = response.getWriter();
+		out.println("save Booking successful. return to <a href=\"index\">Index</a>");
+		
 	}
 
 

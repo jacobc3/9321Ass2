@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ page import="java.util.*"%>
 <%@ page import="model.bean.*"%>
+<%@ page import="model.handler.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -130,10 +131,16 @@
       <%	}}
             %>
             
+            
     </tbody>
   </table>
   
   <form action="save_review" method=POST>
+  <%
+	String username = (String) request.getSession()
+			.getAttribute("user");
+  	int user_id = new UserHandler().getUserByUsername(username).getId();
+  %>
   <table width="80%" border="0">
     <tbody>
     <tr>
@@ -141,7 +148,7 @@
         <td>
           <input type="text" name="title">
           <input type="hidden" name="movie_id" value="<%=m.getId()%>">
-          <input type="hidden" name="user_id" value="2"></td>
+          <input type="hidden" name="user_id" value="<%=user_id %>"></td>
       </tr>
       <tr>
         <th scope="row"><label>Content</label></th>

@@ -5,16 +5,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="style.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>User Detail</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
 </head>
-<body>
-<%@ include file="header.jsp"%>
-<div class="body" id="body">
-<h1>Your Profile</h1>
-  <table width="80%" border="0">
-    <tbody>
-    <%
+<body><div id="header"></div>
+<div id="body">
+<%
     	User user=(User) request.getAttribute("user");
 		List<Review> reviews=(List<Review>) request.getAttribute("reviews");
 		List<Booking> bookings=(List<Booking>) request.getAttribute("bookings");
@@ -25,6 +29,11 @@
 		String lastname=(user.getLastname()!=null)?user.getLastname():"";
 		String nickname=(user.getNickname()!=null)?user.getNickname():"";
     %>
+<h1>Your Profile</h1>
+<a href="edit_user?id=<%=user.getId()%>">Edit</a>
+  <table width="80%" border="0">
+    <tbody>
+    
     <tr>
         <th width="30%" height="40" scope="row">Username</th>
         <td width="70%"><%=username1 %></td>
@@ -72,12 +81,19 @@
       		Review review=iter.next();
       		String title=(review.getTitle()!=null)?review.getTitle():"";
       		String movieTitle=(review.getMovie().getTitle()!=null)?review.getMovie().getTitle():"";
-      		int rate=review.getRating();
+      		String movieid = review.getMovie().getId()+"";
+      		int rate = review.getRating();
+      		String rating = "";
+      		if(rate == 0){
+      			rating="N/A";
+      		} else {
+      			rating = rate+"";
+      		}
       %>
       <tr>
         <td><%=title %></td>
-        <td><%=movieTitle %></td>
-        <td><%=rate %></td>
+        <td><a href="movie_detail?id=<%=movieid%>"><%=movieTitle %>~~</a></td>
+        <td><%=rating %></td>
       </tr>
       
       <%		
@@ -86,12 +102,6 @@
       
       
       
-      
-      <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-      </tr>
     </tbody>
   </table>
   <p>&nbsp;</p>
@@ -101,6 +111,9 @@
         <th scope="col">Bookings of Movie</th>
         <th scope="col">of Cinema</th>
         <th scope="col">of Session</th>
+        <th scope="col">Order Status</th>
+        <th scope="col">Count</th>
+        <th scope="col">Card number</th>
       </tr>
       <%
       	Iterator<Booking> iter2=bookings.iterator();
@@ -111,6 +124,9 @@
         <td><%=booking.getSession().getMovie().getTitle() %></td>
         <td><%=booking.getSession().getCinema().getName() %></td>
         <td><%=booking.getSession().getShowDate() %></td>
+        <td><%=booking.getStatus() %></td>
+         <td><%=booking.getCount() %></td>
+          <td><%=booking.getCardNumber() %></td>
       </tr>
   		
   		

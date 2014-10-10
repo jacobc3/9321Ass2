@@ -7,11 +7,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta http-equiv="Refresh" content="5;url=index">
 <title>Success</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
 </head>
-<body>
+<body><div id="header"></div>
 <center>
 <h1> Mail Sent Successfully! Check receiver inbox</h1>
 <h1> return to index in 5 seconds</h1>
 </center>
 </body>
+<div id="footer"></div>
 </html>
