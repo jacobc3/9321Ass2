@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
+    pageEncoding="ISO-8859-1"%>
+            <%@ page import="java.util.*"%>
+<%@ page import="model.bean.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,17 +12,50 @@
 <body>
 <%@ include file="header.jsp"%>
 <div class="body" id="body">
-	<h1>Your Profile</h1>
-	<table width="80%" border="0">
-		<tbody>
-			<tr>
-				<th width="30%" height="40" scope="row">id</th>
-				<td width="70%">&nbsp;</td>
-			</tr>
-			<tr>
-				<th width="30%" height="40" scope="row">Username</th>
-				<td width="70%">&nbsp;</td>
-			</tr>
+<h1>Your Profile</h1>
+  <table width="80%" border="0">
+    <tbody>
+    <%
+    	Owner owner=(Owner) request.getAttribute("owner");
+		
+    %>
+      <tr>
+        <th width="30%" height="40" scope="row">id</th>
+        <td width="70%">&nbsp;</td>
+      </tr>
+    <tr>
+        <th width="30%" height="40" scope="row">Username</th>
+        <td width="70%">&nbsp;</td>
+      </tr>
+      
+      <tr>
+        <th scope="row">Password</th>
+        <td><label for="textfield2"></label></td>
+      </tr>
+    </tbody>
+  </table>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <table width="80%" border="0">
+    <tbody>
+      <tr>
+        <th scope="col">Reviews(title)</th>
+        <th scope="col">of Movie</th>
+        <th scope="col">Rating</th>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>&nbsp;</p>
+  <table width="80%" border="0">
+    <tbody>
+      <tr>
+      
+        <th scope="col">Action</th>
 
 			<tr>
 				<th scope="row">Password</th>

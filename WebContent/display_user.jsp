@@ -18,32 +18,39 @@
     	User user=(User) request.getAttribute("user");
 		List<Review> reviews=(List<Review>) request.getAttribute("reviews");
 		List<Booking> bookings=(List<Booking>) request.getAttribute("bookings");
+		String username=(user.getUsername()!=null)?user.getUsername():"";
+		String email=(user.getEmail()!=null)?user.getEmail():"" ;
+		String password="****";
+		String firstname=(user.getFirstname()!=null)?user.getFirstname():"";
+		String lastname=(user.getLastname()!=null)?user.getLastname():"";
+		String nickname=(user.getNickname()!=null)?user.getNickname():"";
     %>
     <tr>
         <th width="30%" height="40" scope="row">Username</th>
-        <td width="70%"><%=user.getUsername() %></td>
+        <td width="70%"><%=username %></td>
       </tr>
       <tr>
         <th scope="row">Email</th>
-        <td><%=user.getEmail() %></td>
+        <td><%=email %></td>
       </tr>
       
       <tr>
         <th scope="row">Password</th>
+         <td><%=password %></td>
         <td><label for="textfield2"></label></td>
       </tr>
       <tr>
         <th scope="row">First name</th>
-        <td><%=user.getFirstname() %></td>
+        <td><%=firstname %></td>
       </tr>
       <tr>
         <th scope="row">Last Name</th>
-        <td><%=user.getLastname() %></td>
+        <td><%=lastname %></td>
       </tr>
       
       <tr>
         <th scope="row">Nickname</th>
-        <td><%=user.getNickname() %></td>
+        <td><%=nickname %></td>
         <td><p><br>
         </p></td>
       </tr>
@@ -63,11 +70,14 @@
       	 Iterator<Review> iter=reviews.iterator();
       	while(iter.hasNext()){
       		Review review=iter.next();
+      		String title=(review.getTitle()!=null)?review.getTitle():"";
+      		String movieTitle=(review.getMovie().getTitle()!=null)?review.getMovie().getTitle():"";
+      		int rate=review.getRating();
       %>
       <tr>
-        <td><%=review.getTitle() %></td>
-        <td><%=review.getMovie().getTitle() %></td>
-        <td><%=review.getRating() %></td>
+        <td><%=title %></td>
+        <td><%=movieTitle %></td>
+        <td><%=rate %></td>
       </tr>
       
       <%		
