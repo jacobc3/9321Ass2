@@ -2,4 +2,7 @@
 2. 在display_user里面加一个edit_user的超链接
 3. 在edit_user里面注意确认是否拥有权限
 4. 重写index
-5. search by genre
+5. search by genre\
+
+
+ZSW
