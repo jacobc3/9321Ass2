@@ -18,37 +18,7 @@ $(function(){
 </head>
 <body>
 <div id="header"></div>
-	<div id="body">
-	  <div id="login">
-	    <p><a href="login">Login</a></p>
-	  </div>
-      <div id="search">
-          <form method="get" action="search">
-            <table width="80%" border="0">
-                <tbody>
-                  <tr>
-                    <td>Search</td>
-                    <td><input type="text" name="search"></td>
-                  </tr>
-                  <tr>
-                    <td>By</td>
-                    <td><p>
-                      <label>
-                        <input name="search_by" type="radio" value="radio" checked="checked">
-                        Title</label>
-                      <label>
-                        <input type="radio" name="search_by" value="radio">
-                      Genre</label>
-                      <br>
-                    </p></td>
-                  </tr>
-                  <tr>
-                    <td colspan="2"><input type="submit"  value="Submit"></td>
-                  </tr>
-                </tbody>
-            </table>
-          </form>
-      </div>
+	
       <div class="movie_list">
 	<%
 		String username=(String) request.getSession().getAttribute("user");
@@ -87,17 +57,17 @@ $(function(){
 	  <table width="80%" border="0">
 	    <tbody>
 	      <tr>
-	        <td>Search</td>
+	        <td></td>
 	        <td><input type="text" name="search"></td>
           </tr>
 	      <tr>
-	        <td>By</td>
+	        <td></td>
 	        <td><p>
-	           <select>
+	           <select name="search_by">
 				  <option value ="radio1" selected="selected">Title</option>
 				  <option value ="radio2">Genre</option>
 				</select>
-				<input type="submit"  value="Submit">
+				<input type="submit"  value="Search">
               
            
 	          <br>
@@ -179,14 +149,6 @@ $(function(){
         <table width="80%" border="0">
       
           <tbody>
-            <tr>
-              <th scope="col">Title</th>
-              <th scope="col">Genre</th>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
           </tbody>
         </table>
         <p>&nbsp;</p>
@@ -199,8 +161,8 @@ $(function(){
         	
         %>
           <tbody>
-            <tr>
-              <th colspan="2" scope="col">Coming Soon</th>
+             <tr>
+              <th colspan="5" scope="col">Comming soon</th>
             </tr>
             <tr>
               <th scope="col">PosterURL</th>

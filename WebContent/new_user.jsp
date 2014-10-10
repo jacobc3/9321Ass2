@@ -17,6 +17,12 @@
         <td>
           <input type="text" name="username" id="textfield"></td>
       </tr>
+      
+      <tr>
+        <th scope="row">Nickname</th>
+        <td>
+          <input type="text" name="nickname" id="textfield4"></td>
+      </tr>
       <tr>
         <th scope="row">Email</th>
         <td>
@@ -29,7 +35,7 @@
           <input type="text" name="password" id="textfield3">          <label for="textfield2"></label></td>
       </tr>
       <tr>
-        <th scope="row"><input type="submit" value="Submit"></th>
+        <th scope="row"><input type="submit" value="Register"></th>
         <td><p>
           <input type="reset" name="reset" id="reset" value="Reset">
           <br>

@@ -39,7 +39,7 @@
         <td><label for="textfield3">owner</label></td>
       </tr>
       <tr>
-        <th scope="row"><input type="submit" value="Submit"></th>
+        <th scope="row"><input type="submit" value="Booking"></th>
         <td><p><br>
         </p></td>
       </tr>
