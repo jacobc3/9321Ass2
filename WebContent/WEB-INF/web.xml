@@ -23,4 +23,43 @@
 		<url-pattern>/movie_detail</url-pattern>
 	</servlet-mapping>
 
+<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/new_user</url-pattern>
+	</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	
+	
+<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/detail</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/new_booking</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/new_cinema</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/display_user</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/display_owner</url-pattern>
+	</servlet-mapping>
 </web-app>

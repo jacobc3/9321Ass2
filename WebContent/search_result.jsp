@@ -48,12 +48,42 @@
                 <th width="33%" scope="col">Rating</th>
                  <th width="33%" scope="col">Actors</th>
 			</tr>
+			 <%
+              	ArrayList<Movie> movies=(ArrayList<Movie>)request.getAttribute("movies");
+              %>
 			<tr><td><a href=""></a></td>
 				<td></td>
                 <td></td>
                 <td></td>
                  <td></td>
 			</tr>
+			<% 
+				if(movies!=null){
+					Iterator<Movie> iter=movies.iterator();
+					while(iter.hasNext()){
+						Movie m=iter.next();
+			%>
+			<tr><td><a href="movie_detail?id=<%=m.getId() %>"><%=m.getTitle() %></a></td>
+				<% 
+					Set<Genre> g=m.getGenres();
+					Iterator<Genre> iter1=g.iterator();
+					String s="";
+					while(iter1.hasNext()){
+						Genre k=iter1.next();
+						s=s+k.getName()+" ";
+					}	
+				%>
+				<td><%=s %></td>
+				
+                <td><img src="<%=m.getPosterURL() %>" alt="<%=m.getTitle() %>"/></td>
+                <td></td>
+                <td><%=m.getActors() %></td>
+			</tr>
+			
+	
+			<%		}
+				}
+			%>
 
 		</tbody>
 	</table>

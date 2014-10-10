@@ -1,6 +1,7 @@
 package model.handler;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,9 +12,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import controller.HibernateUtil;
+import model.bean.Booking;
 import model.bean.Cinema;
 import model.bean.Genre;
 import model.bean.Movie;
+import model.bean.OrderStatus;
 import model.bean.Owner;
 import model.bean.Review;
 import model.bean.User;
@@ -369,6 +372,45 @@ public class MovieHandler implements MovieHandlerInterface {
 	@Override
 	public List<Cinema> getCinemasByMovie(int movie_id) {
 		return new CinemaHandler().getCinemasByMovie(movie_id);
+	}
+
+	@Override
+	public List<Movie> searchByGenre(int genre_id) {
+		return this.getMoviesByGenre(genre_id);
+	}
+
+	@Override
+	public void setReleaseDate(int movieId, Date date) {
+		Movie m = this.getMovie(movieId);
+		m.setRelease_date(date);
+		this.updateMovie(m);		
+	}
+
+	@Override
+	public double getAveRatingByMovie(int movie_id) {
+		double result = 0;
+		
+		List<Review> rs = this.getReviewsByMovie(movie_id);
+		if(rs.size() == 0){
+			result = 0;
+		} else {
+			int total = 0;
+			int count = 0;
+			for (java.util.Iterator<Review> iterator = rs.iterator(); iterator.hasNext();) {
+				Review b = (Review) iterator.next();
+				if(b.getRating() > 0){
+					total += b.getRating();
+					count++;
+				}
+			}
+			result = 1.0*total/count;
+		}
+		return result;
+	}
+
+	@Override
+	public boolean isMovieReviewable(int movie_id) {
+		return new ReviewHandler().isMovieReviewable(movie_id);
 	}
 
 }

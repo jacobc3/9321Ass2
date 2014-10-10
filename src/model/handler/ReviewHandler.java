@@ -1,5 +1,6 @@
 package model.handler;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -88,6 +89,15 @@ public class ReviewHandler implements ReviewHandlerInterface {
 		session.getTransaction().commit();
 		session.close();
 		return u;
+	}
+
+	@Override
+	public boolean isMovieReviewable(int movie_id) {
+		Movie m = new MovieHandler().getMovie(movie_id);
+		if(m.getRelease_date()!=null && m.getRelease_date().compareTo(new Date())<=0 ){
+			return true;
+		}
+		return false;
 	}
 
 }

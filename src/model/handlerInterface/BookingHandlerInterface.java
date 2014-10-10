@@ -8,6 +8,7 @@ import model.bean.Session;
 import model.bean.User;
 
 public interface BookingHandlerInterface {
+	public boolean okToBook(int session_id, int requestCount);
 	public int addBooking(Booking booking);
 	public void approveBooking(int id);
 	public void declineBooking(int id);
@@ -21,9 +22,6 @@ public interface BookingHandlerInterface {
 	public User getUserByBooking(int booking_id);
 	
 	
-	// owner-booking related
-	public List<Booking> getBookingsByOwner(Owner owner);
-	public List<Booking> getBookingsByOwner(int owner_id);
 
 	//session-booking related
 	public Session getSessionByBooking(Booking booking);

@@ -14,15 +14,15 @@ create table cinema (
 	PRIMARY KEY (id)
 );
 
-INSERT INTO cinema (name,location,capacity) VALUES ("Dendy Cinemas","Pitt ST", 35);
-INSERT INTO cinema (name,location,capacity) VALUES ("Grand Cinemas","George ST", 70);
-INSERT INTO cinema (name,location,capacity) VALUES ("Reading Cinema","Liverpool ST", 135);
-INSERT INTO cinema (name,location,capacity) VALUES ("Palace","Bondi Junction", 22);
-INSERT INTO cinema (name,location,capacity) VALUES ("Metro","Randwick", 40);
-INSERT INTO cinema (name,location,capacity) VALUES ("Event Cinemas","Liverpool", 50);
-INSERT INTO cinema (name,location,capacity) VALUES ("Hoyts","Rhodes", 95);
-INSERT INTO cinema (name,location,capacity) VALUES ("Hoyts Cinemas","Newton", 60);
-INSERT INTO cinema (name,location,capacity) VALUES ("Wallis","ULTIMO", 122);
+INSERT INTO cinema (name,location,capacity) VALUES ("Dendy Cinemas","73 Benny Street, EAST DEVONPORT TAS 7310", 35);
+INSERT INTO cinema (name,location,capacity) VALUES ("Grand Cinemas","26 Hebbard Street, DANDENONG NORTH VIC 3175", 70);
+INSERT INTO cinema (name,location,capacity) VALUES ("Reading Cinema","87 Bresnahans Lane,PADDYS RIVER NSW 2577", 135);
+INSERT INTO cinema (name,location,capacity) VALUES ("Palace","17 Decca Road, WOODROFFE NT 0830", 22);
+INSERT INTO cinema (name,location,capacity) VALUES ("Metro","67 Gaffney Street, FRANKSTON VIC 3199", 40);
+INSERT INTO cinema (name,location,capacity) VALUES ("Event Cinemas","73 Farrar Parade, NANGETTY WA 6522", 50);
+INSERT INTO cinema (name,location,capacity) VALUES ("Hoyts","72 Bayview Road, KOOLGERA SA 5661", 95);
+INSERT INTO cinema (name,location,capacity) VALUES ("Hoyts Cinemas","83 Corio Street, WARNCOORT VIC 3243", 60);
+INSERT INTO cinema (name,location,capacity) VALUES ("Wallis","76 Ugoa Street, TIRI NSW 2424", 122);
 
 
 --Amenities : can not be changed by website.
@@ -56,16 +56,38 @@ INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,3);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,4);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,5);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (1,6);
+
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,1);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,2);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,3);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,4);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,5);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (2,7);
+
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (3,1);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (3,5);
 INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (3,7);
 
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,1);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,2);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,3);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,4);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,5);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,8);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (4,7);
 
--- FOREIGN KEY (cinema_id) REFERENCES cinemas(id)
--- FOREIGN KEY (amenity_id) REFERENCES amenities(id)
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (5,7);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (5,1);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (5,5);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (5,7);
+
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (8,7);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (8,1);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (8,5);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (8,7);
+
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (9,7);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (9,1);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (9,5);
+INSERT INTO cinema_amenity (cinema_id,amenity_id) VALUES (9,7);
+

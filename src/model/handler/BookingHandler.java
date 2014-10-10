@@ -62,7 +62,7 @@ public class BookingHandler implements BookingHandlerInterface {
 	@Override
 	public void declineBooking(int id) {
 		Booking b = this.getBooking(id);
-		b.setStatus(OrderStatus.Denied);
+		b.setStatus(OrderStatus.Declined);
 		this.updateBooking(b);
 	}
 
@@ -87,16 +87,6 @@ public class BookingHandler implements BookingHandlerInterface {
 	}
 
 	@Override
-	public List<Booking> getBookingsByOwner(Owner owner) {
-		return new OwnerHandler().getBookingsByOwner(owner);
-	}
-
-	@Override
-	public List<Booking> getBookingsByOwner(int owner_id) {
-		return new OwnerHandler().getBookingsByOwner(owner_id);
-	}
-
-	@Override
 	public Session getSessionByBooking(Booking booking) {
 		return new SessionHandler().getSessionByBooking(booking);
 	}
@@ -114,6 +104,11 @@ public class BookingHandler implements BookingHandlerInterface {
 	@Override
 	public List<Booking> getBookingsBySession(int session_id) {
 		return new SessionHandler().getBookingsBySession(session_id);
+	}
+
+	@Override
+	public boolean okToBook(int session_id, int requestCount) {
+		return new SessionHandler().okToBook(session_id, requestCount);
 	}
 
 }

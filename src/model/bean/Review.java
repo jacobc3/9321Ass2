@@ -23,6 +23,7 @@ public class Review {
 	private Movie movie;
 	private Date postDate;
 	private String content;
+	private int rating;
 	
 	@Id
 	@GeneratedValue
@@ -58,6 +59,10 @@ public class Review {
 	public String getContent() {
 		return content;
 	}
+	@Column(name="rating")
+	public int getRating(){
+		return rating;
+	}
 
 
 	public void setId(int id) {
@@ -88,7 +93,9 @@ public class Review {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
+	public void setRating(int r){
+		this.rating = r;
+	}
 
 	
 	

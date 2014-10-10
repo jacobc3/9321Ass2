@@ -1,5 +1,6 @@
 package model.handlerInterface;
 
+import java.util.Date;
 import java.util.List;
 
 import model.bean.Booking;
@@ -7,25 +8,22 @@ import model.bean.Cinema;
 import model.bean.Owner;
 
 public interface OwnerHandlerInterface {
-	public int addOwner(Owner owner);
-	public boolean isMatch(String username, String password);
-	public void updateOwner(Owner owner);
-
-	// not listed
+	public Owner getOwnerByUsername(String username);
 	public Owner getOwnerById(int id);
-	public List<Owner> getAllOwners();
 	public boolean isExist(int id);
 	public boolean isExist(String username);
+	public boolean isMatch(String username,String password);
 
-	// owner-cinema related
-	public Owner getOwnerByCinema(Cinema cinema);
-	public Owner getOwnerByCinema(int cinema_id);
-	public List<Cinema> getCinemasByOwner(Owner owner);
-	public List<Cinema> getCinemasByOwner(int owner_id);
+	//booking related
+	public void approveBooking(int bookingId);
+	public void declineBooking(int bookingId);
 	
-	// owner-booking related
-	public List<Booking> getBookingsByOwner(Owner owner);
-	public List<Booking> getBookingsByOwner(int owner_id);
+	//cinema related
+	public int addCinema(Cinema cinema);
+	public void updateCinema(Cinema cinema);
 	
-
+	//movie related
+	public void setReleaseDate(int movieId, Date date);
+	
+	
 }

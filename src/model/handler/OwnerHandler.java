@@ -1,6 +1,7 @@
 package model.handler;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,40 +22,6 @@ import model.handlerInterface.OwnerHandlerInterface;
 public class OwnerHandler implements OwnerHandlerInterface{
 
 	public OwnerHandler() {
-	}
-	
-
-	@Override
-	public int addOwner(Owner owner) {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		Integer id = (Integer) session.save(owner);		
-		session.getTransaction().commit();
-		session.close();
-		return id;
-	}
-
-	@Override
-	public Owner getOwnerById(int id) {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		Owner o = (Owner)session.get(Owner.class, id);		
-		session.getTransaction().commit();
-		session.close();
-		return o;
-	}
-
-	@Override
-	public List<Owner> getAllOwners() {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();		
-		List<Owner> owners = session.createQuery("FROM Owner").list();
-		session.getTransaction().commit();
-		session.close();
-		return owners;
 	}
 
 	@Override
@@ -105,69 +72,56 @@ public class OwnerHandler implements OwnerHandlerInterface{
 
 
 	@Override
-	public void updateOwner(Owner owner) {
-		SessionFactory factory =  HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		session.update(owner);		
-		session.getTransaction().commit();
-		session.close();
+	public void approveBooking(int bookingId) {
+		new BookingHandler().approveBooking(bookingId);
 	}
 
 
 	@Override
-	public Owner getOwnerByCinema(Cinema cinema) {
-		return new CinemaHandler().getOwnerByCinema(cinema);
+	public void declineBooking(int bookingId) {
+		new BookingHandler().declineBooking(bookingId);
 	}
 
 
 	@Override
-	public Owner getOwnerByCinema(int cinema_id) {
-		return new CinemaHandler().getOwnerByCinema(cinema_id);
+	public int addCinema(Cinema cinema) {
+		return new CinemaHandler().addCinema(cinema);
 	}
 
 
 	@Override
-	public List<Cinema> getCinemasByOwner(Owner owner) {
-		return new CinemaHandler().getCinemasByOwner(owner);
+	public void updateCinema(Cinema cinema) {
+		new CinemaHandler().updateCinema(cinema);
 	}
 
 
 	@Override
-	public List<Cinema> getCinemasByOwner(int owner_id) {
-		return new CinemaHandler().getCinemasByOwner(owner_id);
+	public void setReleaseDate(int movieId, Date date) {
+		new MovieHandler().setReleaseDate(movieId, date);
 	}
 
-
 	@Override
-	public List<Booking> getBookingsByOwner(Owner owner) {
-		return this.getBookingsByOwner(owner.getId());
-	}
-
-
-	@Override
-	public List<Booking> getBookingsByOwner(int owner_id) {
+	public Owner getOwnerByUsername(String username) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		String sql = "SELECT b.id from booking b join session s on (b.session_id = s.id) "
-				+ "join owner_cinema oc on(s.cinema_id=oc.cinema_id) WHERE oc.owner_id =" + owner_id;
-		SQLQuery query = session.createSQLQuery(sql);
-		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-		List data = query.list();
+		String sql = "select * FROM owner where username=\""+username+"\"";
+//		System.out.println("username is "+username);
+		SQLQuery query = session.createSQLQuery(sql).addEntity(User.class);
+		List<Owner> list = query.list();
+//		System.out.println(list.size());
+		return list.get(0);
+	}
 
-		List<Booking> results = new ArrayList<Booking>();
-		for (Object object : data) {
-			Map row = (Map) object;
-			// System.out.println(row.get("name") + " " + row.get("id"));
-			int id = Integer.parseInt(row.get("id").toString());
-			Booking b = new BookingHandler().getBooking(id);
-			results.add(b);
-		}
+	@Override
+	public Owner getOwnerById(int id) {
+		SessionFactory factory =  HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		Owner u = (Owner)session.get(Owner.class, id);		
 		session.getTransaction().commit();
 		session.close();
-
-		return results;
+		return u;
 	}
 
 }

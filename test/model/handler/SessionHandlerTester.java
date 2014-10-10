@@ -2,8 +2,10 @@ package model.handler;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
 import java.util.List;
 
+import model.bean.Booking;
 import model.bean.Movie;
 import model.bean.Review;
 import model.bean.Session;
@@ -35,6 +37,20 @@ public class SessionHandlerTester {
 	
 	
 	@Test
+	public void getBookingsBySessionTester(){
+		List<Booking> bs = sh.getBookingsBySession(3);
+		for (Iterator iterator = bs.iterator(); iterator.hasNext();) {
+			Booking b = (Booking) iterator.next();
+			System.out.println("b id " + b.getId());
+		}
+		
+		
+		Session s = sh.getSessionByBooking(12);
+		System.out.println("s id " + s.getId());
+
+	}
+	
+//	@Test
 	public void getMoviebySession(){
 		Movie movie = sh.getMovieBySession(3);
 			System.out.println(movie.getId());

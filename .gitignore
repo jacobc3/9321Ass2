@@ -1,1 +1,5 @@
 /build/
+*.lock
+.metadata/
+RemoteSystemsTempFiles/.project
+.classpath

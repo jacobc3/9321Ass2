@@ -34,4 +34,6 @@ Group<br>
  database name 9321Ass2<br>
  username root<br>
  password 123<br>
-!
+<br>
+Random name Generator: http://zh-cn.fakenamegenerator.com/<br>
+Lorem ipsum: http://www.lipsum.com/feed/html <br>

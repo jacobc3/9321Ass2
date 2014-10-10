@@ -1,5 +1,7 @@
 package model.handler;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import model.bean.Owner;
 import model.bean.Review;
 import model.bean.User;
 import model.handlerInterface.UserHandlerInterface;
+import model.mail.MailSender;
 
 public class UserHandler implements UserHandlerInterface {
 
@@ -24,21 +27,58 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public int addUser(User user) {
-		//TODO  send email-confirmation
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		Integer id = (Integer) session.save(user);		
+		String password = user.getPassword();
+		String passmd5 = md5(password);
+		user.setPassword(passmd5);
+//		System.out.println("@addUser, passmd5 is "+passmd5);
+		Integer id = (Integer) session.save(user);	
+//		this.sendConfirmMail(user);
 		session.getTransaction().commit();
 		session.close();
 		return id;
+	}
+	
+	public String md5(String s){
+		String md5 = null;
+		if(s == null) return null;
+		try{
+	        MessageDigest digest = MessageDigest.getInstance("MD5");
+	        digest.update(s.getBytes(), 0, s.length());
+	        md5 = new BigInteger(1, digest.digest()).toString(16);
+		} catch (Exception e){
+			e.printStackTrace();
+		}		
+		return md5;		
+	}
+	
+	
+	public void sendConfirmMail(User user){
+		//TODO  send email-confirmation
+		//TODO should be private. Only in public for testing
+		MailSender sender = null;
+		try{
+			sender = MailSender.getMailSender();
+			String fromAddress = "confirmation@sensitiver.com";
+			String toAddress = user.getEmail();
+			String subject = "Registration confirmation from Movie-Review";
+			String mailBody ="Hello there, please click on following link to confirm your registration";
+			sender.sendMessage(fromAddress, toAddress, subject, mailBody);
+		}catch (Exception e){
+			System.out.println("Oopsies, could not send message "+e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public boolean isMatch(String username, String password) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
-		session.beginTransaction();		
+		session.beginTransaction();	
+		password = md5(password);
+//		System.out.println("@isMatch: password is"+password);
 		String sql = "select id from user where username LIKE '"+username+"'"+"and password LIKE '"+password+"'";
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -74,6 +114,7 @@ public class UserHandler implements UserHandlerInterface {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
+		user.setPassword(md5(user.getPassword()));
 		session.update(user);		
 		session.getTransaction().commit();
 		session.close();
@@ -155,20 +196,7 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public User getUserByReview(int review_id) {
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		//SELECT FROM movie Where release_date is not null && release_date < today
-		String sql = "select user_id FROM review where id="+review_id;
-		SQLQuery query = session.createSQLQuery(sql);
-		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
-		List data = query.list();
-		User u = null;
-		Map row = (Map) data.get(0);
-		int id = Integer.parseInt(row.get("user_id").toString());
-		u = this.getUserById(id);
-		session.getTransaction().commit();
-		session.close();
+		User u = new ReviewHandler().getReviewsById(review_id).getUser();
 		return u;
 	}
 
@@ -177,10 +205,17 @@ public class UserHandler implements UserHandlerInterface {
 		return this.getBookingsByUser(user.getId());
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Booking> getBookingsByUser(int user_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		//SELECT FROM movie Where release_date is not null && release_date < today
+		String sql = "select * FROM booking where user_id="+user_id;
+		SQLQuery query = session.createSQLQuery(sql).addEntity(Booking.class);
+		List<Booking> data = query.list();
+		return data;
 	}
 
 	@Override
@@ -190,8 +225,21 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public User getUserByBooking(int booking_id) {
-		// TODO Auto-generated method stub
-		return null;
+		Booking b = new BookingHandler().getBooking(booking_id);
+		return b.getUser();
+	}
+
+	@Override
+	public User getUserByUsername(String username) {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "select * FROM user where username=\""+username+"\"";
+//		System.out.println("username is "+username);
+		SQLQuery query = session.createSQLQuery(sql).addEntity(User.class);
+		List<User> list = query.list();
+//		System.out.println(list.size());
+		return list.get(0);
 	}
 
 }

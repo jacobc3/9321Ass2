@@ -1,13 +1,19 @@
 package model.handler;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 
 import controller.HibernateUtil;
 import model.bean.Booking;
 import model.bean.Cinema;
 import model.bean.Movie;
+import model.bean.OrderStatus;
+import model.bean.Review;
 import model.bean.Session;
 import model.handlerInterface.SessionHandlerInterface;
 
@@ -76,8 +82,8 @@ public class SessionHandler implements SessionHandlerInterface {
 
 	@Override
 	public Session getSessionByBooking(int booking_id) {
-		// TODO Auto-generated method stub
-		return null;
+		Booking b = new BookingHandler().getBooking(booking_id);
+		return b.getSession();
 	}
 
 	@Override
@@ -87,8 +93,14 @@ public class SessionHandler implements SessionHandlerInterface {
 
 	@Override
 	public List<Booking> getBookingsBySession(int session_id) {
-		// TODO Auto-generated method stub
-		return null;
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		org.hibernate.Session session = factory.openSession();
+		session.beginTransaction();
+		//SELECT FROM movie Where release_date is not null && release_date < today
+		String sql = "select * FROM booking where session_id="+session_id;
+		SQLQuery query = session.createSQLQuery(sql).addEntity(Booking.class);
+		List<Booking> data = query.list();
+		return data;
 	}
 
 	@Override
@@ -109,6 +121,43 @@ public class SessionHandler implements SessionHandlerInterface {
 	@Override
 	public Cinema getCinemaBySession(int session_id) {
 		return new CinemaHandler().getCinemaBySession(session_id);
+	}
+	
+	@Override
+	public int getRemainingSeatsCount(int session_id) {
+		int booked = this.getBookedSeatsCount(session_id);
+		Cinema c = this.getCinemaBySession(session_id);
+		int total = c.getCapacity();
+		return (total-booked);
+	}
+
+	/**
+	 * only count by approved+processing, not counting declined
+	 */
+	@Override
+	public int getBookedSeatsCount(int session_id) {
+		List<Booking> bs = new SessionHandler().getBookingsBySession(session_id);
+		int total = 0;
+		for (java.util.Iterator<Booking> iterator = bs.iterator(); iterator.hasNext();) {
+			Booking b = (Booking) iterator.next();
+			if(b.getStatus()!=OrderStatus.Declined){
+				total += b.getCount();
+			}
+		}
+		return total;
+	}
+
+
+	/**
+	 * must be run before add Booking
+	 * @param session_id session's id
+	 */
+	@Override
+	public boolean okToBook(int session_id, int requestCount) {
+		if(this.getRemainingSeatsCount(session_id) >= requestCount){
+			return true;
+		}
+		return false;
 	}
 
 }
