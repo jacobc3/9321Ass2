@@ -30,10 +30,10 @@ public class OwnerHandlerTester {
 	
 	@Test
 	public void getBookingsByOwnerTest(){
-		List<Booking> bs = oh.getBookingsByOwner(1);
-		for(Booking b: bs){
-			System.out.println(b.getId()+"\tcinema:"+b.getSession().getCinema().getId());
-		}
+//		List<Booking> bs = oh.getBookingsByOwner(1);
+//		for(Booking b: bs){
+//			System.out.println(b.getId()+"\tcinema:"+b.getSession().getCinema().getId());
+//		}
 	}
 
 //	@Test

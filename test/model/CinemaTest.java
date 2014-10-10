@@ -74,14 +74,14 @@ public class CinemaTest {
 		Owner owne2 = new Owner("awawefwe");
 		Set<Cinema> c = new HashSet<Cinema>();
 		c.add(cinema);
-		owne2.setCinemas(c);		
+//		owne2.setCinemas(c);		
 //		cinema.setOwner(owne2);		
 		session.save(owne2); //<<
 //		session.save(cinema);		
 		
 		
 		Owner o1 = (Owner)session.get(Owner.class, 1);
-		System.out.println("o1 "+o1.getUsername()+"'s cinemas"+o1.getCinemas());
+//		System.out.println("o1 "+o1.getUsername()+"'s cinemas"+o1.getCinemas());
 //		Iterator it = (Iterator) o1.getCinemas();
 //		while(it.hasNext()){
 //			Cinema c1 = (Cinema) it.next();

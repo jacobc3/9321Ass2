@@ -35,8 +35,18 @@ public class SessionHandlerTester {
 	public static void beforeClass() {
 	}
 	
-	
 	@Test
+	public void okToBook(){
+		System.out.println("session id 19 booked "+sh.getBookedSeatsCount(19)+
+				" remaining "+sh.getRemainingSeatsCount(19));
+		
+		
+		System.out.println("session id 10 booked "+sh.getBookedSeatsCount(10)+
+				" remaining "+sh.getRemainingSeatsCount(10)+" ok to book 1 "+sh.okToBook(10, 1)+" oktoBook2 "+sh.okToBook(10, 2));
+	}
+	
+	
+//	@Test
 	public void getBookingsBySessionTester(){
 		List<Booking> bs = sh.getBookingsBySession(3);
 		for (Iterator iterator = bs.iterator(); iterator.hasNext();) {

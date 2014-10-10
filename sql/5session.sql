@@ -78,4 +78,8 @@ INSERT INTO booking (session_id,user_id,order_time,status) VALUES (7,1,random_da
 INSERT INTO booking (session_id,user_id,order_time,status) VALUES (2,1,random_datetime(),"Approved");
 INSERT INTO booking (session_id,user_id,order_time,status) VALUES (2,1,random_datetime(),"Approved");
 INSERT INTO booking (session_id,user_id,order_time,status) VALUES (3,1,random_datetime(),"Approved");
-
+INSERT INTO booking (session_id,user_id,order_time,count,card_number,status) VALUES (10,6,random_datetime(),10,"349937228716794","Approved");
+INSERT INTO booking (session_id,user_id,order_time,count,card_number,status) VALUES (10,6,random_datetime(),11,"349937228716794","Approved");
+-- session 10 only have 1 seats left
+INSERT INTO booking (session_id,user_id,order_time,count,card_number,status) VALUES (19,6,random_datetime(),30,"349937228716794","Approved");
+INSERT INTO booking (session_id,user_id,order_time,count,card_number,status) VALUES (19,6,random_datetime(),20,"349937228716794","Processing");
