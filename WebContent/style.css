@@ -16,8 +16,22 @@
 	margin-bottom:20px;
 	float: center;
 	width: 80%;
-	font-size: 36px;
 	text-align: center;
+}
+
+#logo {	
+	margin-top:20px;
+	margin-bottom:20px;
+	font-size: 36px;	
+}
+#login {
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+#welcome {
+	margin-top:20px;
+	margin-bottom:20px;
 }
 
 #footer {
@@ -67,6 +81,7 @@
 	padding-bottom: 20px;
 	text-align: center;
 }
+
 #search {
 	width: 80%;
 	text-align: center;

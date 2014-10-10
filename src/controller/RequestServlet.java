@@ -413,6 +413,7 @@ public class RequestServlet extends HttpServlet {
 		String password=request.getParameter("textfield3");
 		String fname=request.getParameter("textfield4");
 		String lname=request.getParameter("textfield5");
+				
 		User u=new User();
 		u.setUsername(username);
 		u.setEmail(email);
@@ -465,6 +466,52 @@ public class RequestServlet extends HttpServlet {
 		String username=request.getParameter("username");
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
+		String nickname=request.getParameter("nickname");
+		
+
+		//check
+		if(username!=null){
+			if(email.matches("^\\w+@\\w+\\.(com|cn)")){
+				if(nickname!=null){
+					
+				}
+			}else{
+				request.setAttribute("msg", "email format is wrong");
+				RequestDispatcher view = request
+						.getRequestDispatcher("new_user.jsp");
+				view.forward(request, response);
+			}
+		}else{
+			request.setAttribute("msg", "username cannot be null");
+			RequestDispatcher view = request
+					.getRequestDispatcher("new_user.jsp");
+			view.forward(request, response);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		if(username!=null && email!=null && password!=null){
 			System.out.println(username+ " "+email+" "+password);
 			UserHandlerInterface ui=new UserHandler();
@@ -502,12 +549,14 @@ public class RequestServlet extends HttpServlet {
 		SessionHandlerInterface si=new SessionHandler();
 		List<Session> ses=si.getSessionsByMovie(m);
 		request.setAttribute("session", ses);
+		request.setAttribute("reviews", mi.getReviewsByMovie(movie_id));
+		
 //		ReviewHandlerInterface ri=new ReviewHandler();
 //		List<Review> revs=ri.getReviewsByMovie(m);
 //		if(revs!=null)
 //		request.setAttribute("reviews", revs);
 		System.out.println("movie_id is " + movie_id);
-
+		System.out.println("reviews count " + mi.getReviewsByMovie(movie_id).size());
 		RequestDispatcher view = request
 				.getRequestDispatcher("movie_detail.jsp");
 		view.forward(request, response);

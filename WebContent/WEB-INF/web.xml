@@ -17,6 +17,7 @@
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
+	
 
 <servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>

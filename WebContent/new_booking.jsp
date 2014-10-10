@@ -5,10 +5,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="style.css" type="text/css" />
 <title>Insert title here</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<div id="header"></div>
 <div class="body" id="body">
 <h1>Add Booking</h1>
 <form>
@@ -39,7 +47,7 @@
         <td><label for="textfield3">owner</label></td>
       </tr>
       <tr>
-        <th scope="row"><input type="submit" value="Submit"></th>
+        <th scope="row"><input type="submit" value="Booking"></th>
         <td><p><br>
         </p></td>
       </tr>
@@ -47,4 +55,4 @@
   </table>
   </form>
 </div>
-<%@ include file="footer.jsp" %>
+<div id="footer"></div>
