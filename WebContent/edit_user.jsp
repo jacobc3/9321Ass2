@@ -24,7 +24,7 @@
 				<tr>
 					<th scope="row">Username</th>
 					<td><label id="username" value="uu">Username</label>&nbsp; <input
-						type="hidden" name="user_id" value="<%=request.get%>"></td>
+						type="hidden" name="user_id" value="<%="13"%>"></td>
       </tr>
       <tr>
         <th scope="row">Email</th>
