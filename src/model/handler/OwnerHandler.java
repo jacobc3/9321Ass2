@@ -107,7 +107,8 @@ public class OwnerHandler implements OwnerHandlerInterface{
 		session.beginTransaction();
 		String sql = "select * FROM owner where username=\""+username+"\"";
 //		System.out.println("username is "+username);
-		SQLQuery query = session.createSQLQuery(sql).addEntity(User.class);
+		System.out.println(sql);
+		SQLQuery query = session.createSQLQuery(sql).addEntity(Owner.class);
 		List<Owner> list = query.list();
 //		System.out.println(list.size());
 		return list.get(0);

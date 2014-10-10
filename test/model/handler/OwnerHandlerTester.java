@@ -3,6 +3,7 @@ package model.handler;
 import java.util.List;
 
 import model.bean.Booking;
+import model.bean.Owner;
 import model.bean.Review;
 import model.bean.User;
 import model.handlerInterface.MovieHandlerInterface;
@@ -27,8 +28,12 @@ public class OwnerHandlerTester {
 	public static void beforeClass() {
 	}
 	
-	
 	@Test
+	public void getOwnerByUsername(){
+		Owner o = oh.getOwnerByUsername("admin");
+	}
+	
+//	@Test
 	public void getBookingsByOwnerTest(){
 //		List<Booking> bs = oh.getBookingsByOwner(1);
 //		for(Booking b: bs){
