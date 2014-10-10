@@ -285,51 +285,114 @@ public class RequestServlet extends HttpServlet {
 		String username=request.getParameter("username");
 		String password=request.getParameter("password");
 		String type=request.getParameter("RadioGroup1");
-		if(username!=null && password!=null && type!=null){
-			System.out.println(username+" "+password+" "+type);
-			if(type.equals("radio1")){
-				UserHandlerInterface ui=new UserHandler();
-				if(ui.isExist(username)){
-					if(ui.isMatch(username, password)){
-						request.getSession().setAttribute("user", username);
-//						RequestDispatcher view=request.getRequestDispatcher("index.jsp");
-//						view.forward(request, response);
-						response.setContentType("text/html; charset=gb2312");
-						response.sendRedirect("index");
+		
+		if(username!=null){
+			if(password!=null){
+				if(type.equals("radio1")){
+					UserHandlerInterface ui=new UserHandler();
+					if(ui.isExist(username)){
+						if(ui.isMatch(username, password)){
+							request.getSession().setAttribute("user", username);
+							response.setContentType("text/html; charset=gb2312");
+							response.sendRedirect("index");
+						}else{
+							request.setAttribute("msg", "password is wrong");
+							RequestDispatcher view=request.getRequestDispatcher("login.jsp");
+							view.forward(request, response);
+						}
 					}else{
-						//error msg
-						System.out.println("here1");
+						request.setAttribute("msg", "username doesn't exist");
+						RequestDispatcher view=request.getRequestDispatcher("login.jsp");
+						view.forward(request, response);
 					}
-				}else{
-					//error msg
-					System.out.println("here2");
-				}
-			}else if(type.equals("radio2")){
-				OwnerHandlerInterface oi=new OwnerHandler();
-				if(oi.isExist(username)){
-					if(oi.isMatch(username, password)){
-						request.getSession().setAttribute("owner",username);
-//						RequestDispatcher view=request.getRequestDispatcher("index.jsp");
-//						view.forward(request, response);
-						response.setContentType("text/html; charset=gb2312");
-						response.sendRedirect("index");
+				}else if(type.equals("radio2")){
+					OwnerHandlerInterface oi=new OwnerHandler();
+					if(oi.isExist(username)){
+						if(oi.isMatch(username, password)){
+							request.getSession().setAttribute("owner", username);
+							response.setContentType("text/html; charset=gb2312");
+							response.sendRedirect("index");
+						}else{
+							request.setAttribute("msg", "password is wrong");
+							RequestDispatcher view=request.getRequestDispatcher("login.jsp");
+							view.forward(request, response);
+						}
 					}else{
-						//error msg
-						System.out.println("here3");
+						request.setAttribute("msg", "username doesn't exist");
+						RequestDispatcher view=request.getRequestDispatcher("login.jsp");
+						view.forward(request, response);
 					}
-				}else{
-					//error msg
-					System.out.println("here4");
 				}
 			}else{
-				RequestDispatcher view=request.getRequestDispatcher("index.jsp");
+				request.setAttribute("msg", "password cannot be null");
+				RequestDispatcher view=request.getRequestDispatcher("login.jsp");
 				view.forward(request, response);
 			}
+		}else{
+			request.setAttribute("msg", "username cannot be null");
+			RequestDispatcher view=request.getRequestDispatcher("login.jsp");
+			view.forward(request, response);
 		}
 		
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		if(username!=null && password!=null && type!=null){
+//			System.out.println(username+" "+password+" "+type);
+//			if(type.equals("radio1")){
+//				UserHandlerInterface ui=new UserHandler();
+//				if(ui.isExist(username)){
+//					if(ui.isMatch(username, password)){
+//						request.getSession().setAttribute("user", username);
+////						RequestDispatcher view=request.getRequestDispatcher("index.jsp");
+////						view.forward(request, response);
+//						response.setContentType("text/html; charset=gb2312");
+//						response.sendRedirect("index");
+//					}else{
+//						//error msg
+//						System.out.println("here1");
+//					}
+//				}else{
+//					//error msg
+//					System.out.println("here2");
+//				}
+//			}else if(type.equals("radio2")){
+//				OwnerHandlerInterface oi=new OwnerHandler();
+//				if(oi.isExist(username)){
+//					if(oi.isMatch(username, password)){
+//						request.getSession().setAttribute("owner",username);
+////						RequestDispatcher view=request.getRequestDispatcher("index.jsp");
+////						view.forward(request, response);
+//						response.setContentType("text/html; charset=gb2312");
+//						response.sendRedirect("index");
+//					}else{
+//						//error msg
+//						System.out.println("here3");
+//					}
+//				}else{
+//					//error msg
+//					System.out.println("here4");
+//				}
+//			}else{
+//				RequestDispatcher view=request.getRequestDispatcher("index.jsp");
+//				view.forward(request, response);
+//			}
+//		}
+//		
+//		
+//		
+//		
 		
 		
 //		UserHandlerInterface ui=new UserHandler();
@@ -473,7 +536,30 @@ public class RequestServlet extends HttpServlet {
 		if(username!=null){
 			if(email.matches("^\\w+@\\w+\\.(com|cn)")){
 				if(nickname!=null){
-					
+					if(password!=null){
+						UserHandlerInterface ui=new UserHandler();
+						if(!ui.isExist(username)){
+							User u=new User(username,email);
+							u.setPassword(password);
+							u.setNickname(nickname);
+							ui.addUser(u);
+							request.getSession().setAttribute("user", u.getUsername());
+							RequestDispatcher view = request
+									.getRequestDispatcher("success.jsp");
+							view.forward(request, response);
+							
+						}else{
+							request.setAttribute("msg", "username exists");
+							RequestDispatcher view = request
+									.getRequestDispatcher("new_user.jsp");
+							view.forward(request, response);
+						}
+					}else{
+						request.setAttribute("msg", "password cannot be null");
+						RequestDispatcher view = request
+								.getRequestDispatcher("new_user.jsp");
+						view.forward(request, response);
+					}
 				}
 			}else{
 				request.setAttribute("msg", "email format is wrong");
@@ -490,52 +576,37 @@ public class RequestServlet extends HttpServlet {
 		
 		
 		
+
 		
 		
 		
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		if(username!=null && email!=null && password!=null){
-			System.out.println(username+ " "+email+" "+password);
-			UserHandlerInterface ui=new UserHandler();
-			RequestDispatcher view = request
-					.getRequestDispatcher("fail.jsp");
-			if(!ui.isExist(username)){
-				User u=new User(username,email);
-				u.setPassword(password);
-				ui.addUser(u);
-				request.setAttribute("msg", "1");
-				 view = request
-							.getRequestDispatcher("success.jsp");
-			}else{
-				request.setAttribute("msg", "2");
-				view = request
-						.getRequestDispatcher("fail.jsp");
-			}
-			view.forward(request, response);
-		}else{
-			RequestDispatcher view = request
-					.getRequestDispatcher("new_user.jsp");
-			view.forward(request, response);
-		}
-		
+//		if(username!=null && email!=null && password!=null){
+//			System.out.println(username+ " "+email+" "+password);
+//			UserHandlerInterface ui=new UserHandler();
+//			RequestDispatcher view = request
+//					.getRequestDispatcher("fail.jsp");
+//			if(!ui.isExist(username)){
+//				User u=new User(username,email);
+//				u.setPassword(password);
+//				ui.addUser(u);
+//				request.setAttribute("msg", "1");
+//				 view = request
+//							.getRequestDispatcher("success.jsp");
+//			}else{
+//				request.setAttribute("msg", "2");
+//				view = request
+//						.getRequestDispatcher("fail.jsp");
+//			}
+//			view.forward(request, response);
+//		}else{
+//			RequestDispatcher view = request
+//					.getRequestDispatcher("new_user.jsp");
+//			view.forward(request, response);
+//		}
+//		
 	}
 
 	private void movieDetail(HttpServletRequest request,

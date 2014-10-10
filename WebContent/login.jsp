@@ -18,7 +18,13 @@ $(function(){
 <div id="header"></div>
 	
 	<div id="body">
-	<p>Login</p>
+	<p>Login</p>	
+	<%
+	String msg=(String) request.getAttribute("msg");
+	if(msg!=null){
+%>
+<font color="red"> <%=msg %></font>
+<%} %>
 	<form name="form1" method="post" action="login">
 	  <table width="80%" border="0">
 	    <tbody>
