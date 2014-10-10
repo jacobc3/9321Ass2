@@ -10,26 +10,28 @@
 </head>
 <body>
 	<p>Login</p>
-	<form name="form1" method="post" action="">
+	<form name="form1" method="post" action="login">
 	  <table width="80%" border="0">
 	    <tbody>
 	      <tr>
-	        <th width="37%" scope="row">Username</th>
-	        <td width="63%">&nbsp;</td>
-          </tr>
-	      <tr>
-	        <th scope="row">Password</th>
-	        <td>&nbsp;</td>
-          </tr>
+        <th scope="row">Username</th>
+        <td>
+          <input type="text" name="username" id="textfield"></td>
+      </tr>
+      <tr>
+        <th scope="row">Password</th>
+        <td>
+          <input type="text" name="password" id="textfield2"></td>
+      </tr>
 	      <tr>
 	        <th scope="row">Login As</th>
 	        <td><p>
 	          <label>
-	            <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0">
+	            <input type="radio" name="RadioGroup1" value="radio1" id="RadioGroup1_0" checked="checked">
 	            User</label>
 	          <br>
 	          <label>
-	            <input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1">
+	            <input type="radio" name="RadioGroup1" value="radio2" id="RadioGroup1_1">
 	            Owner</label>
 	          <br>
             </p></td>
