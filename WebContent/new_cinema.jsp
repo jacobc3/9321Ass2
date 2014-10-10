@@ -10,7 +10,7 @@
 <div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
 <div class="body" id="body">
 <h1>Add Cinema</h1>
-<form>
+<form action="new_cinema">
   <table width="80%" border="0">
     <tbody>
       
@@ -33,12 +33,20 @@
         <th scope="row">Amenities</th>
         <td><p>
           <label>
-            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_0">
-            Checkbox</label>
+            <input type="checkbox" name="CheckboxGroup1" value="ATMs" id="CheckboxGroup1_0">
+            ATMs</label>
           <br>
           <label>
-            <input type="checkbox" name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_1">
-            Checkbox</label>
+            <input type="checkbox" name="CheckboxGroup1" value="widescreen" id="CheckboxGroup1_1">
+            widescreen</label>
+          <br>
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="snack bar" id="CheckboxGroup1_1">
+            snack bar</label>
+          <br>
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="restaurant" id="CheckboxGroup1_1">
+            restaurant</label>
           <br>
         </p></td>
       </tr>

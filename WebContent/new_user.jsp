@@ -10,24 +10,24 @@
 <div class="head" id="head">Content for  class "head" id "head" Goes Here</div>
 <div class="body" id="body">
 <h1>Add User</h1>
-<form>
+<form action="new_user" method="post">
   <table width="80%" border="0">
     <tbody>
     <tr>
         <th scope="row">Username</th>
         <td>
-          <input type="text" name="textfield" id="textfield"></td>
+          <input type="text" name="username" id="textfield"></td>
       </tr>
       <tr>
         <th scope="row">Email</th>
         <td>
-          <input type="text" name="textfield2" id="textfield2"></td>
+          <input type="text" name="email" id="textfield2"></td>
       </tr>
       
       <tr>
         <th scope="row">Password</th>
         <td>
-          <input type="text" name="textfield3" id="textfield3">          <label for="textfield2"></label></td>
+          <input type="text" name="password" id="textfield3">          <label for="textfield2"></label></td>
       </tr>
       <tr>
         <th scope="row"><input type="submit" value="Submit"></th>
