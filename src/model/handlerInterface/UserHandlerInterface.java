@@ -11,6 +11,7 @@ public interface UserHandlerInterface {
 	public int addUser(User user);	
 	public void confirmRegistration(int user_id);
 	public User getUserById(int user_id);
+	public User getUserByUsername(String username);
 	public void updateUser(User user);
 	
 	public List<User> getAllUsers();

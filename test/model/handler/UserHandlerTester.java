@@ -27,6 +27,13 @@ public class UserHandlerTester {
 	}
 	
 	@Test
+	public void getUserByUsername(){
+		User u = mh.getUserByUsername("root");
+		System.out.println("id is " + u.getId()+"\nemail is "+u.getEmail());
+	}
+	
+	
+//	@Test
 	public void senConfirmMailTester(){
 		User u = mh.getUserById(13);
 		System.out.println("id is " + u.getId()+"\nemail is "+u.getEmail());

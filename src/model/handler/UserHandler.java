@@ -205,4 +205,17 @@ public class UserHandler implements UserHandlerInterface {
 		return b.getUser();
 	}
 
+	@Override
+	public User getUserByUsername(String username) {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "select * FROM user where username=\""+username+"\"";
+//		System.out.println("username is "+username);
+		SQLQuery query = session.createSQLQuery(sql).addEntity(User.class);
+		List<User> list = query.list();
+//		System.out.println(list.size());
+		return list.get(0);
+	}
+
 }
