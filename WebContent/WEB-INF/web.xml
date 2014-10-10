@@ -50,6 +50,12 @@
 		<url-pattern>/new_booking</url-pattern>
 	</servlet-mapping>
 	
+		<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/save_booking</url-pattern>
+	</servlet-mapping>
+	
+	
 	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/new_cinema</url-pattern>
@@ -59,6 +65,12 @@
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/display_user</url-pattern>
 	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/edit_user</url-pattern>
+	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/display_owner</url-pattern>
