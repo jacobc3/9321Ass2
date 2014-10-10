@@ -25,7 +25,19 @@ public interface UserHandlerInterface {
 	public void updateUser(User user);
 	
 	public List<User> getAllUsers();
+	
+	/**
+	 * should be used by conrtroller during any changed made to user
+	 * @param id
+	 * @return
+	 */
 	public boolean isExist(int id);
+	
+	/**
+	 * Can be user on: 1 logon 2 sign up
+	 * @param username
+	 * @return
+	 */
 	public boolean isExist(String username);
 	/**
 	 * 
@@ -51,6 +63,7 @@ public interface UserHandlerInterface {
 	
 	/**
 	 * Haven't fully implemented yet.
+	 * TODO should be private
 	 * @deprecated
 	 * @param u
 	 */

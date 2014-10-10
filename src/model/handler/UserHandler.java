@@ -114,6 +114,7 @@ public class UserHandler implements UserHandlerInterface {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
+		user.setPassword(md5(user.getPassword()));
 		session.update(user);		
 		session.getTransaction().commit();
 		session.close();
