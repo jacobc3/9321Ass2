@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -99,8 +100,8 @@ public class RequestServlet extends HttpServlet {
 		} 
 		 else if (url.matches("(.*)/new_session(.*)")) {
 			this.newSession(request, response);
-		} else if (url.matches("(.*)/add_movie")) {
-			this.addMovie(request, response);			 
+		} else if (url.matches("(.*)/new_movie")) {
+			this.newMovie(request, response);			 
 	}
 		
 	}
@@ -129,10 +130,36 @@ public class RequestServlet extends HttpServlet {
 			this.login(request, response);
 		} else if (url.matches("(.*)/save_movie(.*)")) {
 			this.saveMovie(request, response);
+		} else if (url.matches("(.*)/save_review(.*)")) {
+			this.saveReview(request, response);
 		} 
 	}
 	
 	
+	private void saveReview(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		ReviewHandlerInterface rh = new ReviewHandler();
+		
+		Review r= new Review();
+		r.setTitle(request.getParameter("title"));
+		r.setContent(request.getParameter("content"));
+		
+		String q2 = request.getParameter("rating");
+		if(q2!=null && q2!=""){
+			r.setRating(Integer.parseInt(q2));
+		} else {
+			r.setRating(0);
+		}
+		
+		r.setMovie(new MovieHandler().getMovie(Integer.parseInt(request.getParameter("movie_id"))));
+		r.setPostDate(new Date());
+		r.setUser(new UserHandler().getUserById(Integer.parseInt(request.getParameter("user_id"))));
+		rh.addReview(r);
+		PrintWriter out = response.getWriter();
+		out.println("save Review successful. return to <a href=\"index\">Index</a>");
+		
+	}
+
 	private void saveMovie(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		MovieHandlerInterface mh = new MovieHandler();
@@ -163,7 +190,7 @@ public class RequestServlet extends HttpServlet {
 		out.println("save Movie successful. return to <a href=\"index\">Index</a>");
 	}
 
-	private void addMovie(HttpServletRequest request,
+	private void newMovie(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher view=request.getRequestDispatcher("new_movie.jsp");
 		view.forward(request, response);
@@ -183,8 +210,9 @@ public class RequestServlet extends HttpServlet {
 	}
 
 	private void newReview(HttpServletRequest request,
-			HttpServletResponse response) {
-		// TODO Auto-generated method stub
+			HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher view=request.getRequestDispatcher("new_review.jsp");
+		view.forward(request, response);
 		
 	}
 
@@ -245,11 +273,6 @@ public class RequestServlet extends HttpServlet {
 		view.forward(request, response);
 	}
 
-	private void newMovie(HttpServletRequest request,
-			HttpServletResponse response) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void confirmRegistration(HttpServletRequest request,
 			HttpServletResponse response) {

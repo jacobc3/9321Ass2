@@ -61,17 +61,27 @@
 	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/display_owner</url-pattern>
-		
-		
 	</servlet-mapping>
-		<servlet-mapping>
+	
+	
+	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
-		<url-pattern>/add_movie</url-pattern>
+		<url-pattern>/new_movie</url-pattern>
 	</servlet-mapping>
 	
 	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/save_movie</url-pattern>
+	</servlet-mapping>
+	
+		<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/new_review</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/save_review</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

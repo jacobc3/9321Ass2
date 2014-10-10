@@ -9,9 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <% Movie movie = (Movie) request.getAttribute("movie");
 if(movie == null){
- movie = new Movie();
-movie.setId(1000);
-movie.setTitle("NOT EXIST MOVIE");
+ movie = new MovieHandler().getMovie(1);
 }
  %>
 <title>Add Review of <%=movie.getTitle() %></title>
@@ -19,7 +17,7 @@ movie.setTitle("NOT EXIST MOVIE");
 <body><%@ include file="header.jsp" %>
 <div class="body" id="body">
 <h1>Add Review of Movie <%=movie.getTitle() %></h1>
-<form action="add_review" method=GET>
+<form action="save_review" method=POST>
   <table width="80%" border="0">
     <tbody>
     <tr>
