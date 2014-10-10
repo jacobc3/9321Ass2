@@ -222,7 +222,7 @@ public class RequestServlet extends HttpServlet {
 
 	private void index(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//TODO
+		//TODO Auto-generated method stub
 		System.out.println("in index");
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
@@ -230,7 +230,7 @@ public class RequestServlet extends HttpServlet {
 
 	private void newUser(HttpServletRequest request,
 			HttpServletResponse response) {
-		// TODO
+		// TODO Auto-generated method stub
 	}
 
 	private void movieDetail(HttpServletRequest request,

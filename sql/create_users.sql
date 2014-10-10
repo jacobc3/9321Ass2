@@ -33,19 +33,19 @@ RETURN FROM_UNIXTIME(
     );
 
 INSERT INTO user (username,email,nickname,firstname,lastname,password,registry_date) 
-VALUES ("EdwardWBurdick","EdwardWBurdick@armyspy.com","Edward W. Burdick","Edward","W. Burdick","123",random_datetime());
+VALUES ("EdwardWBurdick","EdwardWBurdick@armyspy.com","Edward W. Burdick","Edward","W. Burdick",MD5('123'),random_datetime());
 INSERT INTO user (username,email,firstname,lastname,registry_date) VALUES ("ChristiALee","ChristiALee@teleworm.us","Christi","A. Lee",random_datetime());
-INSERT INTO user (username,email,password,registry_date) VALUES ("WalterJHughes","uWalterJHughes@dayrep.com", "123",random_datetime());
+INSERT INTO user (username,email,password,registry_date) VALUES ("WalterJHughes","uWalterJHughes@dayrep.com",MD5('123') ,random_datetime());
 INSERT INTO user (username,email,firstname,lastname,registry_date) VALUES ("GiseleMPlatt","GiseleMPlatt@jourrapide.com", "Gisele","W. M. Platt",random_datetime());
 INSERT INTO user (username,email,registry_date) VALUES ("LindaWBruton","LindaWBruton@teleworm.us", "2013-03-05 13:17:22");
-INSERT INTO user (username,email,firstname,password,nickname,registry_date) VALUES ("Reate1987","EvelynFSmith@teleworm.us", "Evelyn","uruHohhi9e","Ward",random_datetime());
-INSERT INTO user (username,email,password,nickname,registry_date) VALUES ("Thereen","AnthonySHoward@jourrapide.com", "Aht5gee5sa1","Watson",random_datetime());
+INSERT INTO user (username,email,firstname,password,nickname,registry_date) VALUES ("Reate1987","EvelynFSmith@teleworm.us", "Evelyn",MD5('uruHohhi9e'),"Ward",random_datetime());
+INSERT INTO user (username,email,password,nickname,registry_date) VALUES ("Thereen","AnthonySHoward@jourrapide.com", MD5('Aht5gee5sa1'),"Watson",random_datetime());
 INSERT INTO user (username,email,email_ok,nickname,registry_date) VALUES ("Tharste","AbbieJHernandez@dayrep.com", "Y","Talbot",random_datetime());
 INSERT INTO user (username,email,email_ok,nickname,registry_date) VALUES ("Asome1994","LorraineJNixon@armyspy.com", "Y","Herrera",random_datetime());
-INSERT INTO user (username,email,email_ok,password,registry_date) VALUES ("Inity1991","TimothyBHamilton@armyspy.com", "Y","ayi8ihooGhi",random_datetime());
-INSERT INTO user (username,password,email,nickname,registry_date) VALUES ("Wanding","wieSeep1ie","JeromeLMontelongo@jourrapide.com","Riveria",random_datetime());
-INSERT INTO user (username,password,email,firstname,lastname,registry_date) VALUES ("Dearty","Gigh0mariud","JosePReed@armyspy.com","Jose","P. Reed",random_datetime());
-INSERT INTO user (username,password,email,firstname,lastname,registry_date) VALUES ("root","root","jacobc3@gmail.com","rootFirst","RootLast",now());
+INSERT INTO user (username,email,email_ok,password,registry_date) VALUES ("Inity1991","TimothyBHamilton@armyspy.com", "Y",MD5('ayi8ihooGhi'),random_datetime());
+INSERT INTO user (username,password,email,nickname,registry_date) VALUES ("Wanding",MD5('wieSeep1ie'),"JeromeLMontelongo@jourrapide.com","Riveria",random_datetime());
+INSERT INTO user (username,password,email,firstname,lastname,registry_date) VALUES ("Dearty",MD5('Gigh0mariud'),"JosePReed@armyspy.com","Jose","P. Reed",random_datetime());
+INSERT INTO user (username,password,email,firstname,lastname,registry_date) VALUES ("root",MD5('root'),"jacobc3@gmail.com","rootFirst","RootLast",now());
 
 
 

@@ -15,6 +15,12 @@ public interface SessionHandlerInterface {
 	//booking related
 	public int getRemainingSeatsCount(int session_id);
 	public int getBookedSeatsCount(int session_id);
+	/**
+	 * See if a session is able to book a request amount of ticket
+	 * @param session_id
+	 * @param requestCount
+	 * @return
+	 */
 	public boolean okToBook(int session_id, int requestCount);
 	
 	//movie-session related

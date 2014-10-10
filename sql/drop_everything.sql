@@ -8,9 +8,10 @@ drop table session;
 drop table movie_genre;
 drop table genre;
 drop table movie;
-
+drop table booking;
 drop table review;
+
 drop table user;
 drop table owner;
-drop table booking;
+
 

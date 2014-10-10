@@ -1,5 +1,7 @@
 package model.handler;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,15 +30,34 @@ public class UserHandler implements UserHandlerInterface {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
+		String password = user.getPassword();
+		String passmd5 = md5(password);
+		user.setPassword(passmd5);
+//		System.out.println("@addUser, passmd5 is "+passmd5);
 		Integer id = (Integer) session.save(user);	
-		this.sendConfirmMail(user);
+//		this.sendConfirmMail(user);
 		session.getTransaction().commit();
 		session.close();
 		return id;
 	}
 	
+	public String md5(String s){
+		String md5 = null;
+		if(s == null) return null;
+		try{
+	        MessageDigest digest = MessageDigest.getInstance("MD5");
+	        digest.update(s.getBytes(), 0, s.length());
+	        md5 = new BigInteger(1, digest.digest()).toString(16);
+		} catch (Exception e){
+			e.printStackTrace();
+		}		
+		return md5;		
+	}
+	
+	
 	public void sendConfirmMail(User user){
 		//TODO  send email-confirmation
+		//TODO should be private. Only in public for testing
 		MailSender sender = null;
 		try{
 			sender = MailSender.getMailSender();
@@ -55,7 +76,9 @@ public class UserHandler implements UserHandlerInterface {
 	public boolean isMatch(String username, String password) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
-		session.beginTransaction();		
+		session.beginTransaction();	
+		password = md5(password);
+//		System.out.println("@isMatch: password is"+password);
 		String sql = "select id from user where username LIKE '"+username+"'"+"and password LIKE '"+password+"'";
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);

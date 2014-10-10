@@ -8,6 +8,8 @@ import model.bean.Cinema;
 import model.bean.Owner;
 
 public interface OwnerHandlerInterface {
+	public Owner getOwnerByUsername(String username);
+	public Owner getOwnerById(int id);
 	public boolean isExist(int id);
 	public boolean isExist(String username);
 	public boolean isMatch(String username,String password);

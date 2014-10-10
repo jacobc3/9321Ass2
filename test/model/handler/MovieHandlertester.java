@@ -24,8 +24,15 @@ public class MovieHandlertester {
 	public static void beforeClass() {
 	}
 
-	
 	@Test
+	public void searchByTitle(){
+		List<Movie> ms = mh.searchByTitle("BIG BANG");
+		for(Movie m:ms){
+			System.out.println(m.getTitle());
+		}
+	}
+	
+//	@Test
 	public void getAveRatingByMovie(){
 		Review b = new ReviewHandler().getReviewsById(3);
 		int total = b.getRating();

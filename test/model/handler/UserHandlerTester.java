@@ -26,7 +26,21 @@ public class UserHandlerTester {
 	public static void beforeClass() {
 	}
 	
+	
 	@Test
+	public void addUser(){
+		String username = "abcbbb7";
+		User u = new User(username,"abc@abc.com");
+		u.setPassword("abc");
+		int id = mh.addUser(u);
+		System.out.println("id is " + mh.getUserById(id).getId()+"\nemail is "+
+		mh.getUserById(id).getEmail()+"\npassword is "+mh.getUserById(id).getPassword());
+		String pass ="abc";
+		System.out.println("is Match? "+mh.isMatch(username, pass));
+		System.out.println("is Match? EdwardWBurdick "+mh.isMatch("EdwardWBurdick", "123"));
+		System.out.println("is Match? EdwardWBurdick "+mh.isMatch("EdwardWBurdick", "321"));
+	}
+//	@Test
 	public void getUserByUsername(){
 		User u = mh.getUserByUsername("root");
 		System.out.println("id is " + u.getId()+"\nemail is "+u.getEmail());
