@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+            <%@ page import="java.util.*"%>
+<%@ page import="model.bean.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,6 +14,10 @@
 <h1>Your Profile</h1>
   <table width="80%" border="0">
     <tbody>
+    <%
+    	Owner owner=(Owner) request.getAttribute("owner");
+		
+    %>
       <tr>
         <th width="30%" height="40" scope="row">id</th>
         <td width="70%">&nbsp;</td>

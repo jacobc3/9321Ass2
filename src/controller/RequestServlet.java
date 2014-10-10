@@ -296,6 +296,9 @@ public class RequestServlet extends HttpServlet {
 		String username=request.getParameter("ownername");
 		OwnerHandlerInterface oi=new OwnerHandler();
 		Owner owner=oi.getOwnerByUsername(username);
+		ReviewHandlerInterface ri=new ReviewHandler();
+		
+		BookingHandlerInterface bi=new BookingHandler();
 		
 		
 	}
