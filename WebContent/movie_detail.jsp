@@ -5,21 +5,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Insert title here</title>
-</head>
-<body><%@ include file="header.jsp"%>
-<div class="body" id="body"><h1>Movie</h1>
-  <table width="80%" border="0">
-    <tbody>
+<link rel="stylesheet" href="style.css" type="text/css" />
     <%
     	Movie m=(Movie)request.getAttribute("mdetail");
 		List<Session> ses=(List<Session>)request.getAttribute("session");
 		List<Review> rev=(List<Review>)request.getAttribute("reviews");
 		
     %>
+<title>Movie detail of <%=m.getTitle() %></title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
+</head>
+<body><div id="header"></div>
+<div class="body" id="body"><h1>Movie</h1>
+  <table width="80%" border="0">
+    <tbody>
+
       <tr>
         <th width="22%" scope="row">id</th>
-        <td width="78%"></td>
+        <td width="78%"><%=m.getId() %></td>
       </tr>
       <tr>
         <th scope="row">title</th>
@@ -80,23 +89,6 @@
            
             <%	}
             %>
-            
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
           </tbody>
         </table></td>
       </tr>
@@ -105,42 +97,87 @@
   <table width="80%" border="0">
     <tbody>
       <tr>
-        <th scope="col">Reviews title</th>
-        <th scope="col">by User</th>
-        <th scope="col">On date</th>
-        <th scope="col">Rating</th>
+        <th scope="col" width = "10%">Reviews title</th>
+        <th scope="col">Content</th>
+        <th scope="col" width = "10%">by User</th>
+        <th scope="col" width = "10%">On date</th>
+        <th scope="col" width = "5%">Rating</th>
       </tr>
       
-  <!--      <%
+        <%
        	if(rev!=null){
             	Iterator<Review> iter3=rev.iterator();
             	while(iter3.hasNext()){
             		Review reviews=iter3.next();
+            		String display_name= reviews.getUser().getNickname();
+            		if(display_name ==null || display_name == ""){
+            			display_name=reviews.getUser().getFirstname()+" "+reviews.getUser().getLastname();
+            		}
+            		String rating = "N/A";
+            		if(reviews.getRating() != 0){
+            			rating = reviews.getRating()+"";
+            		}
             		
             %>	
       <tr>
         <td><%=reviews.getTitle() %></td>
-        <td><%=reviews.getUser() %></td>
+        <td><%=reviews.getContent() %></td>
+        <td><%=display_name %></td>
         <td><%=reviews.getPostDate() %></td>
-        <td><%=reviews.getRating() %></td>
+        <td><%=rating %></td>
       </tr>
       
       <%	}}
             %>
-            --> 
+            
     </tbody>
   </table>
   
-  <form action="review" method="post">
-  <p><b>Title:</b><input type="text" name="review_title" maxlength="120"/></p>
-  <p><b>nickname:</b><input type="text" name="review_nickname" maxlength="40"/></p>
-  <p><textarea rows="4" cols="50" name="review_content">
-	Write your review here!
-	</textarea></p>
-  <p><input type="submit" name="submit" title="submit"/></p>
+  <form action="save_review" method=POST>
+  <table width="80%" border="0">
+    <tbody>
+    <tr>
+        <th scope="row" width=20%><label>Review Title</label></th>
+        <td>
+          <input type="text" name="title">
+          <input type="hidden" name="movie_id" value="<%=m.getId()%>">
+          <input type="hidden" name="user_id" value="2"></td>
+      </tr>
+      <tr>
+        <th scope="row"><label>Content</label></th>
+        <td>
+          <textarea name="content" cols="45" rows="5"></textarea></td>
+      </tr>
+      <tr>
+        <th scope="row">Rating</th>
+        <td>
+          <label>
+            <input type="radio" name="rating" value="1">
+            1</label>
+          <label>
+            <input type="radio" name="rating" value="2">
+            2</label>
+          <label>
+            <input type="radio" name="rating" value="3">
+            3</label>
+          <label>
+            <input type="radio" name="rating" value="4" >
+            4</label>
+          <label>
+            <input type="radio" name="rating" value="5">
+            5</label>
+          </td>
+      </tr>
+      <tr>
+        <th scope="row">&nbsp;</th>
+        <td><input type="submit" value="Submit"> <input type="reset" value="Reset">
+        </td>
+      </tr>
+    </tbody>
+  </table>
   </form>
   
   <p>&nbsp;</p>
   <p>&nbsp;</p>
 </div>
-<%@ include file="footer.jsp" %>
+<div id="footer"></div>

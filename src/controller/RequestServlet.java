@@ -502,12 +502,14 @@ public class RequestServlet extends HttpServlet {
 		SessionHandlerInterface si=new SessionHandler();
 		List<Session> ses=si.getSessionsByMovie(m);
 		request.setAttribute("session", ses);
+		request.setAttribute("reviews", mi.getReviewsByMovie(movie_id));
+		
 //		ReviewHandlerInterface ri=new ReviewHandler();
 //		List<Review> revs=ri.getReviewsByMovie(m);
 //		if(revs!=null)
 //		request.setAttribute("reviews", revs);
 		System.out.println("movie_id is " + movie_id);
-
+		System.out.println("reviews count " + mi.getReviewsByMovie(movie_id).size());
 		RequestDispatcher view = request
 				.getRequestDispatcher("movie_detail.jsp");
 		view.forward(request, response);
