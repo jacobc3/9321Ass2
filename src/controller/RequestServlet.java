@@ -293,7 +293,7 @@ public class RequestServlet extends HttpServlet {
 	private void ownerDetail(HttpServletRequest request,
 			HttpServletResponse response) {
 		System.out.println("in display_owner");
-		String username=request.getParameter("id");
+		String username=request.getParameter("ownername");
 		OwnerHandlerInterface oi=new OwnerHandler();
 		Owner owner=oi.getOwnerByUsername(username);
 		
@@ -303,7 +303,7 @@ public class RequestServlet extends HttpServlet {
 	private void userDetail(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("in display_user");
-		String username=request.getParameter("id");
+		String username=request.getParameter("username");
 		UserHandlerInterface ui=new UserHandler();
 		User user=ui.getUserByUsername(username);
 		ReviewHandlerInterface ri=new ReviewHandler();
