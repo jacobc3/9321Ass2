@@ -20,8 +20,6 @@
 	<div id="header"></div>
 	<div id="body">
 		<div class="movie_list">
-			<table width="80%" border="0">
-				<p>&nbsp;</p>
 				<table width="80%" border="0">
 					<%
 						List<Movie> showingMovies = (List<Movie>) request
@@ -91,7 +89,6 @@
 				</table>
 				<p>&nbsp;</p>
 				<table width="80%" border="0">
-
 					<tbody>
 						<tr>
 							<th scope="col">Title</th>
