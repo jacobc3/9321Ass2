@@ -19,7 +19,7 @@
 <div id="header"></div>
 <div class="body" id="body">
 <h1>Add Booking</h1>
-<form>
+<form action="save_booking" method=GET>
   <table width="80%" border="0">
     <tbody>
     <%
@@ -27,7 +27,9 @@
     %>
     <tr>
         <th scope="row">Movie</th>
-        <td><label for="textfield2"><%=s.getMovie().getId() %> &amp;<%=s.getMovie().getTitle() %></label></td>
+        <td><label for="textfield2"><%=s.getMovie().getId() %> &amp;<%=s.getMovie().getTitle() %></label>
+        <input type="hidden" name="session_id" value="<%=s.getId() %>">
+        <input type="hidden" name="username" value="<%=request.getSession().getAttribute("user") %>"></td>
       </tr>
       <tr>
         <th scope="row">Cinema</th>
@@ -39,8 +41,12 @@
         <td><label for="textfield2"><%=s.getShowDate() %></label></td>
       </tr>
       <tr>
-        <th scope="row">Number</th>
-        <td><input type="text" name="textfield" id="textfield"></td>
+        <th scope="row">Card Number</th>
+        <td><input type="text" name="card_number"></td>
+      </tr>
+      <tr>
+        <th scope="row">count</th>
+        <td><input type="text" name="count"></td>
       </tr>
       <tr>
         <th scope="row">Cinema Owner</th>
