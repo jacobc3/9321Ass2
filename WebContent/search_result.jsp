@@ -58,8 +58,10 @@
 				%>
 				<td><%=s %></td>
 				
+
                 <td><%if(m.getPosterURL() != null && m.getPosterURL().compareTo("")!=0){ %><img src="<%=m.getPosterURL() %>" width="200" alt="<%=m.getTitle() %>"/><%} %></td>
-                <td><%=new MovieHandler().getAveRatingByMovie(m.getId()) %></td>
+                <td><%=new Double(new MovieHandler().getAveRatingByMovie(m.getId())).intValue() %></td>
+
                 <td><%=m.getActors() %></td>
 			</tr>
 			

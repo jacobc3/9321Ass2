@@ -38,7 +38,7 @@
 
 
 <%
-	if (username != null) {
+	if (username != null ||ownername!=null) {
 %>
 <nav>
 	<form method="get" action="search">

@@ -553,8 +553,60 @@ public class RequestServlet extends HttpServlet {
 	}
 
 	private void editMovie(HttpServletRequest request,
-			HttpServletResponse response) {
-		// TODO Auto-generated method stub
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
+		
+		String sid=request.getParameter("movie_id");
+		String title=request.getParameter("movieTitle");
+		String actors=request.getParameter("movieActor");
+		String poster=request.getParameter("moviePoster");
+		String date=request.getParameter("date");
+		String[] checkedIds = request.getParameterValues("genre");
+		
+		if(sid!=null){
+			
+			MovieHandlerInterface mi=new MovieHandler();
+			Movie movie=mi.getMovie(Integer.parseInt(sid));
+			
+			if(title!=null){
+				movie.setTitle(title);
+			}
+			if(actors!=null){
+				movie.setActors(actors);
+			}
+			if(poster!=null){
+				movie.setPosterURL(poster);
+			}
+			
+			if(date!=null){
+				Date date1=movie.getRelease_date();
+				try {
+					movie.setRelease_date(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(date));
+					System.out.println("haha");	
+				} catch (ParseException e) {
+					movie.setRelease_date(date1);
+					
+				}
+			}
+			
+			if(checkedIds!=null){
+				Set<Genre> genres = new HashSet<Genre>();
+				for (String id : checkedIds) {
+					Genre g = mi.getGenreById(Integer.parseInt(id));
+					genres.add(g);
+					System.out.println("id\t" + id + "\tname" + g.getName());
+				}
+				movie.setGenres(genres);
+			}
+			
+			mi.updateMovie(movie);
+			RequestDispatcher view = request.getRequestDispatcher("success.jsp");
+			view.forward(request, response);
+			
+		}
+		
 
 	}
 
