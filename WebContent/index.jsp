@@ -17,6 +17,22 @@
 		$("#footer").load("footer.jsp");
 	});
 </script>
+<script type='text/javascript'>
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem( 'firstLoad' ) )
+    {
+      localStorage[ 'firstLoad' ] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem( 'firstLoad' );
+  }
+})();
+
+</script>
 <%DateFormat df = new SimpleDateFormat("yyyy-MM-dd");%>
 </head>
 <body>

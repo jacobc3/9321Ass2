@@ -1,4 +1,4 @@
-<head><link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="style.css" type="text/css" />
 	<header id="header" class="clear">
     
 
