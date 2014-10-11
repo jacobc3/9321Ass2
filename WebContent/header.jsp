@@ -1,4 +1,10 @@
-<head><link rel="stylesheet" href="style.css" type="text/css" />
+<head>
+<% 
+response.setHeader( "Pragma ", "No-cache "); 
+response.setHeader( "Cache-Control ", "no-cache "); 
+response.setDateHeader( "Expires ",   0); 
+%>
+<link rel="stylesheet" href="style.css" type="text/css" />
 	<header id="header" class="clear">
     
 

@@ -292,8 +292,6 @@ public class RequestServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("success.jsp");
 			view.forward(request, response);
 			
-		}else{
-			System.out.println("fjdlasjfkldjalfjd");
 		}
 		
 		
