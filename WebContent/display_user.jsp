@@ -39,7 +39,7 @@
 						.getNickname() : "";
 		%>
 		<h1>Your Profile</h1>
-		<a href="edit_user?id=<%=user.getId()%>">Edit</a>
+		<a href="edit_user.jsp?id=<%=user.getId()%>">Edit</a>
 		<table width="80%" border="0">
 			<tbody>
 
