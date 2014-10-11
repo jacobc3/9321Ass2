@@ -36,7 +36,7 @@ public class UserHandler implements UserHandlerInterface {
 		user.setPassword(passmd5);
 		user.setRegistryDate(new Date());
 		Integer id = (Integer) session.save(user);	
-//		this.sendConfirmMail(user);
+		this.sendConfirmMail(user);
 		session.getTransaction().commit();
 		session.close();
 		return id;
@@ -56,21 +56,9 @@ public class UserHandler implements UserHandlerInterface {
 	}
 	
 	
-	public void sendConfirmMail(User user){
-		//TODO  send email-confirmation
+	private void sendConfirmMail(User user){
 		//TODO should be private. Only in public for testing
-		MailSender sender = null;
-		try{
-			sender = MailSender.getMailSender();
-			String fromAddress = "confirmation@sensitiver.com";
-			String toAddress = user.getEmail();
-			String subject = "Registration confirmation from Movie-Review";
-			String mailBody ="Hello there, please click on following link to confirm your registration";
-			sender.sendMessage(fromAddress, toAddress, subject, mailBody);
-		}catch (Exception e){
-			System.out.println("Oopsies, could not send message "+e.getMessage());
-			e.printStackTrace();
-		}
+		new MailSender().sendActivationMail(user);
 	}
 
 	@Override
@@ -93,8 +81,7 @@ public class UserHandler implements UserHandlerInterface {
 	@Override
 	public void confirmRegistration(int id) {
 		User u = this.getUserById(id);
-		u.setEmailOk(true);
-		
+		u.setEmailOk(true);		
 		this.updateUser(u);
 	}
 
@@ -115,7 +102,10 @@ public class UserHandler implements UserHandlerInterface {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
-		user.setPassword(md5(user.getPassword()));
+		User user_db = this.getUserById(user.getId());
+		if(user.getPassword().compareTo(user_db.getPassword()) != 0){ //password changed
+			user.setPassword(md5(user.getPassword()));
+		}		
 		session.update(user);		
 		session.getTransaction().commit();
 		session.close();

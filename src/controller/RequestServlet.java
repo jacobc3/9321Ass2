@@ -90,8 +90,9 @@ public class RequestServlet extends HttpServlet {
 			this.newMovie(request, response);
 		} else if (url.matches("(.*)/9321Ass2/")) {
 			this.index(request, response);
+		} else if (url.matches("(.*)/activate(.*)")) {
+			this.activateUser(request, response);
 		}
-		
 		//SHOULD NOT BE GET'ed
 		
 		 else if (url.matches("(.*)/set_release_date(.*)")) {
@@ -113,6 +114,8 @@ public class RequestServlet extends HttpServlet {
 		} 
 
 	}
+
+
 
 
 
@@ -150,6 +153,15 @@ public class RequestServlet extends HttpServlet {
 		} else if (url.matches("(.*)/edit_user(.*)")) {
 			this.editUser(request, response);
 		}
+	}
+	
+	private void activateUser(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		int user_id = Integer.parseInt(request.getParameter("user_id"));
+		User u = new UserHandler().getUserById(user_id);
+		new UserHandler().confirmRegistration(user_id);
+		PrintWriter out = response.getWriter();		
+		out.println("set user detail successful. return to <a href=\"display_user?username="+u.getUsername()+"\">user detail</a>");
 	}
 	
 	/**
