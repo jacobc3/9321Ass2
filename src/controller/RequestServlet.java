@@ -272,10 +272,12 @@ public class RequestServlet extends HttpServlet {
 			System.out.println("number is: " + movies.size());
 			request.setAttribute("movies", movies);
 		} else if (type.equals("genre")) {
-			List<Movie> movies = mi.searchByGenre(Integer.parseInt(search));
+			List<Movie> movies = mi.searchByGenre(search);
 			request.setAttribute("movies", movies);
 			System.out.println("number is: " + movies.size());
 		}
+		request.setAttribute("search", search);
+		request.setAttribute("type", type);
 		RequestDispatcher view = request
 				.getRequestDispatcher("search_result.jsp");
 		view.forward(request, response);

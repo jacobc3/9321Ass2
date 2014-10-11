@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Seach Result of by</title>
+<title>Seach Result of <%=request.getAttribute("search") %> by <%=request.getAttribute("type") %></title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 	$(function() {
@@ -19,7 +19,7 @@
 <body>
 <div id="header"></div>
 	<div id="body">
-	Results:
+	Results of <%=request.getAttribute("search") %>:
 <table width="80%" border="0">
 		<tbody>
 			<tr>
