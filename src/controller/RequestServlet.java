@@ -388,15 +388,20 @@ public class RequestServlet extends HttpServlet {
 		BookingHandlerInterface bh = new BookingHandler();
 
 		Booking b = new Booking();
+		int countNum=0;
+		try{
+		countNum=Integer.parseInt(request.getParameter("count"));}catch(NumberFormatException e){
+			countNum=0;
+		}
 		b.setCardNumber(request.getParameter("card_number"));
-		b.setCount(Integer.parseInt(request.getParameter("count")));
+		b.setCount(countNum);
 		b.setOrderTime(new Date());
 		b.setSession(si.getSession(Integer.parseInt(request
 				.getParameter("session_id"))));
 		b.setUser(new UserHandler().getUserByUsername(request
 				.getParameter("username")));
 		b.setStatus(OrderStatus.Processing);
-		if(Integer.parseInt(request.getParameter("count"))<si.getRemainingSeatsCount(b.getSession().getId())){
+		if(countNum<si.getRemainingSeatsCount(b.getSession().getId())){
 			bh.addBooking(b);
 			PrintWriter out = response.getWriter();
 			out.println("save Booking successful. return to <a href=\"index\">Index</a>");
@@ -575,16 +580,16 @@ public class RequestServlet extends HttpServlet {
 			if(email!=null && email.matches("^\\w+@\\w+\\.*")){
 				u.setEmail(email);
 			}
-			if(password!=null){
+			if(password!=null && !password.isEmpty()){
 				u.setPassword(password);
 			}
-			if(fname!=null){
+			if(fname!=null && !fname.isEmpty()){
 				u.setFirstname(fname);
 			}
-			if(lname!=null){
+			if(lname!=null&& lname.isEmpty()){
 				u.setLastname(lname);
 			}
-			if(nickname!=null){
+			if(nickname!=null && nickname.isEmpty()){
 				u.setNickname(nickname);
 			}
 			System.out.println("heehrherhehrhre");
@@ -657,10 +662,10 @@ public class RequestServlet extends HttpServlet {
 		String nickname = request.getParameter("nickname");
 
 		// check
-		if (username != null) {
+		if (username != null && !username.isEmpty()) {
 			if (email.matches("^\\w+@\\w+\\.*")) {
 				if (nickname != null) {
-					if (password != null) {
+					if (password != null && !password.isEmpty()) {
 						UserHandlerInterface ui = new UserHandler();
 						if (!ui.isExist(username)) {
 							User u = new User(username, email);
