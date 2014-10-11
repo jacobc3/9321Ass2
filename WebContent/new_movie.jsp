@@ -7,11 +7,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Movie</title>
 </head>
-<body><%@ include file="header.jsp" %>
-<div class="body" id="body">
+<body><div id="header"></div>
+<div id="body">
 <h1>Add Movie</h1>
 <form action="save_movie" method=POST>
   <table width="80%" border="0">
@@ -51,14 +59,13 @@
         </td>
       </tr>
       <tr>
-        <th scope="row"><input type="submit"  value="Submit"></th>
-        <td><p>
+        <th scope="row"></th>
+        <td><input type="submit"  value="Submit">
           <input type="reset" value="Reset">
-          <br>
-        </p></td>
-      </tr>
+        </td>
+        </tr>
     </tbody>
   </table>
   </form>
 </div>
-<%@ include file="footer.jsp" %>
+<div id = "footer"></div>

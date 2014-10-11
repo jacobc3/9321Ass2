@@ -1,57 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+        <%@ page import="model.handler.*"%>
+    <%@ page import="model.handlerInterface.*"%>
+    <%@ page import="model.bean.*"%>
+    <%@ page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="style.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Cinema</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
 </head>
 <body>
-<%@ include file="header.jsp" %>
-<div class="body" id="body">
+<div id="header"></div>
+<div id="body">
 <h1>Add Cinema</h1>
-<form action="new_cinema">
+<form action="new_cinema" method=GET>
   <table width="80%" border="0">
     <tbody>
       
       <tr>
         <th scope="row">Name</th>
-        <td><label for="textfield2"></label>
-          <input type="text" name="textfield2" id="textfield2"></td>
+        <td><label for="name"></label>
+          <input type="text" name="name"></td>
       </tr>
       <tr>
         <th scope="row">Location</th>
-        <td><label for="textfield"></label>
-          <input type="text" name="textfield" id="textfield"></td>
+        <td><label for="location"></label>
+          <input type="text" name="location"></td>
       </tr>
       <tr>
         <th scope="row">Seating Capacity</th>
-        <td><label for="textfield3"></label>
-          <input type="text" name="textfield3" id="textfield3"></td>
+        <td><label for="capacity"></label>
+          <input type="text" name="capacity"></td>
       </tr>
       <tr>
+      <% CinemaHandlerInterface ch = new CinemaHandler();
+      	List<Amenity> as = ch.getAllAmenities();
+       %>
         <th scope="row">Amenities</th>
-        <td><p>
+        <td>
+        <%for(Amenity a : as){ %>
           <label>
-            <input type="checkbox" name="CheckboxGroup1" value="ATMs" id="CheckboxGroup1_0">
-            ATMs</label>
-          <br>
-          <label>
-            <input type="checkbox" name="CheckboxGroup1" value="widescreen" id="CheckboxGroup1_1">
-            widescreen</label>
-          <br>
-          <label>
-            <input type="checkbox" name="CheckboxGroup1" value="snack bar" id="CheckboxGroup1_1">
-            snack bar</label>
-          <br>
-          <label>
-            <input type="checkbox" name="CheckboxGroup1" value="restaurant" id="CheckboxGroup1_1">
-            restaurant</label>
-          <br>
-        </p></td>
+            <input type="checkbox" name="amenities" value="<%=a.getId() %>" >
+            <%=a.getName() %></label></br>
+        <%} %>
+            </td>
       </tr>
+       <tr>
+        <th scope="row"></th>
+        <td><input type="submit"  value="Submit">
+          <input type="reset" value="Reset">
+        </td>
+        </tr>
     </tbody>
   </table>
   </form>
 </div>
-<%@ include file="footer.jsp" %>
+<div id="footer"></div>

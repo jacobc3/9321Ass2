@@ -101,4 +101,15 @@
 		<url-pattern>/logout</url-pattern>
 	</servlet-mapping>
 	
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/approve</url-pattern>
+	</servlet-mapping>
+	
+		<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/decline</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

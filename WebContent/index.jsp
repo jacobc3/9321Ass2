@@ -19,8 +19,7 @@
 <body>
 	<div id="header"></div>	
 	<div id="body">
-       <div class="movie_list"><table width="80%" border="0">
-        <p>&nbsp;</p>
+       <div class="movie_list">
         <table width="80%" border="0">
         <%
         	List<Movie> showingMovies=(List<Movie>)request.getAttribute("showingmovies");
@@ -74,26 +73,7 @@
             	}}
             
             %>
-            
-                    
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>&nbsp;</p>
-        <table width="80%" border="0">
-      
-          <tbody>
-          </tbody>
-        </table>
-        <p>&nbsp;</p>
-        
-        <p>&nbsp;</p>
+          </tbody></table>
       </div>
       <div class="movie_list"><table width="80%" border="0">
         <%
@@ -153,7 +133,7 @@
               <td>&nbsp;</td>
             </tr>
           </tbody>
-        </table></div>
-    </div>
+        </table>
+        </div>
     </div>
     <div id="footer"></div>
