@@ -440,6 +440,8 @@ public class RequestServlet extends HttpServlet {
 					UserHandlerInterface ui = new UserHandler();
 					if (ui.isExist(username)) {
 						if (ui.isMatch(username, password)) {
+							request.getSession().removeAttribute("user");
+							request.getSession().removeAttribute("owner");
 							request.getSession().setAttribute("user", username);
 							response.setContentType("text/html; charset=gb2312");
 							response.sendRedirect("index");
