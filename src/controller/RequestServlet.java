@@ -401,6 +401,7 @@ public class RequestServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.getSession().removeAttribute("user");
 		request.getSession().removeAttribute("owner");
+		request.getSession().invalidate();
 		response.setContentType("text/html; charset=gb2312");
 		PrintWriter out = response.getWriter();
 		out.println("log out successful. return to <a href=\"index\">Index</a>");

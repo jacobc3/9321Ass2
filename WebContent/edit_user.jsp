@@ -51,7 +51,7 @@
       
       <tr>
         <th scope="row">Password</th>
-        <td><input type="text" name="textfield3" id="textfield3">          <label
+        <td><input type="password" name="textfield3" id="textfield3">          <label
 						for="textfield2"></label></td>
       </tr>
       <tr>
