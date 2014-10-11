@@ -106,6 +106,7 @@
 					<td><%=title%></td>
 					<td><a href="movie_detail?id=<%=movieid%>"><%=movieTitle%>~~</a></td>
 					<td><%=rating%></td>
+					<td><a href="edit_review.jsp?id=<%=review.getId() %>" %>Edit</td>
 				</tr>
 
 				<%

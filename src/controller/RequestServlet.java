@@ -252,8 +252,38 @@ public class RequestServlet extends HttpServlet {
 	}
 
 	private void editReview(HttpServletRequest request,
-			HttpServletResponse response) {
-		// TODO Auto-generated method stub
+			HttpServletResponse response) throws ServletException, IOException {
+//		String sid=(String) request.getAttribute("id");
+	
+		String sid=request.getParameter("review_id");
+		String title=request.getParameter("title");
+		String content=request.getParameter("content");
+		String rate=request.getParameter("rating");
+		System.out.println(sid);
+		if(sid!=null){
+			ReviewHandlerInterface ri=new ReviewHandler();
+			Review review=ri.getReviewsById(Integer.parseInt(sid));
+			if(title!=null){
+				review.setTitle(title);
+			}
+			if(content!=null){
+				review.setContent(content);
+			}
+			if(rate!=null){
+				review.setRating(Integer.parseInt(rate));
+			}
+			ri.updateReview(review);
+			RequestDispatcher view = request.getRequestDispatcher("success.jsp");
+			view.forward(request, response);
+			
+		}else{
+			System.out.println("fjdlasjfkldjalfjd");
+		}
+		
+		
+		
+		
+		
 
 	}
 
