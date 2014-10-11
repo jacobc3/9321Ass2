@@ -674,19 +674,23 @@ public class RequestServlet extends HttpServlet {
 		// RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		// view.forward(request, response);
 		MovieHandlerInterface mi = new MovieHandler();
+		
+		
 
 		List<Movie> movies = mi.getShowingMovies();
+		System.out.println(movies.toString());
 		Collections.sort(movies, new Comparator<Movie>() {
 			public int compare(Movie m1, Movie m2) {
 				double mr1 = mi.getAveRatingByMovie(m1.getId());
 				double mr2 = mi.getAveRatingByMovie(m2.getId());
-				int flag = 0;
+				int flag = 1;
 				if (mr1 > mr2) {
-					flag = 1;
+					flag = -1;
 				}
 				return flag;
 			}
 		});
+
 
 		request.setAttribute("showingmovies", movies);
 		List<Movie> cmovies = mi.getComingMovies();
@@ -694,9 +698,10 @@ public class RequestServlet extends HttpServlet {
 			public int compare(Movie m1, Movie m2) {
 				Date md1 = m1.getRelease_date();
 				Date md2 = m2.getRelease_date();
-				int flag = 0;
+				int flag = 1;
+				
 				if (md1.before(md2)) {
-					flag = 1;
+					flag = -1;
 				}
 				return flag;
 			}
