@@ -21,7 +21,7 @@
 	<div id="body">
 		<%
 			User user = (User) request.getAttribute("user");
-		
+
 			if (user != null) {
 				List<Review> reviews = (List<Review>) request
 						.getAttribute("reviews");
@@ -44,7 +44,7 @@
 			<tbody>
 
 				<tr>
-					<th width="30%" height="40" scope="row">Username</th>
+					<th width="30%" scope="row">Username</th>
 					<td width="70%"><%=username1%></td>
 				</tr>
 				<tr>
@@ -69,9 +69,11 @@
 				<tr>
 					<th scope="row">Nickname</th>
 					<td><%=nickname%></td>
-					<td><p>
-							<br>
-						</p></td>
+				</tr>
+				
+				<tr>
+					<th scope="row">Registry Date</th>
+					<td><%=user.getregistryDate() %></td>
 				</tr>
 			</tbody>
 		</table>

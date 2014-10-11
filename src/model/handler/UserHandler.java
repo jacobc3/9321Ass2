@@ -3,6 +3,7 @@ package model.handler;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public class UserHandler implements UserHandlerInterface {
 		String password = user.getPassword();
 		String passmd5 = md5(password);
 		user.setPassword(passmd5);
-//		System.out.println("@addUser, passmd5 is "+passmd5);
+		user.setRegistryDate(new Date());
 		Integer id = (Integer) session.save(user);	
 //		this.sendConfirmMail(user);
 		session.getTransaction().commit();
