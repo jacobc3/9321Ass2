@@ -3,6 +3,9 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -548,8 +551,32 @@ public class RequestServlet extends HttpServlet {
 		MovieHandlerInterface mi=new MovieHandler();
 		
 		List<Movie> movies=mi.getShowingMovies();	
+		Collections.sort(movies,new Comparator<Movie>(){
+			public int compare(Movie m1,Movie m2){
+				double mr1=mi.getAveRatingByMovie(m1.getId());
+				double mr2=mi.getAveRatingByMovie(m2.getId());
+				int flag=0;
+				if(mr1>mr2){
+					flag=1;
+				}
+				return flag;
+			}
+		});
+		
+		
 		request.setAttribute("showingmovies", movies);
 		List<Movie> cmovies=mi.getComingMovies();
+		Collections.sort(cmovies,new Comparator<Movie>(){
+			public int compare(Movie m1,Movie m2){
+				Date md1=m1.getRelease_date();
+				Date md2=m2.getRelease_date();
+				int flag=0;
+				if(md1.before(md2)){
+					flag=1;
+				}
+				return flag;
+			}
+		});
 		request.setAttribute("commingmovies", cmovies);
 		System.out.println(cmovies.size());
 		
@@ -668,3 +695,4 @@ public class RequestServlet extends HttpServlet {
 		view.forward(request, response);
 	}
 }
+
