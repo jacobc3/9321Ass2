@@ -1,5 +1,7 @@
-<link rel="stylesheet" href="style.css" type="text/css" />
-
+<head><link rel="stylesheet" href="style.css" type="text/css" />
+<title>Header</title>
+</head>
+<body>
 <div id="logo">
 	<a href="${pageContext.request.contextPath}/index"> <img width=55
 		height=55 src="images/movie-reel.gif" /></a> Movie Review &amp; Booking
@@ -65,3 +67,5 @@
 <%
 	}
 %>
+
+</body>

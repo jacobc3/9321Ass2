@@ -16,15 +16,16 @@ create table movie (
 	PRIMARY KEY (id)	
 );
 
-INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG",random_datetime(), "Luis,Pitter");
-INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG2",random_datetime(), "Wow,Pitter");
-INSERT INTO movie (title,release_date,actors) VALUES ("THE RIGHT",random_datetime(), "Luis,Magic");
-INSERT INTO movie (title,release_date,actors) VALUES ("BIG BANG",random_datetime(), "Luis,Pitter");
+INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("BIG BANG",random_datetime(), "Luis,Pitter", "images/4.jpg");
+INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("BIG BANG2",random_datetime(), "Wow,Pitter", "images/5.jpg");
+INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("THE RIGHT",random_datetime(), "Luis,Magic", "images/6.jpg");
+INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("BIG BANG",random_datetime(), "Luis,Pitter", "images/7.jpg");
 INSERT INTO movie (title,synopsis,actors) VALUES ("NEW MOVIE 2","FAS fqw asdfqwl qfqo", "Wow,Pitter");
-INSERT INTO movie (title,posterURL,actors) VALUES ("THE RIGHTSSS","http://fng.hotcw.com/images/sil-female.png", "Luis,Magic");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("MOVE ADW",random_datetime(), "http://fng.hotcw.com/images/sil-female.png");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("RIGN SGF3",random_datetime(), "http://fng.hotcw.com/images/sil-male.png");
+INSERT INTO movie (title,posterURL,actors,release_date) VALUES ("THE RIGHTSSS","images/1.jpg", "Luis,Magic","2013-11-09");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("MOVE ADW",random_datetime(), "images/2.jpg");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("RIGN SGF3",random_datetime(), "images/3.jpg");
 INSERT INTO movie (title,release_date,synopsis) VALUES ("RING AFQW AFDE",random_datetime(), "FQ AS Sdadfaw Fwewa asfas");
+INSERT INTO movie (title,posterURL,actors,release_date) VALUES ("THE RIGHTSSS","images/1.jpg", "Luis,Magic","2014-11-01");
 
 drop table genre;
 create table genre (
@@ -37,7 +38,7 @@ INSERT INTO genre (name) VALUES ("Action");
 INSERT INTO genre (name) VALUES ("Adventure");
 INSERT INTO genre (name) VALUES ("Animation");
 INSERT INTO genre (name) VALUES ("Biography");
-INSERT INTO genre (name) VALUES ("COmedy");
+INSERT INTO genre (name) VALUES ("Comedy");
 INSERT INTO genre (name) VALUES ("Crime");
 INSERT INTO genre (name) VALUES ("Drama");
 INSERT INTO genre (name) VALUES ("History");

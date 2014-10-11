@@ -59,7 +59,7 @@
               		syn=synopsis;
               	}}
               %>
-              <td><img src="<%=posterURL %>" alt="<%=movie.getTitle() %>"/></td>
+              <td><img src="<%=posterURL %>" width="140" alt="<%=movie.getTitle() %>"/></td>
                <td><a href="movie_detail?id=<%=movie.getId() %>"><%=movie.getTitle() %></a></td>
               <td><%=actors %></td>
               <td><%=syn %></td>
@@ -114,7 +114,7 @@
               		syn=synopsis;
               	}}
               %>
-              <td><img src="<%=posterURL %>" alt="<%=movie.getTitle() %>"/></td>
+              <td><img src="<%=posterURL %>" width="140" alt="<%=movie.getTitle() %>"/></td>
                <td><a href="movie_detail?id=<%=movie.getId() %>"><%=movie.getTitle() %></a></td>
               <td><%=actors %></td>
               <td><%=syn %></td>

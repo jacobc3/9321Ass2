@@ -58,9 +58,7 @@ public class RequestServlet extends HttpServlet {
 			this.movieDetail(request, response);
 		} else if (url.matches("(.*)/new_user(.*)")) {
 			this.newUser(request, response);
-		} else if (url.matches("(.*)/edit_user(.*)")) {
-			this.editUser(request, response);
-		} else if (url.matches("(.*)/display_user(.*)")) {
+		}else if (url.matches("(.*)/display_user(.*)")) {
 			this.userDetail(request, response);
 		} else if (url.matches("(.*)/display_owner(.*)")) {
 			this.ownerDetail(request, response);
@@ -68,8 +66,6 @@ public class RequestServlet extends HttpServlet {
 			this.login(request, response);
 		} else if (url.matches("(.*)/logout(.*)")) {
 			this.logout(request, response);
-		} else if (url.matches("(.*)/confirm_registration(.*)")) {
-			this.confirmRegistration(request, response);
 		}
 
 		else if (url.matches("(.*)/new_movie(.*)")) {
@@ -79,38 +75,40 @@ public class RequestServlet extends HttpServlet {
 		} else if (url.matches("(.*)/movie_detail(.*)")) {
 			this.movieDetail(request, response);
 
-		} else if (url.matches("(.*)/new_booking(.*)")) {
-			this.newBooking(request, response);
-		} else if (url.matches("(.*)/approve(.*)")) {
-			this.approveBooking(request, response);
-		} else if (url.matches("(.*)/decline(.*)")) {
-			this.declineBooking(request, response);
-
-		} else if (url.matches("(.*)/new_cinema(.*)")) {
+		}  else if (url.matches("(.*)/new_cinema(.*)")) {
 			this.newCinema(request, response);
-		} else if (url.matches("(.*)/edit_cinema(.*)")) {
-			this.editCinema(request, response);
-
 		} else if (url.matches("(.*)/search(.*)")) {
 			this.search(request, response);
-
+		}else if (url.matches("(.*)/new_booking(.*)")) {
+				this.newBooking(request, response);
+			 
 		} else if (url.matches("(.*)/new_review(.*)")) {
 			this.newReview(request, response);
 		} else if (url.matches("(.*)/edit_review(.*)")) {
 			this.editReview(request, response);
-		} else if (url.matches("(.*)/new_session(.*)")) {
-			this.newSession(request, response);
 		} else if (url.matches("(.*)/new_movie")) {
 			this.newMovie(request, response);
-		} else if (url.matches("(.*)/save_booking(.*)")) {
-			this.saveBooking(request, response);
 		}
 		
 		//SHOULD NOT BE GET'ed
 		
 		 else if (url.matches("(.*)/set_release_date(.*)")) {
 				this.setReleaseDate(request, response);
-		}
+		} else if (url.matches("(.*)/save_session(.*)")) {
+			this.saveSession(request, response);
+		} else if (url.matches("(.*)/approve(.*)")) {
+			this.approveBooking(request, response);
+		} else if (url.matches("(.*)/decline(.*)")) {
+			this.declineBooking(request, response);
+		} else if (url.matches("(.*)/save_booking(.*)")) {
+			this.saveBooking(request, response);
+		} else if (url.matches("(.*)/edit_cinema(.*)")) {
+			this.editCinema(request, response);
+		} else if (url.matches("(.*)/confirm_registration(.*)")) {
+			this.confirmRegistration(request, response);
+		} else if (url.matches("(.*)/edit_user(.*)")) {
+			this.editUser(request, response);
+		} 
 
 	}
 
@@ -243,10 +241,26 @@ public class RequestServlet extends HttpServlet {
 
 	}
 
-	private void newSession(HttpServletRequest request,
-			HttpServletResponse response) {
-		// TODO Auto-generated method stub
-
+	private void saveSession(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		String datetime = request.getParameter("datetime");
+		String cinema_id = request.getParameter("cinema");
+		Session s = new Session();
+		s.setCinema(new CinemaHandler().getCinema(Integer.parseInt(cinema_id)));
+		Date d_date = null;
+		try {
+			System.out.println(datetime);
+			d_date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).parse(datetime);
+			System.out.println(d_date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		s.setShowDate(d_date);
+		s.setMovie(new MovieHandler().getMovie(Integer.parseInt(request.getParameter("movie_id"))));
+		new SessionHandler().addSession(s);
+		
+		PrintWriter out = response.getWriter();
+		out.println("save Session successful. return to <a href=\"index\">Index</a>");
 	}
 
 	private void editReview(HttpServletRequest request,
