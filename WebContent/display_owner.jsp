@@ -8,9 +8,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
 </head>
+
 <body>
-<%@ include file="header.jsp"%>
+<div id="header"></div>
 <div class="body" id="body">
 <h1>Your Profile</h1>
   <table width="80%" border="0">
@@ -116,4 +124,4 @@
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 </div>
-<%@ include file="footer.jsp"%>
+<div id="footer"></div>

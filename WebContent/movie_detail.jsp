@@ -135,12 +135,15 @@
     </tbody>
   </table>
   
-  <form action="save_review" method=POST>
+  
   <%
 	String username = (String) request.getSession()
 			.getAttribute("user");
+  
+  if(username != null && username != ""){
   	int user_id = new UserHandler().getUserByUsername(username).getId();
   %>
+  <form action="save_review" method=POST>
   <table width="80%" border="0">
     <tbody>
     <tr>
@@ -183,6 +186,9 @@
     </tbody>
   </table>
   </form>
+  <%} else {
+	%>Please <a href="login.jsp">Log in</a> to review <%  
+	  }%>
   
   <p>&nbsp;</p>
   <p>&nbsp;</p>

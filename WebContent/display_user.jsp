@@ -144,4 +144,4 @@
   <p>&nbsp;</p>
   <p>&nbsp;</p>
 </div>
-<%@ include file="footer.jsp" %>
+<div id="footer"></div>

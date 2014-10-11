@@ -311,7 +311,8 @@ public class RequestServlet extends HttpServlet {
 		request.getSession().removeAttribute("user");
 		request.getSession().removeAttribute("owner");
 		response.setContentType("text/html; charset=gb2312");
-		response.sendRedirect("index");
+		PrintWriter out = response.getWriter();
+		out.println("log out successful. return to <a href=\"index\">Index</a>");
 	}
 
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
