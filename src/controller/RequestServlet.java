@@ -314,12 +314,12 @@ public class RequestServlet extends HttpServlet {
 		MovieHandlerInterface mi = new MovieHandler();
 		if (type.equals("title")) {
 			List<Movie> movies = mi.searchByTitle(search);
-			System.out.println("number is: " + movies.size());
+			//System.out.println("number is: " + movies.size());
 			request.setAttribute("movies", movies);
 		} else if (type.equals("genre")) {
 			List<Movie> movies = mi.searchByGenre(search);
 			request.setAttribute("movies", movies);
-			System.out.println("number is: " + movies.size());
+			//System.out.println("number is: " + movies.size());
 		}
 		request.setAttribute("search", search);
 		request.setAttribute("type", type);
