@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="java.util.*"%>
+<%@ page import="model.bean.*"%>
+<%@ page import="model.handler.*"%>
+<%@ page import="model.handlerInterface.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,66 +21,72 @@
 <body>
 	<div id="header"></div>
 	<div id="container">
+	<%
+		String sid=request.getParameter("id");
+		MovieHandler mi=new MovieHandler();
+		Movie movie=mi.getMovie(Integer.parseInt(sid));
+		request.setAttribute("id", sid);
+		
+	%>
 		<h1>Edit Movie</h1>
-		<form>
+		<form action="edit_movie">
 			<table width="80%" border="0">
 				<tbody>
 					<tr>
 						<th width="22%" scope="row">id</th>
-						<td width="78%"><input type="hidden" name="hiddenField"
-							id="hiddenField"><label>id</label></td>
+						<td width="78%"><input type="hidden" name="movie_id"
+							id="hiddenField" value="<%=sid %>"><label><%=sid %></label></td>
 					</tr>
 					<tr>
 						<th scope="row">title</th>
 						<td><label for="textfield2"></label> <input type="text"
-							name="textfield2" id="textfield2"></td>
+							name="movieTitle" id="textfield2" value="<%=movie.getTitle() %>"></td>
 					</tr>
 					<tr>
 						<th scope="row">actors</th>
 						<td><label for="textfield"></label> <input type="text"
-							name="textfield" id="textfield"></td>
+							name="movieActor" id="textfield" value="<%=movie.getActors()  %>"></td>
 					</tr>
 					<tr>
 						<th scope="row">poster</th>
 						<td><label for="textfield3"></label> <input type="text"
-							name="textfield3" id="textfield3"></td>
+							name="moviePoster" id="textfield3" value="<%=movie.getPosterURL()%>"></td>
 					</tr>
 					<tr>
 						<th scope="row">release date</th>
 						<td><label for="date"></label> <input type="date" name="date"
-							id="date"></td>
+							id="date" value="<%= movie.getRelease_date().toString()  %>"></td>
 					</tr>
 					<tr>
 						<th scope="row">synopsis</th>
-						<td><label for="textfield4"></label> <input type="text"
-							name="textfield4" id="textfield4"></td>
+						<td><label for="textfield4"></label><textarea name="movieSyn" cols="45" rows="5"
+								id="textfield4"><%= movie.getSynopsis()%></textarea></td>
 					</tr>
 					<tr>
 						<th scope="row">genres</th>
-						<td><p>
-								<label> <input type="checkbox" name="CheckboxGroup1"
-									value="checkbox" id="CheckboxGroup1_0"> Checkbox
-								</label> <br> <label> <input type="checkbox"
-									name="CheckboxGroup1" value="checkbox" id="CheckboxGroup1_1">
-									Checkbox
-								</label> <br>
-							</p></td>
+						
+							
+							 <td><p>
+        <% MovieHandlerInterface mh = new MovieHandler();
+        List<Genre> gs = mh.getAllGenres();
+        for(Genre g: gs){
+        %>
+          <label>
+            <input type="checkbox" name="genre" value="<%=g.getId() %>" id="CheckboxGroup1_0">
+           <%=g.getName() %></label>
+          <br>
+          <%
+          } %>
+        </p>
+        </td>
 					</tr>
 					<tr>
-						<th scope="row">Now showing on</th>
-						<td><table width="80%" border="0">
-								<tbody>
-									<tr>
-										<th scope="col">Cinema</th>
-										<th scope="col">Date&amp;Time</th>
-									</tr>
-									<tr>
-										<td>&nbsp;</td>
-										<td>&nbsp;</td>
-									</tr>
-								</tbody>
-							</table></td>
-					</tr>
+        <th scope="row"></th>
+        <td><input type="submit"  value="Submit">
+          <input type="reset" value="Reset">
+        </td>
+        </tr>
+					
 				</tbody>
 			</table>
 		</form>

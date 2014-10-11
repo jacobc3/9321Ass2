@@ -38,7 +38,7 @@
 					<tr>
 						<th scope="row"><label>Content</label></th>
 						<td><textarea name="content" cols="45" rows="5"
-								value="<%=review.getContent()%> "></textarea></td>
+								value="<%=review.getContent()%> "><%=review.getContent()%></textarea></td>
 					</tr>
 					<tr>
 						<th scope="row">Rating</th>

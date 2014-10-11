@@ -58,7 +58,7 @@
 				<td><%=s %></td>
 				
                 <td><img src="<%=m.getPosterURL() %>" width="200" alt="<%=m.getTitle() %>"/></td>
-                <td><%=new MovieHandler().getAveRatingByMovie(m.getId()) %></td>
+                <td><%=new Double(new MovieHandler().getAveRatingByMovie(m.getId())).intValue() %></td>
                 <td><%=m.getActors() %></td>
 			</tr>
 			

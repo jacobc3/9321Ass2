@@ -91,6 +91,11 @@
 	
 	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/edit_movie</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/edit_review</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
