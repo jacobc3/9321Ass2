@@ -52,17 +52,16 @@
         <td><%=m.getSynopsis() %></td>
       </tr>
       <tr>
-        <th scope="row">genres</th>
+        <th scope="row">genres</th><td>
         <% 
-					Set<Genre> g=m.getGenres();
-					Iterator<Genre> iter1=g.iterator();
-					String s="";
+					List<Genre> gs= new MovieHandler().getGenresByMovie(m.getId());
+					Iterator<Genre> iter1=gs.iterator();
 					while(iter1.hasNext()){
 						Genre k=iter1.next();
-						s=s+k.getName()+" ";
+						out.println(k.getName()+"</br>");
 					}	
 				%>
-        <td><%=s %></td>
+        </td>
       </tr>
       <tr>
         <th scope="row">Now showing on</th>
@@ -71,10 +70,7 @@
             <tr>
               <th scope="col">Cinema</th>
               <th scope="col">Date&amp;Time</th>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&lt;link to book&gt;</td>
+               <th scope="col">Fullness</th>
             </tr>
             <%
             	
@@ -84,8 +80,9 @@
             %>		
             
             <tr>
-              <td><a href="new_booking?id=<%=sessions.getId() %>"><%=sessions.getCinema().getName() %></a></td>
-              <td><%=sessions.getShowDate() %></td>
+              <td><%=sessions.getCinema().getName() %></td>
+              <td><a href="new_booking?id=<%=sessions.getId() %>"><%=sessions.getShowDate() %></a></td>
+              <td><%=new SessionHandler().getBookedSeatsCount(sessions.getId()) %>/<%=sessions.getCinema().getCapacity() %></td>
             </tr>
            
             <%	}
@@ -141,7 +138,10 @@
 			.getAttribute("user");
   
   if(username != null && username != ""){
-  	int user_id = new UserHandler().getUserByUsername(username).getId();
+	  
+  
+	  if(m.getRelease_date()!=null && m.getRelease_date().before(new Date())){
+  			int user_id = new UserHandler().getUserByUsername(username).getId();
   %>
   <form action="save_review" method=POST>
   <table width="80%" border="0">
@@ -187,7 +187,12 @@
   </table>
   </form>
   <%} else {
-	%>Please <a href="login.jsp">Log in</a> to review <%  
+	  out.println("not playing yet. Come back when movie is showing");
+	 }
+  } else {
+  
+	%>Please <a href="login.jsp">Log in</a> to review 
+	<%  
 	  }%>
   
   <p>&nbsp;</p>

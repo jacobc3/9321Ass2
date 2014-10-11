@@ -7,43 +7,21 @@
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Seach Result of by</title>
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+	$(function() {
+		$("#header").load("header.jsp");
+		$("#footer").load("footer.jsp");
+	});
+</script>
 </head>
 <body>
-<%@ include file="header.jsp" %>
-	<p>&nbsp;</p>
-	<div class="body">
-	<form name="form1" method="get" action="search">
-	<table width="80%" border="0">
-	  <tbody>
-	    <tr>
-	      <th colspan="2" scope="col">Search</th>
-        </tr>
-	    <tr>
-	      <td width="38%"><input type="text" name="textfield" id="textfield"></td>
-	      <td width="46%"><p>
-	        <label>
-	          Search by 
-	          <input name="search_by" type="radio" id="title" value="title" checked="checked">
-	          Title</label>
-	        <label>
-	          <input name="search_by" type="radio" id="genre" value="genre">
-	          Genre</label>
-	        <br>
-          </p></td>
-        </tr>
-	    <tr>
-	      <td colspan="2"><input type="submit"  value="Submit"></td>
-        </tr>
-      </tbody>
-</table></form>
-	<p>&nbsp;</p>
+<div id="header"></div>
+	<div id="body">
+	Results:
 <table width="80%" border="0">
 		<tbody>
-        <tr>
-        <td> Now Showing
-        </td>
-        </tr>
 			<tr>
 				<th width="33%" scope="col">Title</th>
 				<th width="33%" scope="col">Genre</th>
@@ -91,4 +69,4 @@
 		</tbody>
 	</table>
 	</div>
-<%@ include file="footer.jsp" %>
+<div id="footer"></div>

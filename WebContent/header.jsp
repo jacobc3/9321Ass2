@@ -22,13 +22,15 @@
 	} else if (username != null) {
 %>
 <div id="welcome">
-	Welcome back: <a href="display_user?username=<%=username%>"><%=username%></a> | <a href="logout">logout</a> 
+	Welcome back: <a href="display_user?username=<%=username%>"><%=username%></a>
+	| <a href="logout">logout</a>
 </div>
 <%
 	} else if (ownername != null) {
 %>
 <div id="welcome">
-	Welcome back: <a href="display_owner?ownername=<%=ownername%>"><%=ownername%></a> | <a href="logout">logout</a>
+	Welcome back: <a href="display_owner?ownername=<%=ownername%>"><%=ownername%></a>
+	| <a href="logout">logout</a>
 </div>
 
 <%
@@ -48,13 +50,12 @@
 					<td><input type="text" name="search"></td>
 				</tr>
 				<tr>
-					<td>By</td>
-					<td><p>
-							<select>
-								<option value="radio1" selected="selected">Title</option>
-								<option value="radio2">Genre</option>
-							</select> <input type="submit" value="Submit"> <br>
-						</p></td>
+					<td><label for="select">By</label></td>
+					<td><select name="search_by">
+							<option value="title">Title</option>
+							<option value="genre">Genre</option>
+					</select> <input type="submit" value="Submit"> <br>
+						</td>
 				</tr>
 
 			</tbody>

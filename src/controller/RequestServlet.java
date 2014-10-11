@@ -267,11 +267,11 @@ public class RequestServlet extends HttpServlet {
 		String search = request.getParameter("search");
 		String type = request.getParameter("search_by");
 		MovieHandlerInterface mi = new MovieHandler();
-		if (type.equals("radio1")) {
+		if (type.equals("title")) {
 			List<Movie> movies = mi.searchByTitle(search);
 			System.out.println("number is: " + movies.size());
 			request.setAttribute("movies", movies);
-		} else if (type.equals("radio2")) {
+		} else if (type.equals("genre")) {
 			List<Movie> movies = mi.searchByGenre(Integer.parseInt(search));
 			request.setAttribute("movies", movies);
 			System.out.println("number is: " + movies.size());
@@ -335,10 +335,14 @@ public class RequestServlet extends HttpServlet {
 		b.setUser(new UserHandler().getUserByUsername(request
 				.getParameter("username")));
 		b.setStatus(OrderStatus.Processing);
-
-		bh.addBooking(b);
-		PrintWriter out = response.getWriter();
-		out.println("save Booking successful. return to <a href=\"index\">Index</a>");
+		if(Integer.parseInt(request.getParameter("count"))<si.getRemainingSeatsCount(b.getSession().getId())){
+			bh.addBooking(b);
+			PrintWriter out = response.getWriter();
+			out.println("save Booking successful. return to <a href=\"index\">Index</a>");
+		} else {
+			PrintWriter out = response.getWriter();
+			out.println("save Booking not successful. Ordered to much. return to <a href=\"index\">Index</a>");
+		}
 
 	}
 
