@@ -39,7 +39,7 @@
       <tr>
         <th scope="row">Seating Capacity</th>
         <td><label for="capacity"></label>
-          <input type="text" name="capacity"></td>
+          <input type="text" name="capacity" onkeypress='return event.charCode >= 48 && event.charCode <= 57'></input></td>
       </tr>
       <tr>
       <% CinemaHandlerInterface ch = new CinemaHandler();

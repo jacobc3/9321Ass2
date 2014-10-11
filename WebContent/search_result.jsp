@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
 <%@ page import="model.bean.*"%>
+<%@ page import="model.handler.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -56,8 +57,8 @@
 				%>
 				<td><%=s %></td>
 				
-                <td><img src="<%=m.getPosterURL() %>" alt="<%=m.getTitle() %>"/></td>
-                <td></td>
+                <td><img src="<%=m.getPosterURL() %>" width="200" alt="<%=m.getTitle() %>"/></td>
+                <td><%=new MovieHandler().getAveRatingByMovie(m.getId()) %></td>
                 <td><%=m.getActors() %></td>
 			</tr>
 			

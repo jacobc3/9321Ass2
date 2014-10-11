@@ -121,7 +121,7 @@
 		<p>&nbsp;</p>
 		<table width="80%" border="0">
 			<tbody>
-				<tr>
+				<tr><th scope="col">Bookings id</th>
 					<th scope="col">Bookings of Movie</th>
 					<th scope="col">of Cinema</th>
 					<th scope="col">of Session</th>
@@ -134,7 +134,7 @@
 						while (iter2.hasNext()) {
 							Booking booking = iter2.next();
 				%>
-				<tr>
+				<tr><td><%=booking.getId()%></td>
 					<td><%=booking.getSession().getMovie().getTitle()%></td>
 					<td><%=booking.getSession().getCinema().getName()%></td>
 					<td><%=booking.getSession().getShowDate()%></td>

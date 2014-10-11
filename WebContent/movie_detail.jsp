@@ -25,49 +25,74 @@
 	<div id="header"></div>
 	<div class="body" id="body">
 		<h1>Movie</h1>
+		<div class="movie">
+		<table width="83%" border="0">
+			<tbody>
+				<tr>
+					<td><img src="<%=m.getPosterURL()%>" width="400"
+						alt="<%=m.getTitle()%>" /></td>
+					<td width="100%"><table width="100%" border="0">
+							<tbody>
+								<tr>
+									<th width="22%" scope="row">id</th>
+									<td width="78%"><%=m.getId()%></td>
+								</tr>
+								<tr>
+									<th scope="row">title</th>
+									<td><%=m.getTitle()%></td>
+								</tr>
+								<tr>
+									<th scope="row">actors</th>
+									<td><%=m.getActors()%></td>
+								</tr>
+								<tr>
+									<th scope="row">poster</th>
+									<td>&nbsp;</td>
+								</tr>
+								<tr>
+									<th scope="row">release date</th>
+									<td><%=m.getRelease_date()%></td>
+								</tr>
+								<tr>
+									<th scope="row">synopsis</th>
+									<td><%=m.getSynopsis()%></td>
+								</tr>
+								<tr>
+									<th scope="row">genres</th>
+									<td>
+										<%
+											List<Genre> gs = new MovieHandler().getGenresByMovie(m.getId());
+											Iterator<Genre> iter1 = gs.iterator();
+											while (iter1.hasNext()) {
+												Genre k = iter1.next();
+												out.println(k.getName() + "</br>");
+											}
+										%>
+									</td>
+								</tr>
+								<tr>
+
+								</tr>
+							</tbody>
+						</table></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+		<hr><br>
+<div class="session">
+		<%
+			Calendar calendar = Calendar.getInstance();
+			calendar.add(Calendar.DATE, 30);
+			Date d = calendar.getTime();
+			System.out.println(" within day range of " + d);
+			if (m.getRelease_date().before(d)) {
+		%>
 		<table width="80%" border="0">
 			<tbody>
-
 				<tr>
-					<th width="22%" scope="row">id</th>
-					<td width="78%"><%=m.getId()%></td>
-				</tr>
-				<tr>
-					<th scope="row">title</th>
-					<td><%=m.getTitle()%></td>
-				</tr>
-				<tr>
-					<th scope="row">actors</th>
-					<td><%=m.getActors()%></td>
-				</tr>
-				<tr>
-					<th scope="row">poster</th>
-					<td><img src="<%=m.getPosterURL()%>" height = "500" alt="<%=m.getTitle()%>" /></td>
-				</tr>
-				<tr>
-					<th scope="row">release date</th>
-					<td><%=m.getRelease_date()%></td>
-				</tr>
-				<tr>
-					<th scope="row">synopsis</th>
-					<td><%=m.getSynopsis()%></td>
-				</tr>
-				<tr>
-					<th scope="row">genres</th>
-					<td>
-						<%
-							List<Genre> gs = new MovieHandler().getGenresByMovie(m.getId());
-							Iterator<Genre> iter1 = gs.iterator();
-							while (iter1.hasNext()) {
-								Genre k = iter1.next();
-								out.println(k.getName() + "</br>");
-							}
-						%>
-					</td>
-				</tr>
-				<tr>
-					<th scope="row">Now showing on</th>
-					<td><table width="80%" border="0">
+					<th scope="col">Now showing on</th>
+					<th scope="col"><table width="80%" border="0">
 							<tbody>
 								<tr>
 									<th scope="col">Cinema</th>
@@ -76,63 +101,63 @@
 								</tr>
 								<%
 									Iterator<Session> iter2 = ses.iterator();
-									while (iter2.hasNext()) {
-										Session sessions = iter2.next();
+										while (iter2.hasNext()) {
+											Session sessions = iter2.next();
 								%>
-
 								<tr>
 									<td><%=sessions.getCinema().getName()%></td>
 									<td><a href="new_booking?id=<%=sessions.getId()%>"><%=sessions.getShowDate()%></a></td>
 									<td><%=new SessionHandler().getBookedSeatsCount(sessions
-						.getId())%>/<%=sessions.getCinema().getCapacity()%></td>
+							.getId())%>/<%=sessions.getCinema().getCapacity()%></td>
 								</tr>
-
 								<%
 									}
 								%>
 							</tbody>
-						</table><hr><%
-							String ownername = (String) request.getSession().getAttribute("owner");
-						if( (ownername!=null) && ownername!= "") %>
-						Add new Session<br>
-						<%
-						Calendar calendar = Calendar.getInstance();  
-						calendar.add(Calendar.DATE, 30);
-						Date d = calendar.getTime();
-						System.out.println(" within day range of "+d);
-						if(m.getRelease_date().before(d)){ %>
+						</table> <%
+ 	String ownername = (String) request.getSession().getAttribute(
+ 				"owner");
+ 		if (ownername != null && ownername != "") {
+ %>
+						<hr> Add new Session<br>
 						<table width="80%" border="0">
 							<tr>
 								<th scope="col">At Cinema</th>
-								<th scope="col">At Date &amp;Time<br>
-								yyyy-MM-dd HH:mm:ss</th>
+								<th scope="col">At Date &amp;Time<br> yyyy-MM-dd
+									HH:mm:ss
+								</th>
 								<th scope="col">submit</th>
 							</tr>
-
 							<tr>
 								<form method="GET" action="save_session">
-								<td><% List<Cinema> cinemas = new CinemaHandler().getAllCinemas(); %>
-								<select name="cinema">
-								<%for(Cinema c : cinemas){ %>
-										<option value="<%=c.getId()%>"><%=c.getName() %></option>
-										<%} %>
-								</select>
-								</td>
-								
-								<td><input type="datetime-local" name="datetime"></td>
-								<td><input type="hidden" name="movie_id" value="<%=m.getId()%>"><input type="submit" value="Submit"></td>
+									<td>
+										<%
+											List<Cinema> cinemas = new CinemaHandler().getAllCinemas();
+										%>
+										<select name="cinema">
+											<%
+												for (Cinema c : cinemas) {
+											%>
+											<option value="<%=c.getId()%>"><%=c.getName()%></option>
+											<%
+												}
+											%>
+									</select>
+									</td>
+									<td><input type="datetime-local" name="datetime"></td>
+									<td><input type="hidden" name="movie_id"
+										value="<%=m.getId()%>"> <input type="submit"
+										value="Submit"></td>
 								</form>
 							</tr>
-						</table>
-						<%} else {
-							out.println("not releasing yet");
-							} %>
-						
-						</td>
+						</table></th>
 				</tr>
 			</tbody>
 		</table>
-		<hr>
+		<%
+			} // END OF IF OWNER
+		%></div>
+		<hr><div class="reviews">
 		<table width="80%" border="0">
 			<tbody>
 				<tr>
@@ -145,18 +170,18 @@
 
 				<%
 					if (rev != null) {
-						Iterator<Review> iter3 = rev.iterator();
-						while (iter3.hasNext()) {
-							Review reviews = iter3.next();
-							String display_name = reviews.getUser().getNickname();
-							if (display_name == null || display_name == "") {
-								display_name = reviews.getUser().getFirstname() + " "
-										+ reviews.getUser().getLastname();
-							}
-							String rating = "N/A";
-							if (reviews.getRating() != 0) {
-								rating = reviews.getRating() + "";
-							}
+							Iterator<Review> iter3 = rev.iterator();
+							while (iter3.hasNext()) {
+								Review reviews = iter3.next();
+								String display_name = reviews.getUser().getNickname();
+								if (display_name == null || display_name == "") {
+									display_name = reviews.getUser().getFirstname()
+											+ " " + reviews.getUser().getLastname();
+								}
+								String rating = "N/A";
+								if (reviews.getRating() != 0) {
+									rating = reviews.getRating() + "";
+								}
 				%>
 				<tr>
 					<td><%=reviews.getTitle()%></td>
@@ -168,25 +193,27 @@
 
 				<%
 					}
-					}
+						}
 				%>
 
 
 			</tbody>
 		</table>
-<hr>
+        </div>
+		<hr>
 
 		<%
-			String username = (String) request.getSession()
-					.getAttribute("user");
+			String username = (String) request.getSession().getAttribute(
+						"user");
 
-			if (username != null && username != "") {
+				if (username != null && username != "") {
 
-				if (m.getRelease_date() != null
-						&& m.getRelease_date().before(new Date())) {
-					int user_id = new UserHandler().getUserByUsername(username)
-							.getId();
+					if (m.getRelease_date() != null
+							&& m.getRelease_date().before(new Date())) {
+						int user_id = new UserHandler().getUserByUsername(
+								username).getId();
 		%>
+        <div class="review_form">
 		<form action="save_review" method=POST>
 			<table width="80%" border="0">
 				<tbody>
@@ -224,12 +251,17 @@
 		</form>
 		<%
 			} else {
-					out.println("not playing yet. Come back when movie is showing");
-				}
-			} else {
+						out.println("not playing yet. Come back when movie is showing");
+					}
+
+				} else {
 		%>Please <a href="login.jsp">Log in</a> to review
 		<%
-			}
+			}//END OF LOG IN
+			%>
+			</div>
+			<%
+			}//END OF IF SHOWING
 		%>
 
 		<p>&nbsp;</p>
