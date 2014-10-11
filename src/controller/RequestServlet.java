@@ -140,7 +140,7 @@ public class RequestServlet extends HttpServlet {
 			this.newUser(request, response);
 		} else if (url.matches("(.*)/login(.*)")) {
 			this.login(request, response);
-		} else if (url.matches("(.*)/save_movie(.*)")) {
+		} else if (url.matches("(.*)/save_movie")) {
 			this.saveMovie(request, response);
 		} else if (url.matches("(.*)/save_review(.*)")) {
 			this.saveReview(request, response);
@@ -222,7 +222,10 @@ public class RequestServlet extends HttpServlet {
 
 	private void saveMovie(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
+		
+		
 		MovieHandlerInterface mh = new MovieHandler();
+		
 		String title = request.getParameter("title");
 		String posterURL = request.getParameter("posterURL");
 		String actors = request.getParameter("actors");
