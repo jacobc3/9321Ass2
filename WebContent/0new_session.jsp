@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body><%@ include file="header.jsp" %>
-<div class="body" id="body">
+<div id="container">
 <h1>Add Session</h1>
 <form action="add_session" method="get">
   <table width="80%" border="0">

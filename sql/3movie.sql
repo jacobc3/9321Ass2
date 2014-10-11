@@ -16,16 +16,56 @@ create table movie (
 	PRIMARY KEY (id)	
 );
 
-INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("BIG BANG",random_datetime(), "Luis,Pitter", "images/4.jpg");
-INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("BIG BANG2",random_datetime(), "Wow,Pitter", "images/5.jpg");
-INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("THE RIGHT",random_datetime(), "Luis,Magic", "images/6.jpg");
-INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("BIG BANG",random_datetime(), "Luis,Pitter", "images/7.jpg");
-INSERT INTO movie (title,synopsis,actors) VALUES ("NEW MOVIE 2","FAS fqw asdfqwl qfqo", "Wow,Pitter");
-INSERT INTO movie (title,posterURL,actors,release_date) VALUES ("THE RIGHTSSS","images/1.jpg", "Luis,Magic","2013-11-09");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("MOVE ADW",random_datetime(), "images/2.jpg");
-INSERT INTO movie (title,release_date,posterURL) VALUES ("RIGN SGF3",random_datetime(), "images/3.jpg");
-INSERT INTO movie (title,release_date,synopsis) VALUES ("RING AFQW AFDE",random_datetime(), "FQ AS Sdadfaw Fwewa asfas");
-INSERT INTO movie (title,posterURL,actors,release_date) VALUES ("THE RIGHTSSS","images/1.jpg", "Luis,Magic","2014-11-01");
+INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("BIG BANG",random_datetime(), "Roxie Lamoreaux,
+Colene Grounds,
+Kiana Hilario,
+Sherley Mansour,
+Alonso Riess", "images/4.jpg");
+INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("BIG BANG2",random_datetime(), "Debi Diebold,
+Hermine Waldrip,
+Armida Gunnell,
+Derrick Mcmillin,
+Cheyenne Macy", "images/5.jpg");
+INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("THE RIGHT",random_datetime(), "Angelika Cummins,
+Shara Bromley,
+Dustin Leppert,
+Darwin Felmlee,
+Lura Abarca", "images/6.jpg");
+INSERT INTO movie (title,release_date,actors,posterURL) VALUES ("BIG BANG",random_datetime(), "Mira Palmeri,
+Lenora Labarge,
+Kathe Okada,
+Jammie Mazon,
+Providencia Thibodeau", "images/7.jpg");
+INSERT INTO movie (title,synopsis,actors) VALUES ("NEW MOVIE 2","Mauris pellentesque est et dolor pellentesque sagittis.
+Suspendisse egestas odio at elit gravida imperdiet.
+Aenean sagittis ex et tincidunt tincidunt.
+Duis quis magna in nunc varius vulputate sodales ac ipsum.", "Wow,Pitter");
+INSERT INTO movie (title,posterURL,actors,release_date) VALUES ("In non interdum velit","images/1.jpg", "Kary Lecroy,
+Gay Yant,
+Zenia Musser,
+Lavenia Hauptman,
+Loretta Capella","2013-11-09");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("sit amet nulla quis",random_datetime(), "images/2.jpg");
+INSERT INTO movie (title,release_date,posterURL) VALUES ("fringilla porttitor",random_datetime(), "images/3.jpg");
+INSERT INTO movie (title,release_date,synopsis) VALUES ("eget blandit magna",random_datetime(), "Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Maecenas vel arcu in purus viverra placerat.
+Quisque in arcu id tortor dignissim bibendum.
+Donec pretium odio nec dui euismod commodo ut fringilla nulla.
+Fusce sodales magna vel sem tristique, id dignissim eros bibendum.");
+INSERT INTO movie (title,posterURL,actors,release_date) VALUES ("a tincidunt tristique","images/1.jpg", "Aimee Duane
+Andrew Graffam
+Vickey Laduke
+Lanette Juliano
+Elna Highsmith","2014-11-01");
+INSERT INTO movie (title,posterURL,actors,release_date,synopsis) VALUES ("Suspendisse sit","images/1.jpg", "Santa Salyards
+Crista Olney
+Marlene Baylor
+Leola Tennison
+Beula Breckenridge",random_datetime(),"Suspendisse sit amet posuere erat. 
+Curabitur sed dictum felis. Proin efficitur, nisl convallis semper sollicitudin.");
+
+
+
 
 drop table genre;
 create table genre (

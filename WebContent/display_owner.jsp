@@ -16,10 +16,9 @@
 	});
 </script>
 </head>
-
 <body>
 	<div id="header"></div>
-	<div class="body" id="body">
+	<div id="container">
 		<%
 			Owner owner = (Owner) request.getAttribute("owner");
 			if (owner != null) {
@@ -81,7 +80,7 @@
 			<tbody>
 				<tr>
 					<th scope="col">id</th>
-					<th scope="col" width=100px>Action</th>
+					<th scope="col" width=200px>Action</th>
 					<th scope="col">Bookings of Movie</th>
 					<th scope="col">User(username)</th>
 					<th scope="col">of Cinema</th>

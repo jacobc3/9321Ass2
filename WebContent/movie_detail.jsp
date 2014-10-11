@@ -3,7 +3,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="model.bean.*"%>
 <%@ page import="model.handler.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="java.text.*"%>
+<!DOCTYPE HTML>
 <html>
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -12,6 +13,7 @@
 		List<Session> ses=(List<Session>)request.getAttribute("session");
 		List<Review> rev=(List<Review>)request.getAttribute("reviews");
 %>
+<%DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");%>
 <title>Movie detail of <%=m.getTitle()%></title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
@@ -23,14 +25,14 @@
 </head>
 <body>
 	<div id="header"></div>
-	<div class="body" id="body">
+	<div id="container">
 		<h1>Movie</h1>
 		<div class="movie">
 		<table width="83%" border="0">
 			<tbody>
 				<tr>
-					<td><img src="<%=m.getPosterURL()%>" width="400"
-						alt="<%=m.getTitle()%>" /></td>
+					<td><%if(m.getPosterURL() != null && m.getPosterURL()!=""){ %><img src="<%=m.getPosterURL()%>" width="400"
+						alt="<%=m.getTitle()%>" /><%} %></td>
 					<td width="100%"><table width="100%" border="0">
 							<tbody>
 								<tr>
@@ -51,7 +53,7 @@
 								</tr>
 								<tr>
 									<th scope="row">release date</th>
-									<td><%=m.getRelease_date()%></td>
+									<td><%DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");%><%=df2.format(m.getRelease_date()) %></td>
 								</tr>
 								<tr>
 									<th scope="row">synopsis</th>
@@ -92,7 +94,8 @@
 			<tbody>
 				<tr>
 					<th scope="col">Now showing on</th>
-					<th scope="col"><table width="80%" border="0">
+					<th scope="col">
+                    <table width="80%" border="0">
 							<tbody>
 								<tr>
 									<th scope="col">Cinema</th>
@@ -106,7 +109,8 @@
 								%>
 								<tr>
 									<td><%=sessions.getCinema().getName()%></td>
-									<td><a href="new_booking?id=<%=sessions.getId()%>"><%=sessions.getShowDate()%></a></td>
+									<td><%
+									String reportDate = df.format(sessions.getShowDate());%><a href="new_booking?id=<%=sessions.getId()%>"><%=reportDate%></a></td>
 									<td><%=new SessionHandler().getBookedSeatsCount(sessions
 							.getId())%>/<%=sessions.getCinema().getCapacity()%></td>
 								</tr>
@@ -150,13 +154,15 @@
 										value="Submit"></td>
 								</form>
 							</tr>
-						</table></th>
+						</table>
+                        <%
+			} // END OF IF OWNER
+		%>
+                        </th>
 				</tr>
 			</tbody>
 		</table>
-		<%
-			} // END OF IF OWNER
-		%></div>
+		</div>
 		<hr><div class="reviews">
 		<table width="80%" border="0">
 			<tbody>
@@ -187,7 +193,7 @@
 					<td><%=reviews.getTitle()%></td>
 					<td><%=reviews.getContent()%></td>
 					<td><%=display_name%></td>
-					<td><%=reviews.getPostDate()%></td>
+					<td><%=df.format(reviews.getPostDate())%></td>
 					<td><%=rating%></td>
 				</tr>
 

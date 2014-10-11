@@ -6,6 +6,7 @@
 <html>
 <head>
 <title>Login</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script> 
 $(function(){
@@ -16,8 +17,7 @@ $(function(){
 </head>
 <body>
 <div id="header"></div>
-	
-	<div id="body">
+<div id="container">
 	<p>Login</p>	
 	<%
 	String msg=(String) request.getAttribute("msg");

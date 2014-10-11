@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="header"></div>
-	<div id="body">
+<div id="container">
 	Results of <%=request.getAttribute("search") %>:
 <table width="80%" border="0">
 		<tbody>

@@ -20,7 +20,7 @@
 </head>
 <body>
 <div id="header"></div>
-<div id="body">
+<div id="container">
 <h1>Add Cinema</h1>
 <form action="new_cinema" method=GET>
   <table width="80%" border="0">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.text.*"%>
 <%@ page import="model.bean.*"%>
 <%@ page import="model.handler.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,19 +17,20 @@
 		$("#footer").load("footer.jsp");
 	});
 </script>
+<%DateFormat df = new SimpleDateFormat("yyyy-MM-dd");%>
 </head>
 <body>
-	<div id="header"></div>	
-	<div id="body">
+<div id ="header"></div>
+<div id="container">
        <div class="movie_list">
-        <table width="80%" border="0">
+        <table border="0">
         <%
         	List<Movie> showingMovies=(List<Movie>)request.getAttribute("showingmovies");
         	Iterator<Movie> iter=null;
         %>
           <tbody>
             <tr>
-              <th colspan="5" scope="col">Now Showing</th>
+              <th colspan="5" scope="col"><h1>Now Showing</h1></th>
             </tr>
             <tr>
               <th scope="col">PosterURL</th>
@@ -63,7 +65,11 @@
               		syn=synopsis;
               	}}
               %>
-              <td><img src="<%=posterURL %>" width="140" alt="<%=movie.getTitle() %>"/></td>
+              <td>
+              <%if(posterURL != null && posterURL!=""){ %>
+              <a href="movie_detail?id=<%=movie.getId() %>"><img src="<%=posterURL %>" width="140" alt="<%=movie.getTitle() %>"/></a>
+              <%} %>
+              </td>
                <td><a href="movie_detail?id=<%=movie.getId() %>"><%=movie.getTitle() %></a></td>
               <td><%=actors %></td>
               <td><%=syn %></td>
@@ -78,22 +84,22 @@
             
             %>
           </tbody></table>
-      </div>
-      <div class="movie_list"><table width="80%" border="0">
+      </div><hr>
+      <div class="movie_list"><table border="0">
         <%
         	List<Movie> commingMovies=(List<Movie>)request.getAttribute("commingmovies");
         	
         %>
           <tbody>
              <tr>
-              <th colspan="5" scope="col">Comming soon</th>
+              <th colspan="5" scope="col"><h1>Comming soon</h1></th>
             </tr>
             <tr>
               <th scope="col">PosterURL</th>
               <th scope="col">Title</th>
               <th scope="col">Actors</th>
               <th scope="col">Synopsis</th>
-              <th scope="col">Rating</th>
+              <th scope="col">Coming date</th>
             </tr>
             
             <%
@@ -120,11 +126,13 @@
               		syn=synopsis;
               	}}
               %>
-              <td><img src="<%=posterURL %>" width="140" alt="<%=movie.getTitle() %>"/></td>
+              <td><%if(posterURL != null && posterURL!=""){ %>
+              <a href="movie_detail?id=<%=movie.getId() %>"><img src="<%=posterURL %>" width="140" alt="<%=movie.getTitle() %>"/></a>
+              <%} %></td>
                <td><a href="movie_detail?id=<%=movie.getId() %>"><%=movie.getTitle() %></a></td>
               <td><%=actors %></td>
               <td><%=syn %></td>
-              <td><%=new Double(ra).intValue() %></td>
+              <td><%=df.format(movie.getRelease_date()) %></td>
             </tr>
             
             
@@ -134,10 +142,6 @@
             	}}
             
             %>
-            <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
           </tbody>
         </table>
         </div>

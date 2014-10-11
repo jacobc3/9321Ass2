@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div id="header"></div>
-	<div id="body">
+	<div id="container">
 		<%
 			User user = (User) request.getAttribute("user");
 

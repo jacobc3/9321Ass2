@@ -88,6 +88,8 @@ public class RequestServlet extends HttpServlet {
 			this.editReview(request, response);
 		} else if (url.matches("(.*)/new_movie")) {
 			this.newMovie(request, response);
+		} else if (url.matches("(.*)/9321Ass2/")) {
+			this.index(request, response);
 		}
 		
 		//SHOULD NOT BE GET'ed
@@ -692,7 +694,7 @@ public class RequestServlet extends HttpServlet {
 		
 
 		List<Movie> movies = mi.getShowingMovies();
-		System.out.println(movies.toString());
+		//System.out.println(movies.toString());
 		Collections.sort(movies, new Comparator<Movie>() {
 			public int compare(Movie m1, Movie m2) {
 				double mr1 = mi.getAveRatingByMovie(m1.getId());
@@ -721,7 +723,7 @@ public class RequestServlet extends HttpServlet {
 			}
 		});
 		request.setAttribute("commingmovies", cmovies);
-		System.out.println(cmovies.size());
+//		System.out.println(cmovies.size());
 
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);

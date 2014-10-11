@@ -11,13 +11,13 @@
 <script>
 	$(function() {
 		$("#header").load("header.jsp");
-		$("#footer").load("footer.jsp");
+		$(".footer").load("footer.jsp");
 	});
 </script>
 </head>
 <body>
 <div id="header"></div>
-<div class="body" id="body">
+<div id="container">
 <h1>Add Booking</h1>
 <% String username = (String) request.getSession()
 			.getAttribute("user");
@@ -67,4 +67,4 @@
   <%} else {
   out.println("Please <a href=\"/index\">log in</a> first");} %>
 </div>
-<div id="footer"></div>
+<div class="footer"></div>

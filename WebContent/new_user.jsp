@@ -15,7 +15,7 @@
 	});
 </script>
 <div id="footer"></div>
-<div class="body" id="body">
+<div id="container">
 <h1>Add User</h1>
 <%
 	String msg=(String) request.getAttribute("msg");

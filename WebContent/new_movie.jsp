@@ -19,7 +19,7 @@
 <title>Add Movie</title>
 </head>
 <body><div id="header"></div>
-<div id="body">
+<div id="container">
 <h1>Add Movie</h1>
 <form action="save_movie" method=POST>
   <table width="80%" border="0">
