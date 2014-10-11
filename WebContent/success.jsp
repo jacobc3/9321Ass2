@@ -18,7 +18,7 @@
 </head>
 <body><div id="header"></div>
 <center>
-<h1> Mail Sent Successfully! Check receiver inbox</h1>
+<h1> Success!</h1>
 <h1> return to index in 5 seconds</h1>
 </center>
 </body>
