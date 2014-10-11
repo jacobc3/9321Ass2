@@ -120,6 +120,7 @@ public interface MovieHandlerInterface {
 	 * @param date
 	 */
 	public void setReleaseDate(int movieId, Date date);
+	public List<Movie> getNoDateMovies();
 	public Genre getGenreById(int genre_id);
 	
 }

@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.text.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -103,8 +105,16 @@ public class RequestServlet extends HttpServlet {
 		} else if (url.matches("(.*)/save_booking(.*)")) {
 			this.saveBooking(request, response);
 		}
+		
+		//SHOULD NOT BE GET'ed
+		
+		 else if (url.matches("(.*)/set_release_date(.*)")) {
+				this.setReleaseDate(request, response);
+		}
 
 	}
+
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -135,9 +145,41 @@ public class RequestServlet extends HttpServlet {
 			this.saveBooking(request, response);
 		} else if (url.matches("(.*)/new_cinema(.*)")) {
 			this.newCinema(request, response);
+		} else if (url.matches("(.*)/set_release_date(.*)")) {
+			this.setReleaseDate(request, response);
 		}
 	}
+	
+	/**
+	 * @author SephyZhou
+	 * @param request
+	 * @param response
+	 * @throws IOException 
+	 */
+	private void setReleaseDate(HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		String movie_id = request.getParameter("movie_id");
+		String date = request.getParameter("date");
+		Date d_date = null;
+		try {
+			d_date = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).parse(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		System.out.println(d_date);
+		
+		
+		new MovieHandler().setReleaseDate(Integer.parseInt(movie_id), d_date);
+		PrintWriter out = response.getWriter();
+		out.println("set Release Date successful. return to <a href=\"display_owner?ownername=admin\">owner detail</a>");
+	}
 
+	/**
+	 * @author SephyZhou
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
 	private void saveReview(HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
 		ReviewHandlerInterface rh = new ReviewHandler();
@@ -453,6 +495,7 @@ public class RequestServlet extends HttpServlet {
 		request.setAttribute("owner", owner);
 		request.setAttribute("bookings", new BookingHandler()
 				.getBookingsByStatus(OrderStatus.Processing));
+		request.setAttribute("movies", new MovieHandler().getNoDateMovies());
 		RequestDispatcher view = request
 				.getRequestDispatcher("display_owner.jsp");
 		view.forward(request, response);

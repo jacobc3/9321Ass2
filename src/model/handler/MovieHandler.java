@@ -424,4 +424,17 @@ public class MovieHandler implements MovieHandlerInterface {
 		return m;
 	}
 
+	public List<Movie> getNoDateMovies() {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "select * from movie where release_date IS NULL";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.addEntity(Movie.class);
+		List<Movie> data = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return data;
+	}
+
 }

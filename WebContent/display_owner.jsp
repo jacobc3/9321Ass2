@@ -27,8 +27,8 @@
 						"owner");
 				if (ownername != null) {
 		%>
-		<h1>Your Profile</h1>
-	  <table width="80%" border="0">
+		<h2>Your Profile</h2>
+		<table width="80%" border="0">
 			<tbody>
 
 				<tr>
@@ -47,8 +47,8 @@
 			</tbody>
 		</table>
 		<hr>
-		<br>
-	  <table width="80%" border="0">
+		<h2>new action</h2>
+		<table width="80%" border="0">
 			<tbody>
 				<tr>
 					<th width="28%" scope="col">Type</th>
@@ -72,38 +72,83 @@
 			</tbody>
 		</table>
 		<hr>
-		<br>
-<%List<Booking> bs = (List<Booking>) request.getAttribute("bookings");
-if(bs!=null && bs.size() > 0){ %>
+		<h2>Booking actions</h2>
+		<%
+			List<Booking> bs = (List<Booking>) request
+							.getAttribute("bookings");
+		%>
 		<table width="80%" border="0">
 			<tbody>
-				<tr><th scope="col">id</th>
+				<tr>
+					<th scope="col">id</th>
 					<th scope="col" width=100px>Action</th>
 					<th scope="col">Bookings of Movie</th>
 					<th scope="col">User(username)</th>
 					<th scope="col">of Cinema</th>
 					<th scope="col">of Session</th>
 				</tr>
-				<% for(Booking b : bs){ %>
-				<tr><td><%=b.getId()%></td>
+				<%
+					for (Booking b : bs) {
+				%>
+				<tr>
+					<td><%=b.getId()%></td>
 					<td>
 						<form method="GET">
-							<input type="hidden" name="booking_id" value="<%=b.getId()%>"> <input
-								type="submit" id="submit" formaction="approve" value="Approve"><input
-								type="submit" id="submit" formaction="decline" value="Decline">
+							<input type="hidden" name="booking_id" value="<%=b.getId()%>">
+							<input type="submit" id="submit" formaction="approve"
+								value="Approve"><input type="submit" id="submit"
+								formaction="decline" value="Decline">
 						</form>
 					</td>
-					<td><%=b.getSession().getMovie().getTitle() %></td>
-					<td><%=b.getUser().getUsername() %></td>
-					<td><%=b.getSession().getCinema().getName() %></td>
-					<td><%=b.getSession().getShowDate() %></td>
+					<td><%=b.getSession().getMovie().getTitle()%></td>
+					<td><%=b.getUser().getUsername()%></td>
+					<td><%=b.getSession().getCinema().getName()%></td>
+					<td><%=b.getSession().getShowDate()%></td>
 				</tr>
-				<%} %>
+				<%
+					}
+				%>
 			</tbody>
 		</table>
-		<%} else {
-			out.println("no bookings are processing");
-		} %>
+		<hr>
+		<h2>Set Release date</h2>
+		<%
+			List<Movie> ms = (List<Movie>) request
+							.getAttribute("movies");
+					if (ms != null && ms.size() > 0) {
+		%>
+		
+			<table border="0" >
+				<tbody>
+					<tr>
+						<th width="52" scope="col">Movie id</th>
+						<th width="69" scope="col">Movie Title</th>
+						<th width="144" scope="col">Date</th>
+						<th scope="col" width=245>Action</th>
+					</tr>
+					<%
+						for (Movie m : ms) {
+					%>
+					<tr>
+						<td><%=m.getId()%></td>
+						<td><%=m.getTitle()%></td>
+						<form method="GET" action="set_release_date">
+						<td><input type="date" name="date" id="date"></td>
+						<td><input type="hidden" name="movie_id"
+							value="<%=m.getId()%>"> <input type="submit" value="Submit"></td>
+						</form>
+					</tr>
+					<%
+						}
+					%>
+				</tbody>
+			</table>
+		
+		<%
+			} else {
+						out.println("no bookings are processing");
+					}
+		%>
 		<%
 			} else {
 					out.println("no authorization to view this page");
@@ -116,6 +161,7 @@ if(bs!=null && bs.size() > 0){ %>
 
 			}
 		%>
+
 	</div>
 
 	<div id="footer"></div>
