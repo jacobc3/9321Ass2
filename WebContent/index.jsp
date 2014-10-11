@@ -83,7 +83,7 @@
               	}}
               %>
               <td>
-              <%if(posterURL != null && posterURL!=""){ %>
+              <%if(posterURL != null && posterURL.compareTo("")!=0){ %>
               <a href="movie_detail?id=<%=movie.getId() %>"><img src="<%=posterURL %>" width="140" alt="<%=movie.getTitle() %>"/></a>
               <%} %>
               </td>
@@ -143,7 +143,7 @@
               		syn=synopsis;
               	}}
               %>
-              <td><%if(posterURL != null && posterURL!=""){ %>
+              <td><%if(posterURL != null && posterURL.compareTo("")!=0){ %>
               <a href="movie_detail?id=<%=movie.getId() %>"><img src="<%=posterURL %>" width="140" alt="<%=movie.getTitle() %>"/></a>
               <%} %></td>
                <td><a href="movie_detail?id=<%=movie.getId() %>"><%=movie.getTitle() %></a></td>

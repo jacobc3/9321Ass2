@@ -23,7 +23,7 @@
 			.getAttribute("user");
 			if(username!=null){
  %>
-<form action="save_booking" method=GET>
+<form action="save_booking" method="POST">
   <table width="80%" border="0">
     <tbody>
     <%

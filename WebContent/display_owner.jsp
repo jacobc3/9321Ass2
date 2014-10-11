@@ -92,7 +92,7 @@
 				<tr>
 					<td><%=b.getId()%></td>
 					<td>
-						<form method="GET">
+						<form method="POST">
 							<input type="hidden" name="booking_id" value="<%=b.getId()%>">
 							<input type="submit" id="submit" formaction="approve"
 								value="Approve"><input type="submit" id="submit"
@@ -131,7 +131,7 @@
 					<tr>
 						<td><%=m.getId()%></td>
 						<td><%=m.getTitle()%></td>
-						<form method="GET" action="set_release_date">
+						<form method="POST" action="set_release_date">
 						<td><input type="date" name="date" id="date"></td>
 						<td><input type="hidden" name="movie_id"
 							value="<%=m.getId()%>"> <input type="submit" value="Submit"></td>

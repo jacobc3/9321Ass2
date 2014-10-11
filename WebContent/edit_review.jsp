@@ -26,7 +26,7 @@
 			Review review = ri.getReviewsById(Integer.parseInt(sid));
 			request.setAttribute("id", sid);
 		%>
-		<form action="edit_review">
+		<form action="edit_review" method="POST">
 			<table width="80%" border="0">
 				<tbody>
 					<tr>
@@ -37,20 +37,20 @@
 					</tr>
 					<tr>
 						<th scope="row"><label>Content</label></th>
-						<td><textarea name="content" cols="45" rows="5"
-								value="<%=review.getContent()%> "></textarea></td>
+						<td><textarea name="content" cols="45" rows="5"><%=review.getContent()%></textarea></td>
 					</tr>
 					<tr>
+					<%int rating = review.getRating(); %>
 						<th scope="row">Rating</th>
-						<td><label> <input type="radio" name="rating"
-								value="1"> 1
-						</label> <label> <input type="radio" name="rating" value="2">
+						<td>
+						<label> <input type="radio" name="rating"	value="1" <%=(rating==1)?"checked":"" %>> 1
+						</label> <label> <input type="radio" name="rating" value="2" <%=(rating==2)?"checked":"" %>>
 								2
-						</label> <label> <input type="radio" name="rating" value="3">
+						</label> <label> <input type="radio" name="rating" value="3" <%=(rating==3)?"checked":"" %>>
 								3
-						</label> <label> <input type="radio" name="rating" value="4">
+						</label> <label> <input type="radio" name="rating" value="4" <%=(rating==4)?"checked":"" %>>
 								4
-						</label> <label> <input type="radio" name="rating" value="5">
+						</label> <label> <input type="radio" name="rating" value="5" <%=(rating==5)?"checked":"" %>>
 								5
 						</label></td>
 					</tr>

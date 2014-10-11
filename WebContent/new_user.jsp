@@ -23,7 +23,7 @@
 %>
 <font color="red"> <%=msg %></font>
 <%} %>
-<form action="new_user" method="post">
+<form action="new_user" method="POST">
   <table width="80%" border="0">
     <tbody>
     <tr>

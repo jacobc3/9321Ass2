@@ -22,7 +22,7 @@
 <div id="header"></div>
 <div id="container">
 <h1>Add Cinema</h1>
-<form action="new_cinema" method=GET>
+<form action="new_cinema" method="POST">
   <table width="80%" border="0">
     <tbody>
       

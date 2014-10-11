@@ -21,7 +21,7 @@
 <body><div id="header"></div>
 <div id="container">
 <h1>Add Movie</h1>
-<form action="save_movie" method="POST" enctype="multipart/form-data">
+<form action="save_movie" method="POST">
   <table width="80%" border="0">
     <tbody>
     <tr>

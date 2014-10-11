@@ -81,10 +81,12 @@
 		<p>&nbsp;</p>
 		<table width="80%" border="0">
 			<tbody>
-				<tr>
+				<tr><th scope="col">id</th>
 					<th scope="col">Reviews(title)</th>
 					<th scope="col">of Movie</th>
 					<th scope="col">Rating</th>
+					<th scope="col">time</th>
+					<th scope="col"></th>
 				</tr>
 
 				<%
@@ -104,10 +106,11 @@
 								rating = rate + "";
 							}
 				%>
-				<tr>
+				<tr><td><%=review.getId() %>
 					<td><%=title%></td>
 					<td><a href="movie_detail?id=<%=movieid%>"><%=movieTitle%>~~</a></td>
 					<td><%=rating%></td>
+					<td><%=review.getPostDate() %>
 					<td><a href="edit_review.jsp?id=<%=review.getId() %>" %>Edit</td>
 				</tr>
 

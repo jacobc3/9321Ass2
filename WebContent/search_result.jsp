@@ -21,6 +21,7 @@
 <div id="header"></div>
 <div id="container">
 	Results of <%=request.getAttribute("search") %>:
+	 <div class="movie_list">
 <table width="80%" border="0">
 		<tbody>
 			<tr>
@@ -57,7 +58,7 @@
 				%>
 				<td><%=s %></td>
 				
-                <td><img src="<%=m.getPosterURL() %>" width="200" alt="<%=m.getTitle() %>"/></td>
+                <td><%if(m.getPosterURL() != null && m.getPosterURL().compareTo("")!=0){ %><img src="<%=m.getPosterURL() %>" width="200" alt="<%=m.getTitle() %>"/><%} %></td>
                 <td><%=new MovieHandler().getAveRatingByMovie(m.getId()) %></td>
                 <td><%=m.getActors() %></td>
 			</tr>
@@ -69,5 +70,6 @@
 
 		</tbody>
 	</table>
+	</div>
 	</div>
 <div id="footer"></div>

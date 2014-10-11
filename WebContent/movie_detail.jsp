@@ -31,7 +31,7 @@
 		<table width="83%" border="0">
 			<tbody>
 				<tr>
-					<td><%if(m.getPosterURL() != null && m.getPosterURL()!=""){ %><img src="<%=m.getPosterURL()%>" width="400"
+					<td><%if(m.getPosterURL() != null && m.getPosterURL().compareTo("")!=0){ %><img src="<%=m.getPosterURL()%>" width="400"
 						alt="<%=m.getTitle()%>" /><%} %></td>
 					<td width="100%"><table width="100%" border="0">
 							<tbody>
@@ -133,7 +133,7 @@
 								<th scope="col">submit</th>
 							</tr>
 							<tr>
-								<form method="GET" action="save_session">
+								<form method="POST" action="save_session">
 									<td>
 										<%
 											List<Cinema> cinemas = new CinemaHandler().getAllCinemas();

@@ -9,7 +9,7 @@
 <head><link rel="stylesheet" href="style.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Insert title here</title>
+<title>Edit User</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 	$(function() {
@@ -35,35 +35,35 @@
 		<table width="80%" border="0">
 			<tbody>
 				<tr>
-					<th scope="row">Username</th>
+					<th scope="row" style="width: 179px; ">Username*</th>
 					<td><label id="username" value="uu"><%=u.getUsername() %></label>&nbsp; <input
 						type="hidden" name="user_name" value="<%=u.getUsername()%>"></td>
       </tr>
       <tr>
-        <th scope="row">Email</th>
-        <td><input type="text" name="textfield2" id="textfield2"></td>
+        <th scope="row">Email*</th>
+        <td><input type="text" name="email" value="<%=u.getEmail()%>"></td>
       </tr>
       
       <tr>
         <th scope="row">Nickname</th>
-        <td><input type="text" name="textfield6" id="textfield6"></td>
+        <td><input type="text" name="nickname" value="<%=u.getNickname()%>"></td>
       </tr>
       
       <tr>
-        <th scope="row">Password</th>
-        <td><input type="password" name="textfield3" id="textfield3">          <label
+        <th scope="row">Password*<br>(Keep empty if don't change)</th>
+        <td><input type="text" name="password" id="textfield3"><label
 						for="textfield2"></label></td>
       </tr>
       <tr>
         <th scope="row">First name</th>
         <td><label for="textfield">
-          <input type="text" name="textfield4" id="textfield4">
+          <input type="text" name="fname" value="<%=u.getFirstname() %>">
         </label></td>
       </tr>
       <tr>
         <th scope="row">Last Name</th>
         <td><label for="textfield3">
-          <input type="text" name="textfield5" id="textfield5">
+          <input type="text" name="lname" value="<%=u.getLastname() %>">
         </label></td>
       </tr>
       

@@ -50,15 +50,12 @@ public class RequestServlet extends HttpServlet {
 		String url = request.getRequestURL().toString();
 		PrintWriter out = response.getWriter();
 		System.out.println("url is\t" + url);
-
 		if (url.matches("(.*)/index(.*)")) {
 			this.index(request, response);
 
 		} else if (url.matches("(.*)/movie_detail(.*)")) {
 			this.movieDetail(request, response);
-		} else if (url.matches("(.*)/new_user(.*)")) {
-			this.newUser(request, response);
-		}else if (url.matches("(.*)/display_user(.*)")) {
+		} else if (url.matches("(.*)/display_user(.*)")) {
 			this.userDetail(request, response);
 		} else if (url.matches("(.*)/display_owner(.*)")) {
 			this.ownerDetail(request, response);
@@ -66,17 +63,13 @@ public class RequestServlet extends HttpServlet {
 			this.login(request, response);
 		} else if (url.matches("(.*)/logout(.*)")) {
 			this.logout(request, response);
-		}
-
-		else if (url.matches("(.*)/new_movie(.*)")) {
+		}else if (url.matches("(.*)/new_movie(.*)")) {
 			this.newMovie(request, response);
 		} else if (url.matches("(.*)/edit_movie(.*)")) {
 			this.editMovie(request, response);
 		} else if (url.matches("(.*)/movie_detail(.*)")) {
 			this.movieDetail(request, response);
 
-		}  else if (url.matches("(.*)/new_cinema(.*)")) {
-			this.newCinema(request, response);
 		} else if (url.matches("(.*)/search(.*)")) {
 			this.search(request, response);
 		}else if (url.matches("(.*)/new_booking(.*)")) {
@@ -84,33 +77,16 @@ public class RequestServlet extends HttpServlet {
 			 
 		} else if (url.matches("(.*)/new_review(.*)")) {
 			this.newReview(request, response);
-		} else if (url.matches("(.*)/edit_review(.*)")) {
-			this.editReview(request, response);
-		} else if (url.matches("(.*)/new_movie")) {
+		}else if (url.matches("(.*)/new_movie")) {
 			this.newMovie(request, response);
 		} else if (url.matches("(.*)/9321Ass2/")) {
 			this.index(request, response);
 		} else if (url.matches("(.*)/activate(.*)")) {
 			this.activateUser(request, response);
-		}
+		} 
 		//SHOULD NOT BE GET'ed
-		
-		 else if (url.matches("(.*)/set_release_date(.*)")) {
-				this.setReleaseDate(request, response);
-		} else if (url.matches("(.*)/save_session(.*)")) {
-			this.saveSession(request, response);
-		} else if (url.matches("(.*)/approve(.*)")) {
-			this.approveBooking(request, response);
-		} else if (url.matches("(.*)/decline(.*)")) {
-			this.declineBooking(request, response);
-		} else if (url.matches("(.*)/save_booking(.*)")) {
-			this.saveBooking(request, response);
-		} else if (url.matches("(.*)/edit_cinema(.*)")) {
+		 else if (url.matches("(.*)/edit_cinema(.*)")) {
 			this.editCinema(request, response);
-		} else if (url.matches("(.*)/confirm_registration(.*)")) {
-			this.confirmRegistration(request, response);
-		} else if (url.matches("(.*)/edit_user(.*)")) {
-			this.editUser(request, response);
 		} 
 
 	}
@@ -134,25 +110,34 @@ public class RequestServlet extends HttpServlet {
 
 		if (url.matches("(.*)/index")) {
 			this.index(request, response);
-		} else if (url.matches("(.*)/movie_detail(.*)")) {
-			this.movieDetail(request, response);
-		} else if (url.matches("(.*)/new_user(.*)")) {
+		} else if (url.matches("(.*)/new_user")) {
 			this.newUser(request, response);
-		} else if (url.matches("(.*)/login(.*)")) {
+		} else if (url.matches("(.*)/login")) {
 			this.login(request, response);
 		} else if (url.matches("(.*)/save_movie")) {
 			this.saveMovie(request, response);
-		} else if (url.matches("(.*)/save_review(.*)")) {
+		} else if (url.matches("(.*)/save_review")) {
 			this.saveReview(request, response);
-		} else if (url.matches("(.*)/save_booking(.*)")) {
+		} else if (url.matches("(.*)/save_booking")) {
 			this.saveBooking(request, response);
-		} else if (url.matches("(.*)/new_cinema(.*)")) {
+		} else if (url.matches("(.*)/new_cinema")) {
 			this.newCinema(request, response);
-		} else if (url.matches("(.*)/set_release_date(.*)")) {
+		} else if (url.matches("(.*)/set_release_date")) {
 			this.setReleaseDate(request, response);
-		} else if (url.matches("(.*)/edit_user(.*)")) {
+		} else if (url.matches("(.*)/edit_user")) {
 			this.editUser(request, response);
+		} else if (url.matches("(.*)/approve")) {
+			this.approveBooking(request, response);
+		} else if (url.matches("(.*)/decline")) {
+			this.declineBooking(request, response);
+		} else if (url.matches("(.*)/save_session")) {
+			this.saveSession(request, response);
+		}else if (url.matches("(.*)/edit_review")) {
+			this.editReview(request, response);
 		}
+		
+		
+		
 	}
 	
 	private void activateUser(HttpServletRequest request,
@@ -160,7 +145,8 @@ public class RequestServlet extends HttpServlet {
 		int user_id = Integer.parseInt(request.getParameter("user_id"));
 		User u = new UserHandler().getUserById(user_id);
 		new UserHandler().confirmRegistration(user_id);
-		PrintWriter out = response.getWriter();		
+		PrintWriter out = response.getWriter();	
+		response.setContentType("text/html"); 
 		out.println("set user detail successful. return to <a href=\"display_user?username="+u.getUsername()+"\">user detail</a>");
 	}
 	
@@ -185,6 +171,7 @@ public class RequestServlet extends HttpServlet {
 		
 		new MovieHandler().setReleaseDate(Integer.parseInt(movie_id), d_date);
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/html"); 
 		out.println("set Release Date successful. return to <a href=\"display_owner?ownername=admin\">owner detail</a>");
 	}
 
@@ -216,6 +203,7 @@ public class RequestServlet extends HttpServlet {
 				.getParameter("user_id"))));
 		rh.addReview(r);
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/html"); 
 		out.println("save Review successful. return to <a href=\"index\">Index</a>");
 
 	}
@@ -242,14 +230,17 @@ public class RequestServlet extends HttpServlet {
 		m.setPosterURL(posterURL);
 		m.setSynopsis(synopsis);
 		Set<Genre> genres = new HashSet<Genre>();
-		for (String id : checkedIds) {
-			Genre g = mh.getGenreById(Integer.parseInt(id));
-			genres.add(g);
-			System.out.println("id\t" + id + "\tname" + g.getName());
+		if(checkedIds!=null){
+			for (String id : checkedIds) {
+				Genre g = mh.getGenreById(Integer.parseInt(id));
+				genres.add(g);
+				System.out.println("id\t" + id + "\tname" + g.getName());
+			}
 		}
 		m.setGenres(genres);
 		mh.addMovie(m);
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/html"); 
 		out.println("save Movie successful. return to <a href=\"index\">Index</a>");
 	}
 
@@ -279,6 +270,7 @@ public class RequestServlet extends HttpServlet {
 		new SessionHandler().addSession(s);
 		
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/html"); 
 		out.println("save Session successful. return to <a href=\"index\">Index</a>");
 	}
 
@@ -366,6 +358,7 @@ public class RequestServlet extends HttpServlet {
 		c.setAmenities(am);		
 		ci.addCinema(c);		
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/html"); 
 		out.println("save new cinema successful. return to <a href=\"display_owner?ownername=admin\">owner detail</a>");
 
 	}
@@ -404,19 +397,15 @@ public class RequestServlet extends HttpServlet {
 		if(countNum<si.getRemainingSeatsCount(b.getSession().getId())){
 			bh.addBooking(b);
 			PrintWriter out = response.getWriter();
+			response.setContentType("text/html"); 
 			out.println("save Booking successful. return to <a href=\"index\">Index</a>");
 		} else {
 			PrintWriter out = response.getWriter();
+			response.setContentType("text/html"); 
 			out.println("save Booking not successful. Ordered to much. return to <a href=\"index\">Index</a>");
 		}
 
 	}
-
-	private void confirmRegistration(HttpServletRequest request,
-			HttpServletResponse response) {
-
-	}
-
 	private void logout(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getSession().removeAttribute("user");
@@ -424,6 +413,7 @@ public class RequestServlet extends HttpServlet {
 		request.getSession().invalidate();
 		response.setContentType("text/html; charset=gb2312");
 		PrintWriter out = response.getWriter();
+		response.setContentType("text/html"); 
 		out.println("log out successful. return to <a href=\"index\">Index</a>");
 	}
 
@@ -534,9 +524,11 @@ public class RequestServlet extends HttpServlet {
 		if (b != null) {
 			bh.declineBooking(booking_id);
 			PrintWriter out = response.getWriter();
+			response.setContentType("text/html"); 
 			out.println("decline booking successful. return to <a href=\"display_owner?ownername=admin\">owner detail</a>");
 		} else {
 			PrintWriter out = response.getWriter();
+			response.setContentType("text/html"); 
 			out.println("booking not exist. return to <a href=\"index\">Index</a>");
 		}
 
@@ -550,9 +542,11 @@ public class RequestServlet extends HttpServlet {
 		if (b != null) {
 			bh.approveBooking(booking_id);
 			PrintWriter out = response.getWriter();
+			response.setContentType("text/html"); 
 			out.println("approve booking successful. return to <a href=\"display_owner?ownername=admin\">owner detail</a>");
 		} else {
 			PrintWriter out = response.getWriter();
+			response.setContentType("text/html"); 
 			out.println("booking not exist. return to <a href=\"index\">Index</a>");
 		}
 
@@ -567,16 +561,17 @@ public class RequestServlet extends HttpServlet {
 	private void editUser(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("user_name");
-		String email = request.getParameter("textfield2");
-		String password = request.getParameter("textfield3");
-		String fname = request.getParameter("textfield4");
-		String lname = request.getParameter("textfield5");
-		String nickname=request.getParameter("textfield3");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
+		String nickname=request.getParameter("nickname");
 		System.out.println(username);
 		if(username!=null){
 			
 			UserHandlerInterface ui = new UserHandler();
-			User u=ui.getUserByUsername(username);
+			User u = ui.getUserByUsername(username);
+			
 			if(email!=null && email.matches("^\\w+@\\w+\\.*")){
 				u.setEmail(email);
 			}
@@ -586,13 +581,13 @@ public class RequestServlet extends HttpServlet {
 			if(fname!=null && !fname.isEmpty()){
 				u.setFirstname(fname);
 			}
-			if(lname!=null&& lname.isEmpty()){
+			if(lname!=null&& !lname.isEmpty()){
 				u.setLastname(lname);
 			}
-			if(nickname!=null && nickname.isEmpty()){
+			if(nickname!=null && !nickname.isEmpty()){
 				u.setNickname(nickname);
 			}
-			System.out.println("heehrherhehrhre");
+			
 			ui.updateUser(u);
 			response.setContentType("text/html; charset=gb2312");
 			response.sendRedirect("display_user?username="+u.getUsername());
