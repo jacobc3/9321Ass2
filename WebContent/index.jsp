@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*"%>
 <%@ page import="model.bean.*"%>
+<%@ page import="model.handler.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,14 +35,17 @@
               <th scope="col">Title</th>
               <th scope="col">Actors</th>
               <th scope="col">Synopsis</th>
-              <th scope="col">&nbsp;</th>
+              <th scope="col">Rating</th>
             </tr>
             
             <%
             	if(showingMovies!=null){
+            		MovieHandler mi=new MovieHandler();
             	iter=showingMovies.iterator();
             	while(iter.hasNext()){
             		Movie movie=iter.next();
+            		
+            		double ra=mi.getAveRatingByMovie(movie.getId());
             		
             %>		
             	<tr>
@@ -63,7 +67,7 @@
                <td><a href="movie_detail?id=<%=movie.getId() %>"><%=movie.getTitle() %></a></td>
               <td><%=actors %></td>
               <td><%=syn %></td>
-              <td>&nbsp;</td>
+              <td><%=new Double(ra).intValue() %></td>
             </tr>
             
             
@@ -89,14 +93,16 @@
               <th scope="col">Title</th>
               <th scope="col">Actors</th>
               <th scope="col">Synopsis</th>
-              <th scope="col">&nbsp;</th>
+              <th scope="col">Rating</th>
             </tr>
             
             <%
             if(commingMovies!=null){
+            	MovieHandler mi=new MovieHandler();
             	iter=commingMovies.iterator();
             	while(iter.hasNext()){
             		Movie movie=iter.next();
+            		double ra=mi.getAveRatingByMovie(movie.getId());
             		
             %>		
             	<tr>
@@ -118,7 +124,7 @@
                <td><a href="movie_detail?id=<%=movie.getId() %>"><%=movie.getTitle() %></a></td>
               <td><%=actors %></td>
               <td><%=syn %></td>
-              <td>&nbsp;</td>
+              <td><%=new Double(ra).intValue() %></td>
             </tr>
             
             
