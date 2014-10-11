@@ -41,29 +41,29 @@
       </tr>
       <tr>
         <th scope="row">Email</th>
-        <td><input type="text" name="textfield2" id="textfield2"></td>
+        <td><input type="text" name="email" id="textfield2"></td>
       </tr>
       
       <tr>
         <th scope="row">Nickname</th>
-        <td><input type="text" name="textfield6" id="textfield6"></td>
+        <td><input type="text" name="nickname" id="textfield6"></td>
       </tr>
       
       <tr>
         <th scope="row">Password</th>
-        <td><input type="password" name="textfield3" id="textfield3">          <label
+        <td><input type="password" name="password" id="textfield3">          <label
 						for="textfield2"></label></td>
       </tr>
       <tr>
         <th scope="row">First name</th>
         <td><label for="textfield">
-          <input type="text" name="textfield4" id="textfield4">
+          <input type="text" name="firstname" id="textfield4">
         </label></td>
       </tr>
       <tr>
         <th scope="row">Last Name</th>
         <td><label for="textfield3">
-          <input type="text" name="textfield5" id="textfield5">
+          <input type="text" name="lastname" id="textfield5">
         </label></td>
       </tr>
       

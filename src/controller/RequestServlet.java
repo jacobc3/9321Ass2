@@ -619,11 +619,11 @@ public class RequestServlet extends HttpServlet {
 	private void editUser(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("user_name");
-		String email = request.getParameter("textfield2");
-		String password = request.getParameter("textfield3");
-		String fname = request.getParameter("textfield4");
-		String lname = request.getParameter("textfield5");
-		String nickname=request.getParameter("textfield3");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		String fname = request.getParameter("firstname");
+		String lname = request.getParameter("lastname");
+		String nickname=request.getParameter("nickname");
 		System.out.println(username);
 		if(username!=null){
 			
