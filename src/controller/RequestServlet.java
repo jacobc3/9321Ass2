@@ -281,7 +281,6 @@ public class RequestServlet extends HttpServlet {
 
 	private void editReview(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-//		String sid=(String) request.getAttribute("id");
 	
 		String sid=request.getParameter("review_id");
 		String title=request.getParameter("title");
@@ -304,8 +303,6 @@ public class RequestServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("success.jsp");
 			view.forward(request, response);
 			
-		}else{
-			System.out.println("fjdlasjfkldjalfjd");
 		}
 		
 		
@@ -329,12 +326,12 @@ public class RequestServlet extends HttpServlet {
 		MovieHandlerInterface mi = new MovieHandler();
 		if (type.equals("title")) {
 			List<Movie> movies = mi.searchByTitle(search);
-			System.out.println("number is: " + movies.size());
+			//System.out.println("number is: " + movies.size());
 			request.setAttribute("movies", movies);
 		} else if (type.equals("genre")) {
 			List<Movie> movies = mi.searchByGenre(search);
 			request.setAttribute("movies", movies);
-			System.out.println("number is: " + movies.size());
+			//System.out.println("number is: " + movies.size());
 		}
 		request.setAttribute("search", search);
 		request.setAttribute("type", type);
@@ -346,7 +343,6 @@ public class RequestServlet extends HttpServlet {
 
 	private void editCinema(HttpServletRequest request,
 			HttpServletResponse response) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -410,7 +406,6 @@ public class RequestServlet extends HttpServlet {
 
 	private void confirmRegistration(HttpServletRequest request,
 			HttpServletResponse response) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -418,6 +413,7 @@ public class RequestServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.getSession().removeAttribute("user");
 		request.getSession().removeAttribute("owner");
+		request.getSession().invalidate();
 		response.setContentType("text/html; charset=gb2312");
 		PrintWriter out = response.getWriter();
 		out.println("log out successful. return to <a href=\"index\">Index</a>");
@@ -484,71 +480,6 @@ public class RequestServlet extends HttpServlet {
 			view.forward(request, response);
 		}
 
-		// if(username!=null && password!=null && type!=null){
-		// System.out.println(username+" "+password+" "+type);
-		// if(type.equals("radio1")){
-		// UserHandlerInterface ui=new UserHandler();
-		// if(ui.isExist(username)){
-		// if(ui.isMatch(username, password)){
-		// request.getSession().setAttribute("user", username);
-		// // RequestDispatcher view=request.getRequestDispatcher("index.jsp");
-		// // view.forward(request, response);
-		// response.setContentType("text/html; charset=gb2312");
-		// response.sendRedirect("index");
-		// }else{
-		// //error msg
-		// System.out.println("here1");
-		// }
-		// }else{
-		// //error msg
-		// System.out.println("here2");
-		// }
-		// }else if(type.equals("radio2")){
-		// OwnerHandlerInterface oi=new OwnerHandler();
-		// if(oi.isExist(username)){
-		// if(oi.isMatch(username, password)){
-		// request.getSession().setAttribute("owner",username);
-		// // RequestDispatcher view=request.getRequestDispatcher("index.jsp");
-		// // view.forward(request, response);
-		// response.setContentType("text/html; charset=gb2312");
-		// response.sendRedirect("index");
-		// }else{
-		// //error msg
-		// System.out.println("here3");
-		// }
-		// }else{
-		// //error msg
-		// System.out.println("here4");
-		// }
-		// }else{
-		// RequestDispatcher view=request.getRequestDispatcher("index.jsp");
-		// view.forward(request, response);
-		// }
-		// }
-		//
-		//
-		//
-		//
-
-		// UserHandlerInterface ui=new UserHandler();
-		// if(ui.isExist(username)){
-		// if(ui.isMatch(username, password)){
-		// RequestDispatcher view = request
-		// .getRequestDispatcher("index.jsp");
-		// view.forward(request, response);
-		// }else{
-		// request.setAttribute("msg", "1");
-		// RequestDispatcher view = request
-		// .getRequestDispatcher("login.jsp");
-		// view.forward(request, response);
-		// }
-		//
-		// }else{
-		// request.setAttribute("msg", "1");
-		// RequestDispatcher view = request
-		// .getRequestDispatcher("login.jsp");
-		// view.forward(request, response);
-		// }
 
 	}
 
@@ -638,7 +569,7 @@ public class RequestServlet extends HttpServlet {
 			
 			UserHandlerInterface ui = new UserHandler();
 			User u=ui.getUserByUsername(username);
-			if(email!=null && email.matches("^\\w+@\\w+\\.(com|cn)")){
+			if(email!=null && email.matches("^\\w+@\\w+\\.*")){
 				u.setEmail(email);
 			}
 			if(password!=null){
@@ -667,46 +598,18 @@ public class RequestServlet extends HttpServlet {
 		
 				
 		
-		
-		
-		
-		
-		
-//		User u = new User();
-//		u.setUsername(username);
-//		u.setEmail(email);
-//		u.setPassword(password);
-//		u.setFirstname(fname);
-//		u.setLastname(lname);
-//		UserHandlerInterface ui = new UserHandler();
-//		if (ui.isExist(u.getUsername())) {
-//			ui.updateUser(u);
-//			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-//			view.forward(request, response);
-//		} else {
-//			request.setAttribute("msg", "1");
-//			RequestDispatcher view = request
-//					.getRequestDispatcher("new_user.jsp");
-//			view.forward(request, response);
-//		}
+
 
 	}
 
 	private void index(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("in index");
-		// List<Cinema> cinemas = DataHandler.getCinemas();
-		// request.setAttribute("cinemas", cinemas);
-		// List<Movie> movies = DataHandler.getMovies();
-		// request.setAttribute("movies", movies);
-		// RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-		// view.forward(request, response);
 		MovieHandlerInterface mi = new MovieHandler();
 		
 		
 
 		List<Movie> movies = mi.getShowingMovies();
-		//System.out.println(movies.toString());
 		Collections.sort(movies, new Comparator<Movie>() {
 			public int compare(Movie m1, Movie m2) {
 				double mr1 = mi.getAveRatingByMovie(m1.getId());
@@ -752,7 +655,7 @@ public class RequestServlet extends HttpServlet {
 
 		// check
 		if (username != null) {
-			if (email.matches("^\\w+@\\w+\\.(com|cn)")) {
+			if (email.matches("^\\w+@\\w+\\.*")) {
 				if (nickname != null) {
 					if (password != null) {
 						UserHandlerInterface ui = new UserHandler();
@@ -793,30 +696,6 @@ public class RequestServlet extends HttpServlet {
 			view.forward(request, response);
 		}
 
-		// if(username!=null && email!=null && password!=null){
-		// System.out.println(username+ " "+email+" "+password);
-		// UserHandlerInterface ui=new UserHandler();
-		// RequestDispatcher view = request
-		// .getRequestDispatcher("fail.jsp");
-		// if(!ui.isExist(username)){
-		// User u=new User(username,email);
-		// u.setPassword(password);
-		// ui.addUser(u);
-		// request.setAttribute("msg", "1");
-		// view = request
-		// .getRequestDispatcher("success.jsp");
-		// }else{
-		// request.setAttribute("msg", "2");
-		// view = request
-		// .getRequestDispatcher("fail.jsp");
-		// }
-		// view.forward(request, response);
-		// }else{
-		// RequestDispatcher view = request
-		// .getRequestDispatcher("new_user.jsp");
-		// view.forward(request, response);
-		// }
-		//
 	}
 
 	private void movieDetail(HttpServletRequest request,
@@ -832,10 +711,6 @@ public class RequestServlet extends HttpServlet {
 		request.setAttribute("session", ses);
 		request.setAttribute("reviews", mi.getReviewsByMovie(movie_id));
 
-		// ReviewHandlerInterface ri=new ReviewHandler();
-		// List<Review> revs=ri.getReviewsByMovie(m);
-		// if(revs!=null)
-		// request.setAttribute("reviews", revs);
 		System.out.println("movie_id is " + movie_id);
 		System.out.println("reviews count "
 				+ mi.getReviewsByMovie(movie_id).size());
