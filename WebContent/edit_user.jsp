@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="java.util.*"%>
+<%@ page import="model.bean.*"%>
+<%@ page import="model.handler.*"%>
+<%@ page import="model.handlerInterface.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,17 +22,28 @@
 	<div id="header"></div>
 <div id="body">
 	<h1>Edit User</h1>
-	<form>
+	<%
+		String sid=(String) request.getParameter("id");
+		int id=Integer.parseInt(sid);
+		UserHandlerInterface ui=new UserHandler();
+		User u=ui.getUserById(id);
+	%>
+	<form action="edit_user" method="post">
 		<table width="80%" border="0">
 			<tbody>
 				<tr>
 					<th scope="row">Username</th>
-					<td><label id="username" value="uu">Username</label>&nbsp; <input
-						type="hidden" name="user_id" value="<%="13"%>"></td>
+					<td><label id="username" value="uu"><%=u.getUsername() %></label>&nbsp; <input
+						type="hidden" name="user_name" value="<%=u.getUsername()%>"></td>
       </tr>
       <tr>
         <th scope="row">Email</th>
         <td><input type="text" name="textfield2" id="textfield2"></td>
+      </tr>
+      
+      <tr>
+        <th scope="row">Nickname</th>
+        <td><input type="text" name="textfield6" id="textfield6"></td>
       </tr>
       
       <tr>

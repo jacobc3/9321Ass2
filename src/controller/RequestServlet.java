@@ -145,6 +145,8 @@ public class RequestServlet extends HttpServlet {
 			this.newCinema(request, response);
 		} else if (url.matches("(.*)/set_release_date(.*)")) {
 			this.setReleaseDate(request, response);
+		} else if (url.matches("(.*)/edit_user(.*)")) {
+			this.editUser(request, response);
 		}
 	}
 	
@@ -581,29 +583,68 @@ public class RequestServlet extends HttpServlet {
 
 	private void editUser(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String username = request.getParameter("id");
+		String username = request.getParameter("user_name");
 		String email = request.getParameter("textfield2");
 		String password = request.getParameter("textfield3");
 		String fname = request.getParameter("textfield4");
 		String lname = request.getParameter("textfield5");
-
-		User u = new User();
-		u.setUsername(username);
-		u.setEmail(email);
-		u.setPassword(password);
-		u.setFirstname(fname);
-		u.setLastname(lname);
-		UserHandlerInterface ui = new UserHandler();
-		if (ui.isExist(u.getUsername())) {
+		String nickname=request.getParameter("textfield3");
+		System.out.println(username);
+		if(username!=null){
+			
+			UserHandlerInterface ui = new UserHandler();
+			User u=ui.getUserByUsername(username);
+			if(email!=null && email.matches("^\\w+@\\w+\\.(com|cn)")){
+				u.setEmail(email);
+			}
+			if(password!=null){
+				u.setPassword(password);
+			}
+			if(fname!=null){
+				u.setFirstname(fname);
+			}
+			if(lname!=null){
+				u.setLastname(lname);
+			}
+			if(nickname!=null){
+				u.setNickname(nickname);
+			}
+			System.out.println("heehrherhehrhre");
 			ui.updateUser(u);
-			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-			view.forward(request, response);
-		} else {
-			request.setAttribute("msg", "1");
-			RequestDispatcher view = request
-					.getRequestDispatcher("new_user.jsp");
+			response.setContentType("text/html; charset=gb2312");
+			response.sendRedirect("display_user?username="+u.getUsername());
+			
+			
+		}else{
+			request.setAttribute("msg", "username cannot be null");
+			RequestDispatcher view = request.getRequestDispatcher("edit_user.jsp");
 			view.forward(request, response);
 		}
+		
+				
+		
+		
+		
+		
+		
+		
+//		User u = new User();
+//		u.setUsername(username);
+//		u.setEmail(email);
+//		u.setPassword(password);
+//		u.setFirstname(fname);
+//		u.setLastname(lname);
+//		UserHandlerInterface ui = new UserHandler();
+//		if (ui.isExist(u.getUsername())) {
+//			ui.updateUser(u);
+//			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+//			view.forward(request, response);
+//		} else {
+//			request.setAttribute("msg", "1");
+//			RequestDispatcher view = request
+//					.getRequestDispatcher("new_user.jsp");
+//			view.forward(request, response);
+//		}
 
 	}
 
