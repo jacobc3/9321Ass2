@@ -14,7 +14,7 @@
 		$("#footer").load("footer.jsp");
 	});
 </script>
-<div id="footer"></div>
+<div id="header"></div>
 <div id="container">
 <h1>Add User</h1>
 <%

@@ -65,6 +65,6 @@
   </table>
   </form>
   <%} else {
-  out.println("Please <a href=\"/index\">log in</a> first");} %>
+  out.println("Please <a href=\"index\">log in</a> first");} %>
 </div>
 <div class="footer"></div>

@@ -23,7 +23,10 @@
 <div id="container">
 	<h1>Edit User</h1>
 	<%
-		String sid=(String) request.getParameter("id");
+	String myUsername= (String) request.getSession()
+			.getAttribute("user");
+	String sid=(String) request.getParameter("id");
+	if(myUsername.compareTo(new UserHandler().getUserById(Integer.parseInt(sid)).getUsername() ) == 0 ) {		
 		int id=Integer.parseInt(sid);
 		UserHandlerInterface ui=new UserHandler();
 		User u=ui.getUserById(id);
@@ -74,5 +77,8 @@
     </tbody>
   </table>
   </form>
+  <%} else {
+  	out.println("you are not authorized to view this page");
+  } %>
 </div>
 <%@ include file="footer.jsp"%>

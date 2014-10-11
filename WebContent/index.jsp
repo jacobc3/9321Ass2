@@ -34,10 +34,10 @@
             </tr>
             <tr>
               <th scope="col">PosterURL</th>
-              <th scope="col">Title</th>
+              <th scope="col" width="200px">Title</th>
               <th scope="col">Actors</th>
               <th scope="col">Synopsis</th>
-              <th scope="col">Rating</th>
+              <th scope="col" width="20px">Rating</th>
             </tr>
             
             <%
@@ -60,7 +60,7 @@
               	String syn="";
               	if(synopsis!=null){
               	if(synopsis.length()>20){
-              		syn=synopsis.substring(0, 20);
+              		syn=synopsis.substring(0, 20)+"...";
               	}else{
               		syn=synopsis;
               	}}
@@ -72,7 +72,7 @@
               </td>
                <td><a href="movie_detail?id=<%=movie.getId() %>"><%=movie.getTitle() %></a></td>
               <td><%=actors %></td>
-              <td><%=syn %></td>
+              <td><%=syn+"" %></td>
               <td><%=new Double(ra).intValue() %></td>
             </tr>
             
@@ -96,10 +96,10 @@
             </tr>
             <tr>
               <th scope="col">PosterURL</th>
-              <th scope="col">Title</th>
+              <th scope="col" width = "200px">Title</th>
               <th scope="col">Actors</th>
               <th scope="col">Synopsis</th>
-              <th scope="col">Coming date</th>
+              <th scope="col" width="200px">Coming date</th>
             </tr>
             
             <%
@@ -121,7 +121,7 @@
               	String syn="";
               	if(synopsis!=null){
               	if(synopsis.length()>20){
-              		syn=synopsis.substring(0, 20);
+              		syn=synopsis.substring(0, 20)+"...";
               	}else{
               		syn=synopsis;
               	}}
@@ -131,7 +131,7 @@
               <%} %></td>
                <td><a href="movie_detail?id=<%=movie.getId() %>"><%=movie.getTitle() %></a></td>
               <td><%=actors %></td>
-              <td><%=syn %></td>
+              <td><%=syn+"" %></td>
               <td><%=df.format(movie.getRelease_date()) %></td>
             </tr>
             
