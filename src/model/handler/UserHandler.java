@@ -163,7 +163,10 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public List<Review> getReviewsByUser(User user) {
-		return this.getReviewsByUser(user.getId());
+		if(user!=null){
+			return this.getReviewsByUser(user.getId());
+		}
+		return null;
 	}
 
 	@Override
@@ -202,7 +205,10 @@ public class UserHandler implements UserHandlerInterface {
 
 	@Override
 	public List<Booking> getBookingsByUser(User user) {
+		if(user !=null){
 		return this.getBookingsByUser(user.getId());
+		}
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -239,7 +245,10 @@ public class UserHandler implements UserHandlerInterface {
 		SQLQuery query = session.createSQLQuery(sql).addEntity(User.class);
 		List<User> list = query.list();
 //		System.out.println(list.size());
-		return list.get(0);
+		if(list !=null && list.size() > 0 ){
+			return list.get(0);
+		}
+		return null;
 	}
 
 }
