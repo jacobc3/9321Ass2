@@ -51,7 +51,7 @@ public class UserHandlerTester {
 	public void senConfirmMailTester(){
 		User u = mh.getUserById(13);
 		System.out.println("id is " + u.getId()+"\nemail is "+u.getEmail());
-		mh.sendConfirmMail(u);
+//		mh.sendConfirmMail(u);
 	}
 
 	// @Test

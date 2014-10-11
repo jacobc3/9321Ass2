@@ -21,7 +21,7 @@
 <body><div id="header"></div>
 <div id="container">
 <h1>Add Movie</h1>
-<form action="save_movie" method=POST>
+<form action="save_movie" method="POST" enctype="multipart/form-data">
   <table width="80%" border="0">
     <tbody>
     <tr>
@@ -30,7 +30,7 @@
       </tr>
       <tr>
         <th scope="row"><label for="posterURL">Poster</label></th>
-        <td><input type="text" name="posterURL"></td>
+        <td>Url: <input type="text" name="posterURL"> Or Upload: <input type="file" name="file"/></td>
       </tr>
       <tr>
         <th scope="row"><label for="actors">Actors</label></th>
