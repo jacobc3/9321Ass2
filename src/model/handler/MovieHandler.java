@@ -383,27 +383,28 @@ public class MovieHandler implements MovieHandlerInterface {
 	public void setReleaseDate(int movieId, Date date) {
 		Movie m = this.getMovie(movieId);
 		m.setRelease_date(date);
-		this.updateMovie(m);		
+		this.updateMovie(m);
 	}
 
 	@Override
 	public double getAveRatingByMovie(int movie_id) {
 		double result = 0;
-		
+
 		List<Review> rs = this.getReviewsByMovie(movie_id);
-		if(rs.size() == 0){
+		if (rs.size() == 0) {
 			result = 0;
 		} else {
 			int total = 0;
 			int count = 0;
-			for (java.util.Iterator<Review> iterator = rs.iterator(); iterator.hasNext();) {
+			for (java.util.Iterator<Review> iterator = rs.iterator(); iterator
+					.hasNext();) {
 				Review b = (Review) iterator.next();
-				if(b.getRating() > 0){
+				if (b.getRating() > 0) {
 					total += b.getRating();
 					count++;
 				}
 			}
-			result = 1.0*total/count;
+			result = 1.0 * total / count;
 		}
 		return result;
 	}
@@ -422,6 +423,48 @@ public class MovieHandler implements MovieHandlerInterface {
 		session.getTransaction().commit();
 		session.close();
 		return m;
+	}
+
+	public List<Movie> getNoDateMovies() {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		String sql = "select * from movie where release_date IS NULL";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.addEntity(Movie.class);
+		List<Movie> data = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return data;
+	}
+
+	@Override
+	public List<Movie> searchByGenre(String genre_name) {
+		List<Genre> gs = this.getGenresByName(genre_name);
+		if (gs != null && gs.size() > 0) {
+			List<Movie> ms = new ArrayList<Movie>();
+			for (Genre g : gs) {
+				List<Movie> msEachGenre = this.searchByGenre(g.getId());
+				for(Movie m : msEachGenre){
+					ms.add(m);
+				}
+			}			
+			return ms;
+		}
+		return null;
+	}
+
+	@Override
+	public List<Genre> getGenresByName(String genre_name) {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		// SELECT id from movie where title like title
+		String sql = "select * FROM genre where name like '%" + genre_name + "%'";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.addEntity(Genre.class);
+		List<Genre> data = query.list();
+		return data;
 	}
 
 }

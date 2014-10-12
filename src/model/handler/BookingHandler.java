@@ -17,6 +17,7 @@ import model.bean.Review;
 import model.bean.Session;
 import model.bean.User;
 import model.handlerInterface.BookingHandlerInterface;
+import model.mail.MailSender;
 /**
  * finished
  * @author SephyZhou
@@ -51,8 +52,13 @@ public class BookingHandler implements BookingHandlerInterface {
 	@Override
 	public void approveBooking(int id) {
 		Booking b = this.getBooking(id);
-		b.setStatus(OrderStatus.Approved);
+		b.setStatus(OrderStatus.Approved);		
 		this.updateBooking(b);
+		sendStatusEmail(id);
+	}
+	
+	private void sendStatusEmail(int booking_id){
+		new MailSender().sendBookingStatusMail(this.getBooking(booking_id));
 	}
 	
 	@Override
@@ -66,10 +72,11 @@ public class BookingHandler implements BookingHandlerInterface {
 	}
 
 	@Override
-	public void declineBooking(int id) {
+	public void declineBooking(int id) {		
 		Booking b = this.getBooking(id);
-		b.setStatus(OrderStatus.Declined);
+		b.setStatus(OrderStatus.Declined);		
 		this.updateBooking(b);
+		sendStatusEmail(id);
 	}
 
 	@Override

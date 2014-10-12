@@ -5,7 +5,7 @@
 	version="3.0">
 	<display-name>9321Ass2</display-name>
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<display-name>Index</display-name>
@@ -18,6 +18,7 @@
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 	
+	
 
 <servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
@@ -29,9 +30,26 @@
 		<url-pattern>/new_user</url-pattern>
 	</servlet-mapping>
 
+
+<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/save_session</url-pattern>
+	</servlet-mapping>
+
+<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/set_release_date</url-pattern>
+	</servlet-mapping>
+	
+	
 <servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/activate</url-pattern>
 	</servlet-mapping>
 
 <servlet-mapping>
@@ -73,6 +91,15 @@
 	
 	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/edit_movie</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/edit_review</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/display_owner</url-pattern>
 	</servlet-mapping>
 	
@@ -99,6 +126,17 @@
 	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/logout</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/approve</url-pattern>
+	</servlet-mapping>
+	
+		<servlet-mapping>
+		<servlet-name>RequestServlet</servlet-name>
+		<url-pattern>/decline</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

@@ -6,20 +6,24 @@
 <html>
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
-<title>Insert title here</title>
+<title>New booking</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 	$(function() {
 		$("#header").load("header.jsp");
-		$("#footer").load("footer.jsp");
+		$(".footer").load("footer.jsp");
 	});
 </script>
 </head>
 <body>
 <div id="header"></div>
-<div class="body" id="body">
+<div id="container">
 <h1>Add Booking</h1>
-<form action="save_booking" method=GET>
+<% String username = (String) request.getSession()
+			.getAttribute("user");
+			if(username!=null){
+ %>
+<form action="save_booking" method="POST">
   <table width="80%" border="0">
     <tbody>
     <%
@@ -42,11 +46,11 @@
       </tr>
       <tr>
         <th scope="row">Card Number</th>
-        <td><input type="text" name="card_number"></td>
+        <td><input type="text" name="card_number"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'></td>
       </tr>
       <tr>
         <th scope="row">count</th>
-        <td><input type="text" name="count"></td>
+        <td><input type="text" name="count"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'></td>
       </tr>
       <tr>
         <th scope="row">Cinema Owner</th>
@@ -60,5 +64,7 @@
     </tbody>
   </table>
   </form>
+  <%} else {
+  out.println("Please <a href=\"login.jsp\">log in</a> first");} %>
 </div>
-<div id="footer"></div>
+<div class="footer"></div>

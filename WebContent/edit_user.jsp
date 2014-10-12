@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="java.util.*"%>
+<%@ page import="model.bean.*"%>
+<%@ page import="model.handler.*"%>
+<%@ page import="model.handlerInterface.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+<head><link rel="stylesheet" href="style.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Insert title here</title>
+<title>Edit User</title>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script>
 	$(function() {
@@ -16,36 +20,52 @@
 </head>
 <body>
 	<div id="header"></div>
-<div id="body">
+<div id="container">
 	<h1>Edit User</h1>
-	<form>
+	<%
+	String myUsername= (String) request.getSession()
+			.getAttribute("user");
+	String sid=(String) request.getParameter("id");
+	if(myUsername.compareTo(new UserHandler().getUserById(Integer.parseInt(sid)).getUsername() ) == 0 ) {		
+		int id=Integer.parseInt(sid);
+		UserHandlerInterface ui=new UserHandler();
+		User u=ui.getUserById(id);
+	%>
+	<form action="edit_user" method="post">
 		<table width="80%" border="0">
 			<tbody>
 				<tr>
-					<th scope="row">Username</th>
-					<td><label id="username" value="uu">Username</label>&nbsp; <input
-						type="hidden" name="user_id" value="<%="13"%>"></td>
+					<th scope="row" style="width: 179px; ">Username*</th>
+					<td><label id="username" value="uu"><%=u.getUsername() %></label>&nbsp; <input
+						type="hidden" name="user_name" value="<%=u.getUsername()%>"></td>
       </tr>
       <tr>
-        <th scope="row">Email</th>
-        <td><input type="text" name="textfield2" id="textfield2"></td>
+        <th scope="row">Email*</th>
+        <td><input type="text" name="email" value="<%=u.getEmail()%>"></td>
+
       </tr>
       
       <tr>
-        <th scope="row">Password</th>
-        <td><input type="text" name="textfield3" id="textfield3">          <label
+        <th scope="row">Nickname</th>
+        <td><input type="text" name="nickname" value="<%=u.getNickname()%>"></td>
+      </tr>
+      
+      <tr>
+        <th scope="row">Password*<br>(Keep empty if don't change)</th>
+        <td><input type="text" name="password" id="textfield3"><label
 						for="textfield2"></label></td>
       </tr>
       <tr>
         <th scope="row">First name</th>
         <td><label for="textfield">
-          <input type="text" name="textfield4" id="textfield4">
+          <input type="text" name="firstname" value="<%=u.getFirstname() %>">
+
         </label></td>
       </tr>
       <tr>
         <th scope="row">Last Name</th>
         <td><label for="textfield3">
-          <input type="text" name="textfield5" id="textfield5">
+          <input type="text" name="lastname" value="<%=u.getLastname() %>">
         </label></td>
       </tr>
       
@@ -59,5 +79,8 @@
     </tbody>
   </table>
   </form>
+  <%} else {
+  	out.println("you are not authorized to view this page");
+  } %>
 </div>
 <%@ include file="footer.jsp"%>

@@ -61,13 +61,6 @@ public interface UserHandlerInterface {
 	public User getUserByBooking(Booking booking);
 	public User getUserByBooking(int booking_id);
 	
-	/**
-	 * Haven't fully implemented yet.
-	 * TODO should be private
-	 * @deprecated
-	 * @param u
-	 */
-	public void sendConfirmMail(User u);
 	
 	
 }

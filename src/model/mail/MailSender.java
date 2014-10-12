@@ -17,88 +17,84 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import model.mail.exceptions.MailSenderException;
-import model.mail.exceptions.ServiceLocatorException;
+import model.bean.Booking;
+import model.bean.OrderStatus;
+import model.bean.User;
  
 public class MailSender{
+	public void sendActivationMail(User user){		
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "just67.justhost.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
  
-	static Logger logger = Logger.getLogger(MailSender.class.getName());
-	static MailSender sender;
-	
-	private static Session session;
-	
-	private InitialContext ctx;
-	
-	/**
-	 * This contructor is invoked according to singleton pattern. It looks up the mail session from 
-	 * the context, initialises it and then  
-	 * @throws MailSenderException
-	 * @throws ServiceLocatorException
-	 */
-	 private MailSender() throws MailSenderException, ServiceLocatorException{ 
-		try{
-			ctx = new InitialContext();
-			Context envContext = (Context) ctx.lookup("java:comp/env");
-			session = (Session) envContext.lookup("mail/Session");
-			logger.info("Mailer Session obtained"+session.toString());
-			Properties mailProps = session.getProperties();
-			String username = (String)mailProps.get("mail.smtp.user");
-			logger.info(username);
-			String password = (String)mailProps.get("password");
-			logger.info(password);
-		}catch(NamingException e){
-			logger.severe("Cannot find context, throwing exception"+e.getMessage());
-			e.printStackTrace();
-			throw new ServiceLocatorException();
+		Session session = Session.getDefaultInstance(props,
+			new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("admin@sensitiver.com","Jacobc3z");
+				}
+			});
+ 
+		try {
+ 
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("admin@sensitiver.com"));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse("jacobc3@Gmail.com"));
+			message.setSubject("Activiation mail on Movie Website");
+			String content="Dear "+user.getUsername()+":<br>"
+					+"    please use this to activate your account </br>"
+					+"http://localhost:8080/9321Ass2/activate?user_id="+user.getId()+"</br>";
+			message.setContent(content, "text/html");
+			System.out.println("Sending mail to "+user.getEmail());
+			System.out.println("content:"+content);			
+			Transport.send(message); 
+			System.out.println("Done");
+ 
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
 		}
 	}
-
 	
-	/**
-	 * This function stores a username/password combination into the mail session. The authentication is 
-	 * only performed when a mail is sent.
-	 */
-	public void setAuthData(final Properties mailProperties, final String username, final String password){
-		session = Session.getInstance(mailProperties,
-				  new Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(username,password);
-					}
-				  });
-	}
-	
-	/**
-	 * This function sends a mail from fromAddress to toAddress. The actual authentication
-	 * is performed here, so there could be an authentication error. 
-	 * 
-	 * In contrast, setAuthData always returns true as no authentication is performed 
-	 * in that function
-	 * 
-	 * This is a blocking call, so may be better executed in a separate thread.
-	 * 
-	 * @param fromAddress
-	 * @param toAddress
-	 * @param mailSubject
-	 * @param text
-	 * @throws AddressException
-	 * @throws MessagingException
-	 */
-	public void sendMessage(String fromAddress, String toAddress, String mailSubject, String text) throws AddressException, MessagingException{
-		Message message = new MimeMessage(session);
-		message.setFrom(new InternetAddress(fromAddress));
-		message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(toAddress));
-		message.setSubject(mailSubject);
-		message.setText(text);
-
-		Transport.send(message);
-
-		logger.info("Sent message "+toAddress+" with subject "+mailSubject);
-	}
-	
-	public static MailSender getMailSender() throws ServiceLocatorException, MailSenderException{
-		if(sender==null)
-			sender = new MailSender();	
-		return sender;
+	public void sendBookingStatusMail(Booking b){
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "just67.justhost.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+ 
+		Session session = Session.getDefaultInstance(props,
+			new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication("admin@sensitiver.com","Jacobc3z");
+				}
+			});
+ 
+		try { 
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("admin@sensitiver.com"));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse(b.getUser().getEmail()));
+			
+			
+			message.setSubject("Your Booking status on Movie Website Has been changed");
+			String content = "Dear user "+b.getUser().getUsername()+":<br>"
+					+"Your booking with id "+b.getId()+" 's status has been changed to <b>"+b.getStatus()+"</b>.";
+			message.setContent(content, "text/html");
+			System.out.println("Sending mail to "+b.getUser().getEmail());
+			System.out.println("content:"+content);	
+			Transport.send(message);
+ 
+			System.out.println("Done");
+ 
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 }

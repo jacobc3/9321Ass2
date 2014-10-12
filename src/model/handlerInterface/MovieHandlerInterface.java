@@ -55,7 +55,7 @@ public interface MovieHandlerInterface {
 	 * @return
 	 */
 	public List<Movie> searchByGenre(int genre_id);
-	
+	public List<Movie> searchByGenre(String genre);
 	//not listed in UML
 	
 	/**
@@ -83,6 +83,7 @@ public interface MovieHandlerInterface {
 	//movie-genre related
 	public List<Movie> getMoviesByGenre(String genre);	
 	public List<Movie> getMoviesByGenre(Genre genre);
+	public List<Genre> getGenresByName(String genre_name);
 	/**
 	 * 
 	 * @param genre_id
@@ -120,6 +121,7 @@ public interface MovieHandlerInterface {
 	 * @param date
 	 */
 	public void setReleaseDate(int movieId, Date date);
+	public List<Movie> getNoDateMovies();
 	public Genre getGenreById(int genre_id);
 	
 }

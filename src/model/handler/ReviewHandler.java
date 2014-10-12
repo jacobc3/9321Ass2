@@ -33,6 +33,7 @@ public class ReviewHandler implements ReviewHandlerInterface {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
+		review.setPostDate(new Date());
 		Integer id = (Integer) session.save(review);
 		session.getTransaction().commit();
 		session.close();
