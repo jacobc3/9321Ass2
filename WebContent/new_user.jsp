@@ -47,7 +47,7 @@
       <tr>
         <th scope="row">Password</th>
         <td>
-          <input type="password" name="password" id="textfield3">          <label for="textfield2"></label></td>
+          <input type="password" name="password" id="textfield3"></td>
       </tr>
       <tr>
         <th scope="row"><input type="submit" value="Register"></th>
