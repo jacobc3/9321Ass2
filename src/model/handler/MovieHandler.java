@@ -32,7 +32,7 @@ public class MovieHandler implements MovieHandlerInterface {
 	public MovieHandler() {
 	}
 
-	@Override
+	
 	public int addMovie(Movie movie) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -43,7 +43,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return id;
 	}
 
-	@Override
+	
 	public Movie removeMovie(int id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -55,7 +55,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return m;
 	}
 
-	@Override
+	
 	public List<Movie> getAllMovies() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -66,7 +66,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return movies;
 	}
 
-	@Override
+	
 	public Movie getMovie(int id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -77,7 +77,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return m;
 	}
 
-	@Override
+	
 	public void updateMovie(Movie movie) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -88,7 +88,7 @@ public class MovieHandler implements MovieHandlerInterface {
 
 	}
 
-	@Override
+	
 	public void removeMovie(Movie movie) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -98,7 +98,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		session.close();
 	}
 
-	@Override
+	
 	public List<Movie> getShowingMovies() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -122,7 +122,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public List<Movie> getComingMovies() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -146,7 +146,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public List<Movie> searchByTitle(String title) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -170,7 +170,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public List<Genre> getAllGenres() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -181,7 +181,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return genres;
 	}
 
-	@Override
+	
 	public List<Movie> getMoviesByGenre(String genre) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -205,12 +205,12 @@ public class MovieHandler implements MovieHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public List<Movie> getMoviesByGenre(Genre genre) {
 		return this.getMoviesByGenre(genre.getId());
 	}
 
-	@Override
+	
 	public List<Movie> getMoviesByGenre(int genre_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -233,7 +233,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public List<Genre> getGenresByMovie(int movie_id) {
 		List<Genre> results = new ArrayList<Genre>();
 		Movie m = this.getMovie(movie_id);
@@ -244,12 +244,12 @@ public class MovieHandler implements MovieHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public List<Genre> getGenresByMovie(Movie movie) {
 		return this.getGenresByMovie(movie.getId());
 	}
 
-	@Override
+	
 	public List<model.bean.Session> getSessionsByMovie(int movie_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -271,17 +271,17 @@ public class MovieHandler implements MovieHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public List<model.bean.Session> getSessionsByMovie(Movie movie) {
 		return this.getSessionsByMovie(movie.getId());
 	}
 
-	@Override
+	
 	public Movie getMovieBySession(model.bean.Session session) {
 		return this.getMovieBySession(session.getId());
 	}
 
-	@Override
+	
 	public Movie getMovieBySession(int session_id) {
 		// select A.name from cinema_amenity CA join Amenity A where CA.amenity
 		// = A.id
@@ -300,12 +300,12 @@ public class MovieHandler implements MovieHandlerInterface {
 		return m;
 	}
 
-	@Override
+	
 	public List<Review> getReviewsByMovie(Movie movie) {
 		return this.getReviewsByMovie(movie.getId());
 	}
 
-	@Override
+	
 	public List<Review> getReviewsByMovie(int movie_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -329,12 +329,12 @@ public class MovieHandler implements MovieHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public Movie getMovieByReview(Review review) {
 		return this.getMovieByReview(review.getId());
 	}
 
-	@Override
+	
 	public Movie getMovieByReview(int review_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -354,39 +354,39 @@ public class MovieHandler implements MovieHandlerInterface {
 		return u;
 	}
 
-	@Override
+	
 	public List<Movie> getMoviesByCinema(Cinema cinema) {
 		return new CinemaHandler().getMoviesByCinema(cinema);
 	}
 
-	@Override
+	
 	public List<Movie> getMoviesByCinema(int cinema_id) {
 		return new CinemaHandler().getMoviesByCinema(cinema_id);
 	}
 
-	@Override
+	
 	public List<Cinema> getCinemasByMovie(Movie movie) {
 		return new CinemaHandler().getCinemasByMovie(movie);
 	}
 
-	@Override
+	
 	public List<Cinema> getCinemasByMovie(int movie_id) {
 		return new CinemaHandler().getCinemasByMovie(movie_id);
 	}
 
-	@Override
+	
 	public List<Movie> searchByGenre(int genre_id) {
 		return this.getMoviesByGenre(genre_id);
 	}
 
-	@Override
+	
 	public void setReleaseDate(int movieId, Date date) {
 		Movie m = this.getMovie(movieId);
 		m.setRelease_date(date);
 		this.updateMovie(m);
 	}
 
-	@Override
+	
 	public double getAveRatingByMovie(int movie_id) {
 		double result = 0;
 
@@ -409,12 +409,12 @@ public class MovieHandler implements MovieHandlerInterface {
 		return result;
 	}
 
-	@Override
+	
 	public boolean isMovieReviewable(int movie_id) {
 		return new ReviewHandler().isMovieReviewable(movie_id);
 	}
 
-	@Override
+	
 	public Genre getGenreById(int genre_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -438,7 +438,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return data;
 	}
 
-	@Override
+	
 	public List<Movie> searchByGenre(String genre_name) {
 		List<Genre> gs = this.getGenresByName(genre_name);
 		if (gs != null && gs.size() > 0) {
@@ -454,7 +454,7 @@ public class MovieHandler implements MovieHandlerInterface {
 		return null;
 	}
 
-	@Override
+	
 	public List<Genre> getGenresByName(String genre_name) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();

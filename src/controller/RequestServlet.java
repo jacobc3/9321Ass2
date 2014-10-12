@@ -662,7 +662,7 @@ public class RequestServlet extends HttpServlet {
 	private void index(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("in index");
-		MovieHandlerInterface mi = new MovieHandler();
+		final MovieHandlerInterface mi = new MovieHandler();
 		
 		
 

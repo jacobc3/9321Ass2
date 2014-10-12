@@ -29,7 +29,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 	public CinemaHandler() {
 	}
 
-	@Override
+	
 	public int addCinema(Cinema cinema) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -41,7 +41,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 
 	}
 
-	@Override
+	
 	public Cinema getCinema(int id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -52,7 +52,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return c;
 	}
 
-	@Override
+	
 	public Cinema removeCinema(int id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -64,7 +64,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return c;
 	}
 
-	@Override
+	
 	public boolean isExist(int id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -78,7 +78,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return false;
 	}
 
-	@Override
+	
 	public void updateCinema(Cinema cinema) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -89,7 +89,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 
 	}
 
-	@Override
+	
 	public void removeCinema(Cinema cinema) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -99,7 +99,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		session.close();
 	}
 
-	@Override
+	
 	public List<Cinema> getAllCinemas() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -110,7 +110,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return cinemas;
 	}
 
-	@Override
+	
 	public List<Amenity> getAllAmenities() {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -121,7 +121,7 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return amenities;
 	}
 
-	@Override
+	
 	public Amenity getAmenity(int id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -132,12 +132,12 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return a;
 	}
 
-	@Override
+	
 	public List<Amenity> getAmenitiesByCinema(Cinema cinema) {
 		return this.getAmenitiesByCinema(cinema.getId());
 	}
 
-	@Override
+	
 	public List<Amenity> getAmenitiesByCinema(int cinema_id) {
 		// We can use Select ** from ** to retrive amenities's information
 
@@ -164,12 +164,12 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public List<Cinema> getCinemasByAmenity(Amenity amenity) {
 		return this.getCinemasByAmenity(amenity.getId());
 	}
 
-	@Override
+	
 	public List<Cinema> getCinemasByAmenity(int amenity_id) {
 		// select A.name from cinema_amenity CA join Amenity A where CA.amenity
 		// = A.id
@@ -197,12 +197,12 @@ public class CinemaHandler implements CinemaHandlerInterface {
 	}
 
 
-	@Override
+	
 	public List<model.bean.Session> getSessionsByCinema(Cinema cinema) {
 		return this.getSessionsByCinema(cinema.getId());
 	}
 
-	@Override
+	
 	public List<model.bean.Session> getSessionsByCinema(int cinema_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -226,12 +226,12 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public Cinema getCinemaBySession(model.bean.Session session) {
 		return this.getCinemaBySession(session.getId());
 	}
 
-	@Override
+	
 	public Cinema getCinemaBySession(int session_id) {
 		Cinema c = new SessionHandler().getSession(session_id).getCinema();
 		return c;
@@ -253,12 +253,12 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return c;*/
 	}
 
-	@Override
+	
 	public List<Movie> getMoviesByCinema(Cinema cinema) {
 		return this.getMoviesByCinema(cinema.getId());
 	}
 
-	@Override
+	
 	public List<Movie> getMoviesByCinema(int cinema_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -282,12 +282,12 @@ public class CinemaHandler implements CinemaHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public List<Cinema> getCinemasByMovie(Movie movie) {
 		return this.getCinemasByMovie(movie.getId());
 	}
 
-	@Override
+	
 	public List<Cinema> getCinemasByMovie(int movie_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();

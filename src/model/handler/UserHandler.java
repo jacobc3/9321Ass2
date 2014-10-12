@@ -26,7 +26,7 @@ public class UserHandler implements UserHandlerInterface {
 	public UserHandler() {
 	}
 
-	@Override
+	
 	public int addUser(User user) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -61,7 +61,7 @@ public class UserHandler implements UserHandlerInterface {
 		new MailSender().sendActivationMail(user);
 	}
 
-	@Override
+	
 	public boolean isMatch(String username, String password) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -78,14 +78,14 @@ public class UserHandler implements UserHandlerInterface {
 		return false;
 	}
 
-	@Override
+	
 	public void confirmRegistration(int id) {
 		User u = this.getUserById(id);
 		u.setEmailOk(true);		
 		this.updateUser(u);
 	}
 
-	@Override
+	
 	public User getUserById(int id) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -97,7 +97,7 @@ public class UserHandler implements UserHandlerInterface {
 	}
 
 
-	@Override
+	
 	public void updateUser(User user) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -112,7 +112,7 @@ public class UserHandler implements UserHandlerInterface {
 	}
 
 
-	@Override
+	
 	public List<User> getAllUsers() {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -123,7 +123,7 @@ public class UserHandler implements UserHandlerInterface {
 		return users;
 	}
 
-	@Override
+	
 	public boolean isExist(int id) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -137,7 +137,7 @@ public class UserHandler implements UserHandlerInterface {
 		return false;
 	}
 
-	@Override
+	
 	public boolean isExist(String username) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -152,7 +152,7 @@ public class UserHandler implements UserHandlerInterface {
 		return false;
 	}
 
-	@Override
+	
 	public List<Review> getReviewsByUser(User user) {
 		if(user!=null){
 			return this.getReviewsByUser(user.getId());
@@ -160,7 +160,7 @@ public class UserHandler implements UserHandlerInterface {
 		return null;
 	}
 
-	@Override
+	
 	public List<Review> getReviewsByUser(int user_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -183,18 +183,18 @@ public class UserHandler implements UserHandlerInterface {
 		return results;
 	}
 
-	@Override
+	
 	public User getUserByReview(Review review) {
 		return this.getUserByReview(review.getId());
 	}
 
-	@Override
+	
 	public User getUserByReview(int review_id) {
 		User u = new ReviewHandler().getReviewsById(review_id).getUser();
 		return u;
 	}
 
-	@Override
+	
 	public List<Booking> getBookingsByUser(User user) {
 		if(user !=null){
 		return this.getBookingsByUser(user.getId());
@@ -203,7 +203,7 @@ public class UserHandler implements UserHandlerInterface {
 	}
 
 	@SuppressWarnings("unchecked")
-	@Override
+	
 	public List<Booking> getBookingsByUser(int user_id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -215,18 +215,18 @@ public class UserHandler implements UserHandlerInterface {
 		return data;
 	}
 
-	@Override
+	
 	public User getUserByBooking(Booking booking) {
 		return this.getUserByBooking(booking.getId());
 	}
 
-	@Override
+	
 	public User getUserByBooking(int booking_id) {
 		Booking b = new BookingHandler().getBooking(booking_id);
 		return b.getUser();
 	}
 
-	@Override
+	
 	public User getUserByUsername(String username) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();

@@ -24,7 +24,7 @@ public class OwnerHandler implements OwnerHandlerInterface{
 	public OwnerHandler() {
 	}
 
-	@Override
+	
 	public boolean isExist(int id) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -38,7 +38,7 @@ public class OwnerHandler implements OwnerHandlerInterface{
 		return false;
 	}
 
-	@Override
+	
 	public boolean isExist(String username) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -54,7 +54,7 @@ public class OwnerHandler implements OwnerHandlerInterface{
 		return false;
 	}
 
-	@Override
+	
 	public boolean isMatch(String username, String password) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -71,36 +71,36 @@ public class OwnerHandler implements OwnerHandlerInterface{
 	}
 
 
-	@Override
+	
 	public void approveBooking(int bookingId) {
 		new BookingHandler().approveBooking(bookingId);
 	}
 
 
-	@Override
+	
 	public void declineBooking(int bookingId) {
 		new BookingHandler().declineBooking(bookingId);
 	}
 
 
-	@Override
+	
 	public int addCinema(Cinema cinema) {
 		return new CinemaHandler().addCinema(cinema);
 	}
 
 
-	@Override
+	
 	public void updateCinema(Cinema cinema) {
 		new CinemaHandler().updateCinema(cinema);
 	}
 
 
-	@Override
+	
 	public void setReleaseDate(int movieId, Date date) {
 		new MovieHandler().setReleaseDate(movieId, date);
 	}
 
-	@Override
+	
 	public Owner getOwnerByUsername(String username) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();
@@ -114,7 +114,7 @@ public class OwnerHandler implements OwnerHandlerInterface{
 		return list.get(0);
 	}
 
-	@Override
+	
 	public Owner getOwnerById(int id) {
 		SessionFactory factory =  HibernateUtil.getSessionFactory();
 		Session session = factory.openSession();

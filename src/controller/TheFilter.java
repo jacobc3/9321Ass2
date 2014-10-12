@@ -9,19 +9,16 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 public class TheFilter implements Filter{
 
-	@Override
 	public void destroy() {
 		
 	}
 
-	@Override
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain filter) throws IOException, ServletException {
 		request.getRequestDispatcher("/index").forward(request, response);
 		
 	}
 
-	@Override
 	public void init(FilterConfig arg0) throws ServletException {		
 	}
 
