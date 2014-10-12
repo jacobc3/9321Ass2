@@ -10,7 +10,7 @@
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
 
-<title>Index RemoteDB</title>
+<title>Index CSE-Version</title>
 <script src="js/jquery-1.10.2.js"></script>
 <script>
 	$(function() {
