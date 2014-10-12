@@ -43,7 +43,7 @@ public class MailSender{
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("admin@sensitiver.com"));
 			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("jacobc3@Gmail.com"));
+					InternetAddress.parse(user.getEmail()));
 			message.setSubject("Activiation mail on Movie Website");
 			String content="Dear "+user.getUsername()+":<br>"
 					+"    please use this to activate your account </br>"
