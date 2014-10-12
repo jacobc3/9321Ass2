@@ -21,6 +21,9 @@
 <body><div id="header"></div>
 <div id="container">
 <h1>Add Movie</h1>
+<%String ownername = (String) request.getSession().getAttribute(
+				"owner");
+		if(ownername!=null && ownername.compareTo("")!=0){ %>
 <form action="save_movie" method="POST">
   <table width="80%" border="0">
     <tbody>
@@ -66,6 +69,7 @@
         </tr>
     </tbody>
   </table>
-  </form>
+  </form><%} else {
+	out.println("Your are not authorized to edit movie");	}%>
 </div>
 <div id = "footer"></div>

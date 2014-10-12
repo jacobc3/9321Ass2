@@ -21,6 +21,9 @@
 <body>
 <div id="header"></div>
 <div id="container">
+<%String ownername = (String) request.getSession().getAttribute(
+				"owner");
+		if(ownername!=null && ownername.compareTo("")!=0){ %>
 <h1>Add Cinema</h1>
 <form action="new_cinema" method="POST">
   <table width="80%" border="0">
@@ -62,6 +65,7 @@
         </tr>
     </tbody>
   </table>
-  </form>
+  </form><%} else {
+	out.println("Your are not authorized to add cinema");	}%>
 </div>
 <div id="footer"></div>

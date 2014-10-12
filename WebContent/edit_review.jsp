@@ -25,6 +25,10 @@
 			ReviewHandler ri = new ReviewHandler();
 			Review review = ri.getReviewsById(Integer.parseInt(sid));
 			request.setAttribute("id", sid);
+			String username = (String) request.getSession()
+			.getAttribute("user");
+			if(username!=null && username.compareTo("")!=0 && username.compareTo(review.getUser().getUsername())== 0){
+			
 		%>
 		<form action="edit_review" method="POST">
 			<table width="80%" border="0">
@@ -64,6 +68,9 @@
 				</tbody>
 			</table>
 		</form>
+		<%} else {
+		out.println("you are not authorized to edit this review");
+		} %>
 	</div>
 </body>
 </html>

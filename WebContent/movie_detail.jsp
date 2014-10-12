@@ -35,6 +35,16 @@
 						alt="<%=m.getTitle()%>" /><%} %></td>
 					<td width="100%"><table width="100%" border="0">
 							<tbody>
+							
+							<% 	String ownername = (String) request.getSession().getAttribute(
+									"owner");
+							if (ownername!=null && ownername.compareTo("") != 0){
+							%>
+							<tr>
+									<th width="22%" scope="row"></th>
+									<td width="78%"><a href = "edit_movie.jsp?id=<%=m.getId()%>">Edit</a></td>
+								</tr>
+							<%}%>							
 								<tr>
 									<th width="22%" scope="row">id</th>
 									<td width="78%"><%=m.getId()%></td>
@@ -48,16 +58,12 @@
 									<td><%=m.getActors()%></td>
 								</tr>
 								<tr>
-									<th scope="row">poster</th>
-									<td>&nbsp;</td>
-								</tr>
-								<tr>
 									<th scope="row">release date</th>
 									<td><%DateFormat df2 = new SimpleDateFormat("yyyy-MM-dd");%><%=df2.format(m.getRelease_date()) %></td>
 								</tr>
 								<tr>
 									<th scope="row">synopsis</th>
-									<td><%=m.getSynopsis()%></td>
+									<td><%=(m.getSynopsis()==null?"":m.getSynopsis())%></td>
 								</tr>
 								<tr>
 									<th scope="row">genres</th>
@@ -119,8 +125,6 @@
 								%>
 							</tbody>
 						</table> <%
- 	String ownername = (String) request.getSession().getAttribute(
- 				"owner");
  		if (ownername != null && ownername != "") {
  %>
 						<hr> Add new Session<br>

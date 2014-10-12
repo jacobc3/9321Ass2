@@ -9,7 +9,7 @@
 <head>
 <link rel="stylesheet" href="style.css" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Edit movie</title>
 <script src="js/jquery-1.10.2.js"></script>
 <script>
 	$(function() {
@@ -26,10 +26,13 @@
 		MovieHandler mi=new MovieHandler();
 		Movie movie=mi.getMovie(Integer.parseInt(sid));
 		request.setAttribute("id", sid);
+		String ownername = (String) request.getSession().getAttribute(
+				"owner");
+		if(ownername!=null && ownername.compareTo("")!=0){
 		
 	%>
 		<h1>Edit Movie</h1>
-		<form action="edit_movie">
+		<form action="edit_movie" method="POST">
 			<table width="80%" border="0">
 				<tbody>
 					<tr>
@@ -69,10 +72,15 @@
 							 <td><p>
         <% MovieHandlerInterface mh = new MovieHandler();
         List<Genre> gs = mh.getAllGenres();
+		List<Genre> selected = new MovieHandler().getGenresByMovie(movie);
+		List<Integer> selected_ids = new ArrayList<Integer>();
+		for(int i = 0; i<selected.size(); i++){
+			selected_ids.add(selected.get(i).getId());
+		}
         for(Genre g: gs){
         %>
           <label>
-            <input type="checkbox" name="genre" value="<%=g.getId() %>" id="CheckboxGroup1_0">
+            <input type="checkbox" name="genre" value="<%=g.getId() %>" <%=selected_ids.contains((Integer)g.getId())?"checked":"" %>>
            <%=g.getName() %></label>
           <br>
           <%
@@ -90,5 +98,8 @@
 				</tbody>
 			</table>
 		</form>
+	<%} else {
+	out.println("Your are not authorized to edit movie");	}%>
 	</div>
+	
 	<%@ include file="footer.jsp"%>

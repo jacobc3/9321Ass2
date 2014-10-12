@@ -65,8 +65,6 @@ public class RequestServlet extends HttpServlet {
 			this.logout(request, response);
 		}else if (url.matches("(.*)/new_movie(.*)")) {
 			this.newMovie(request, response);
-		} else if (url.matches("(.*)/edit_movie(.*)")) {
-			this.editMovie(request, response);
 		} else if (url.matches("(.*)/movie_detail(.*)")) {
 			this.movieDetail(request, response);
 
@@ -134,6 +132,8 @@ public class RequestServlet extends HttpServlet {
 			this.saveSession(request, response);
 		}else if (url.matches("(.*)/edit_review")) {
 			this.editReview(request, response);
+		} else if (url.matches("(.*)/edit_movie(.*)")) {
+			this.editMovie(request, response);
 		}
 		
 		
