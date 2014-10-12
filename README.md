@@ -37,3 +37,23 @@ Group<br>
 <br>
 Random name Generator: http://zh-cn.fakenamegenerator.com/<br>
 Lorem ipsum: http://www.lipsum.com/feed/html <br>
+
+
+------------------------------------
+TO RUN ON CSE MACHINE on account szho690
+-----
+<b>tomcat</b><br>
+source /home/szho690/apache-tomcat-7.0.42/setTomcat
+cd $CATALINA_HOME/bin
+sh startup.sh
+
+sh shutdown.sh
+
+--
+mysql
+
+priv srvr
+cd /srvr/szho690
+mysqld_safe --datadir=/srvr/szho690/database --log=mysqld.log --pid-file=mysqld.pid --log-error=mysqld_err.log --socket=mysql.sock &
+mysql -u root -p123:
+mysqladmin -u root -p123 shutdown
