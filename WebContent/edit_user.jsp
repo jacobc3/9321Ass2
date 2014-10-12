@@ -42,6 +42,7 @@
       <tr>
         <th scope="row">Email*</th>
         <td><input type="text" name="email" value="<%=u.getEmail()%>"></td>
+
       </tr>
       
       <tr>
@@ -57,13 +58,14 @@
       <tr>
         <th scope="row">First name</th>
         <td><label for="textfield">
-          <input type="text" name="fname" value="<%=u.getFirstname() %>">
+          <input type="text" name="firstname" value="<%=u.getFirstname() %>">
+
         </label></td>
       </tr>
       <tr>
         <th scope="row">Last Name</th>
         <td><label for="textfield3">
-          <input type="text" name="lname" value="<%=u.getLastname() %>">
+          <input type="text" name="lastname" value="<%=u.getLastname() %>">
         </label></td>
       </tr>
       

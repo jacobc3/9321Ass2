@@ -430,6 +430,8 @@ public class RequestServlet extends HttpServlet {
 					UserHandlerInterface ui = new UserHandler();
 					if (ui.isExist(username)) {
 						if (ui.isMatch(username, password)) {
+							request.getSession().removeAttribute("user");
+							request.getSession().removeAttribute("owner");
 							request.getSession().setAttribute("user", username);
 							response.setContentType("text/html; charset=gb2312");
 							response.sendRedirect("index");
@@ -615,8 +617,8 @@ public class RequestServlet extends HttpServlet {
 		String username = request.getParameter("user_name");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
+		String fname = request.getParameter("firstname");
+		String lname = request.getParameter("lastname");
 		String nickname=request.getParameter("nickname");
 		System.out.println(username);
 		if(username!=null){
