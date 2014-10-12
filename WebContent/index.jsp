@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css" type="text/css" />
 
 <title>Index</title>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/jquery-1.10.2.js"></script>
 <script>
 	$(function() {
 		$("#header").load("header.jsp");

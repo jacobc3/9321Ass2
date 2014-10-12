@@ -8,7 +8,7 @@
 <meta http-equiv="Refresh" content="5;url=index">
 <title>Success</title>
 <link rel="stylesheet" href="style.css" type="text/css" />
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/jquery-1.10.2.js"></script>
 <script>
 	$(function() {
 		$("#header").load("header.jsp");
@@ -17,10 +17,10 @@
 </script>
 </head>
 <body><div id="header"></div>
-<center>
+<div id="container">
 <h1> Success!</h1>
 <h1> return to index in 5 seconds</h1>
-</center>
-</body>
+</div>
 <div id="footer"></div>
+</body>
 </html>

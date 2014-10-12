@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id = "container">
 <jsp:forward page="index.jsp">
     <jsp:param name="action" value="indexinfo" />
-</jsp:forward>
+</jsp:forward></div>
 </body>
 </html>

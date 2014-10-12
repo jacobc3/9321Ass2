@@ -15,7 +15,7 @@
 %>
 <%DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");%>
 <title>Movie detail of <%=m.getTitle()%></title>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="js/jquery-1.10.2.js"></script>
 <script>
 	$(function() {
 		$("#header").load("header.jsp");
