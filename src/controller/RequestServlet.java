@@ -626,7 +626,7 @@ public class RequestServlet extends HttpServlet {
 			UserHandlerInterface ui = new UserHandler();
 			User u = ui.getUserByUsername(username);
 			
-			if(email!=null && email.matches("^\\w+@\\w+\\.*")){
+			if(email!=null && email.matches("^\\w+@\\w+\\.(.*)")){
 				u.setEmail(email);
 			}
 			if(password!=null && !password.isEmpty()){
@@ -712,7 +712,7 @@ public class RequestServlet extends HttpServlet {
 
 		// check
 		if (username != null && !username.isEmpty()) {
-			if (email.matches("^\\w+@\\w+\\.*")) {
+			if (email.matches("^\\w+@\\w+\\.(.*)")) {
 				if (nickname != null) {
 					if (password != null && !password.isEmpty()) {
 						UserHandlerInterface ui = new UserHandler();
