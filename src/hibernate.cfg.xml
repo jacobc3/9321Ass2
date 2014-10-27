@@ -35,8 +35,5 @@
 		<mapping class="model.bean.Session" />
 		<mapping class="model.bean.Booking" />
 		
-		<!--
-		 
-		-->
 	</session-factory>
 </hibernate-configuration>
